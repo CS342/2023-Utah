@@ -6,8 +6,8 @@
 // SPDX-License-Identifier: MIT
 //
 
-import UtahSharedContext
 import SwiftUI
+import UtahSharedContext
 
 
 /// Displays an multi-step onboarding flow for the CS342 2023 Utah Team Application.

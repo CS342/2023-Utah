@@ -6,8 +6,8 @@
 // SPDX-License-Identifier: MIT
 //
 
-import UtahSharedContext
 import SwiftUI
+import UtahSharedContext
 
 
 private struct UtahTestingSetup: ViewModifier {

@@ -11,11 +11,11 @@ import FHIR
 import HealthKit
 import HealthKitDataSource
 import HealthKitToFHIRAdapter
-import UtahMockDataStorageProvider
-import UtahSchedule
 import Questionnaires
 import Scheduler
 import SwiftUI
+import UtahMockDataStorageProvider
+import UtahSchedule
 
 
 class UtahAppDelegate: CardinalKitAppDelegate {

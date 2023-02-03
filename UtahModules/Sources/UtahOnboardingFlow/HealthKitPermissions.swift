@@ -9,8 +9,8 @@
 import FHIR
 import HealthKitDataSource
 import Onboarding
-import UtahSharedContext
 import SwiftUI
+import UtahSharedContext
 
 
 struct HealthKitPermissions: View {

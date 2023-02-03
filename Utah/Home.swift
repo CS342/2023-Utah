@@ -6,11 +6,11 @@
 // SPDX-License-Identifier: MIT
 //
 
+import SwiftUI
 import UtahContacts
 import UtahMockDataStorageProvider
 import UtahSchedule
 import UtahSharedContext
-import SwiftUI
 
 
 struct HomeView: View {

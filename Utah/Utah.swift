@@ -7,9 +7,9 @@
 //
 
 import CardinalKit
+import SwiftUI
 import UtahOnboardingFlow
 import UtahSharedContext
-import SwiftUI
 
 
 @main
