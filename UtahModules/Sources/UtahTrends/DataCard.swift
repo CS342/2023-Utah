@@ -14,16 +14,16 @@ struct DataCard: View {
     let color: Color
     
     var body: some View {
-        VStack(alignment: .leading){
+        VStack(alignment: .leading) {
             // title
-            HStack(alignment: .firstTextBaseline){
+            HStack(alignment: .firstTextBaseline) {
                 Image(systemName: icon)
                 Text(title)
                     .font(.headline)
             }
             .padding(.bottom, 2)
-            //data
-            HStack(alignment: .firstTextBaseline){
+            // data
+            HStack(alignment: .firstTextBaseline) {
                 Text("500")
                     .font(.largeTitle)
                     .fontWeight(.bold)
@@ -34,14 +34,11 @@ struct DataCard: View {
         }
         .frame(width: 350, height: 100)
         .padding(.leading, 20)
-        .background{
+        .background {
             RoundedRectangle(cornerRadius: 10)
                 .foregroundColor(Color(.systemBackground))
                 .shadow(radius: 5)
-                .frame(width: 350, height: 100)
         }
-        
-        
     }
 }
 

@@ -6,13 +6,19 @@
 // SPDX-License-Identifier: MIT
 //
 
+import Foundation
 import SwiftUI
 
 public struct Trends: View {
     public var body: some View {
-        VStack (alignment: .leading){
-            DataCard(icon: "shoeprints.fill", title: "Daily Step Count", unit: "steps", color: Color.green)
-            DataCard(icon: "heart.fill", title: "Average Heart Rate", unit: "bpm", color: Color.red)
+        NavigationStack {
+            VStack(alignment: .leading) {
+                DataCard(icon: "shoeprints.fill", title: "Daily Step Count", unit: "steps", color: Color.green)
+                DataCard(icon: "list.clipboard.fill", title: "Survey Score", unit: "points", color: Color.blue)
+            }
+            .padding()
+            Spacer()
+            .navigationTitle("Trends")
         }
     }
     
