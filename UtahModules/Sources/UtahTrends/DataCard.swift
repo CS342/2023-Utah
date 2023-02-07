@@ -1,14 +1,11 @@
 //
-//  DataCard.swift
-//
 // This source file is part of the CS342 2023 Utah Team Application project
 //
 // SPDX-FileCopyrightText: 2023 Stanford University
 //
 // SPDX-License-Identifier: MIT
 //
-//  Created by Jennifer Xu on 2/5/23.
-//
+
 
 import SwiftUI
 
