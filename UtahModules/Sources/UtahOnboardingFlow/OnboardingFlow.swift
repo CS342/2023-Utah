@@ -14,6 +14,7 @@ import UtahSharedContext
 public struct OnboardingFlow: View {
     enum Step: String, Codable {
         case interestingModules
+        case conditionQuestionaire
         case consent
         case healthKitPermissions
     }
@@ -29,6 +30,8 @@ public struct OnboardingFlow: View {
                     switch onboardingStep {
                     case .interestingModules:
                         InterestingModules(onboardingSteps: $onboardingSteps)
+                    case .conditionQuestionaire:
+                        ConditionQuestionaire(onboardingSteps: $onboardingSteps)
                     case .consent:
                         Consent(onboardingSteps: $onboardingSteps)
                     case .healthKitPermissions:
