@@ -9,7 +9,6 @@
 import SwiftUI
 
 struct InfoRowView: View {
-    
     var title: String
     var value: String
     var image: String

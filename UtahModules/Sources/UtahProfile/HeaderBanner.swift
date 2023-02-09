@@ -30,9 +30,3 @@ struct Header: View {
         }
     }
 }
-
-struct Header_Preview: PreviewProvider {
-    static var previews: some View {
-        Header()
-    }
-}

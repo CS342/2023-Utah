@@ -39,7 +39,7 @@ struct ProfileSettings: View {
     
     var body: some View {
         Section(header: Text("Profile")) {
-            Button (
+            Button(
                 action: {
                     // Action
                 },
