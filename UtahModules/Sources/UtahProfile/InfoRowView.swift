@@ -13,8 +13,7 @@ struct InfoRowView: View {
     var title: String
     var value: String
     var image: String
-    
-    var body: some View{
+    var body: some View {
         VStack(alignment: .leading, spacing: 3) {
             Text(title)
                 .foregroundColor(.primary)
@@ -27,4 +26,3 @@ struct InfoRowView: View {
         }
     }
 }
-

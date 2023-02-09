@@ -20,7 +20,7 @@ struct SettingsView: View {
             .navigationBarTitle(Text("Settings"))
             .navigationBarItems(
                 trailing:
-                    Button (
+                    Button(
                         action: {
                             self.presentationMode.wrappedValue.dismiss()
                         },
@@ -73,9 +73,9 @@ struct HeaderBackgroundSliders: View {
                 //                    Text("B: \(Int(bValue * 255.0))")
                 //                }
                 VStack {
-                    colorSlider(value: $rValue, textColor: .red)
-                    colorSlider(value: $gValue, textColor: .green)
-                    colorSlider(value: $bValue, textColor: .blue)
+                    ColorSlider(value: $rValue, textColor: .red)
+                    ColorSlider(value: $gValue, textColor: .green)
+                    ColorSlider(value: $bValue, textColor: .blue)
                 }
             }
         }

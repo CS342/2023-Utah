@@ -8,7 +8,7 @@
 
 import SwiftUI
 
-struct colorSlider: View {
+struct ColorSlider: View {
     @Binding var value: Double
     var textColor: Color
     
@@ -19,7 +19,6 @@ struct colorSlider: View {
             Slider(value: $value, in: 0.0...1.0)
             Text(verbatim: "255")
                 .foregroundColor(textColor)
-            
         }
     }
 }
