@@ -20,7 +20,6 @@
 		2F4E23832989D51F0013F3D9 /* UtahAppTestingSetup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F4E23822989D51F0013F3D9 /* UtahAppTestingSetup.swift */; };
 		2F4E23852989D9130013F3D9 /* XCUIApplication+DeleteAndLaunch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F4E23842989D9130013F3D9 /* XCUIApplication+DeleteAndLaunch.swift */; };
 		2F4E23892989DB400013F3D9 /* HealthKitUploadTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F4E23882989DB400013F3D9 /* HealthKitUploadTests.swift */; };
-		2F59B93D298C628800C5107F /* UtahContacts in Frameworks */ = {isa = PBXBuildFile; productRef = 2F59B93C298C628800C5107F /* UtahContacts */; };
 		2F59B93F298C628800C5107F /* UtahMockDataStorageProvider in Frameworks */ = {isa = PBXBuildFile; productRef = 2F59B93E298C628800C5107F /* UtahMockDataStorageProvider */; };
 		2F59B941298C628800C5107F /* UtahOnboardingFlow in Frameworks */ = {isa = PBXBuildFile; productRef = 2F59B940298C628800C5107F /* UtahOnboardingFlow */; };
 		2F59B943298C628800C5107F /* UtahSchedule in Frameworks */ = {isa = PBXBuildFile; productRef = 2F59B942298C628800C5107F /* UtahSchedule */; };
@@ -96,7 +95,6 @@
 				2F49B7802980418400BCB272 /* Onboarding in Frameworks */,
 				2F59B943298C628800C5107F /* UtahSchedule in Frameworks */,
 				2F49B7762980407C00BCB272 /* CardinalKit in Frameworks */,
-				2F59B93D298C628800C5107F /* UtahContacts in Frameworks */,
 				2F49B77C2980407C00BCB272 /* HealthKitToFHIRAdapter in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -226,7 +224,6 @@
 				2F49B77F2980418400BCB272 /* Onboarding */,
 				2F49B7812980419C00BCB272 /* Questionnaires */,
 				2F49B783298041F300BCB272 /* Contact */,
-				2F59B93C298C628800C5107F /* UtahContacts */,
 				2F59B93E298C628800C5107F /* UtahMockDataStorageProvider */,
 				2F59B940298C628800C5107F /* UtahOnboardingFlow */,
 				2F59B942298C628800C5107F /* UtahSchedule */,
@@ -939,10 +936,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 2F4E237F2989C5930013F3D9 /* XCRemoteSwiftPackageReference "XCTHealthKit" */;
 			productName = XCTHealthKit;
-		};
-		2F59B93C298C628800C5107F /* UtahContacts */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = UtahContacts;
 		};
 		2F59B93E298C628800C5107F /* UtahMockDataStorageProvider */ = {
 			isa = XCSwiftPackageProductDependency;
