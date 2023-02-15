@@ -7,7 +7,7 @@
 //
 
 // MARK: - Schedule
-"SCHEDULE_LIST_TITLE" = "Questionaires";
-"TASK_SOCIAL_SUPPORT_QUESTIONNAIRE_TITLE" = "Monthly Questionnaire";
-"TASK_SOCIAL_SUPPORT_QUESTIONNAIRE_DESCRIPTION" = "Please fill out this Questionnaire every month.";
-"TASK_CONTEXT_ACTION_QUESTIONNAIRE" = "Start Questionnaire";
+"QUESTIONNAIRE_LIST_TITLE" = "Questionaires";
+"QUESTIONNAIRE_TITLE" = "Monthly Questionnaire";
+"QUESTIONNAIRE_DESCRIPTION" = "Please fill out this Questionnaire every month.";
+"QUESTIONNAIRE_ACTION" = "Start Questionnaire";
