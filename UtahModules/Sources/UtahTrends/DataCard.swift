@@ -14,6 +14,7 @@ struct DataCard: View {
     let title: String
     let unit: String
     let color: Color
+    let getMetric: () -> Int
     
     var body: some View {
         VStack(alignment: .leading) {
@@ -46,6 +47,6 @@ struct DataCard: View {
 
 struct DataCard_Previews: PreviewProvider {
     static var previews: some View {
-        DataCard(icon: "shoeprints.fill", title: "Daily Step Count", unit: "steps", color: Color.green)
+        DataCard(icon: "shoeprints.fill", title: "Daily Step Count", unit: "steps", color: Color.green, getMetric: {()-> Int in return 500} )
     }
 }
