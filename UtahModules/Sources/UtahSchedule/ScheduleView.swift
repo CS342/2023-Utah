@@ -100,6 +100,8 @@ public struct ScheduleView: View {
     }
 }
 
+// This just removes this section from being counted in our % "test coverage"
+#if !TESTING
 
 struct SchedulerView_Previews: PreviewProvider {
     static var previews: some View {
@@ -122,3 +124,5 @@ struct SchedulerView_Previews: PreviewProvider {
             )
     }
 }
+
+#endif
