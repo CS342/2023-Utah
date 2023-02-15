@@ -13,12 +13,10 @@ public struct Profile: View {
 
     public var body: some View {
         VStack {
-            VStack {
-                Header()
-                ProfileText()
-                InfoView()
-            }
-            Spacer()
+            Header()
+            ProfileText()
+            InformationView()
+        }
 //            Button (
 //                action: { self.isPresented = true },
 //                label: {
@@ -27,9 +25,7 @@ public struct Profile: View {
 //            .sheet(isPresented: $isPresented, content: {
 //                SettingsView()
 //            })
-        }
     }
-    
     public init() {}
 }
 
