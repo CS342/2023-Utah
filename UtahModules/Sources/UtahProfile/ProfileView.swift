@@ -17,22 +17,14 @@ public struct Profile: View {
             ProfileText()
             InformationView()
         }
-//            Button (
-//                action: { self.isPresented = true },
-//                label: {
-//                    Label("Edit", systemImage: "pencil")
-//            })
-//            .sheet(isPresented: $isPresented, content: {
-//                SettingsView()
-//            })
     }
     public init() {}
 }
 
 struct ProfileText: View {
-    @AppStorage("name") var name = DefaultSettings.name
-    @AppStorage("subtitle") var subtitle = DefaultSettings.subtitle
-    @AppStorage("description") var description = DefaultSettings.description
+    @AppStorage("name") var name = "Jiahui Chen"
+    @AppStorage("subtitle") var subtitle = "Patient at University of Utah Hospital"
+    @AppStorage("description") var description = ""
     
     var body: some View {
         VStack(spacing: 15) {
