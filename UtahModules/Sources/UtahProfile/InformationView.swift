@@ -15,6 +15,7 @@ struct InformationView: View {
     let diseaseOptions = ["Peripheral Arterial Disease", "Venous Insufficiency", "I'm not sure"]
     
     var body: some View {
+        // swiftlint:disable type_body_length
         VStack {
             Text("Email")
                 .font(.headline)
