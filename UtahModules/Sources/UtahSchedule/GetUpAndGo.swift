@@ -64,13 +64,13 @@ struct GetUpAndGo: View {
     }
     
     private func primaryAction() {
-            withAnimation(.easeOut(duration: 0.2)) {
-                primaryActionLoading = true
-            }
-            _primaryAction()
-            withAnimation(.easeIn(duration: 0.2)) {
-                primaryActionLoading = false
-            }
+        withAnimation(.easeOut(duration: 0.2)) {
+            primaryActionLoading = true
+        }
+        _primaryAction()
+        withAnimation(.easeIn(duration: 0.2)) {
+            primaryActionLoading = false
+        }
     }
 }
 
