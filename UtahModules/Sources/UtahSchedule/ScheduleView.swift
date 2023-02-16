@@ -49,12 +49,15 @@ public struct ScheduleView: View {
                 }
                 NavigationLink(destination: GetUpAndGo()) {
                                     Text("Get Up And Go Question")
-                }.frame(alignment: .topLeading).padding(.all, 10).overlay(
-                    RoundedRectangle(cornerRadius: 25)
+                }.frame(alignment: .topLeading)
+                    .padding(.all, 10)
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 25)
                         .stroke(Color.white, lineWidth: 2)
-                ).background(Color(.white)).cornerRadius(25)
+                )
+                    .background(Color(.white))
+                    .cornerRadius(25)
                 .navigationTitle(String(localized: "SCHEDULE_LIST_TITLE", bundle: .module))
-            
             }
         }
     }
