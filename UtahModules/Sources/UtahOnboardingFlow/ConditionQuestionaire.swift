@@ -30,7 +30,7 @@ struct ConditionQuestionaire: View {
                 .init(
                     title: "Streamline your care".moduleLocalized,
                     description: "Help your doctors help you get better".moduleLocalized
-                ),
+                )
             ],
             actionText: "INTERESTING_MODULES_BUTTON".moduleLocalized,
             action: {
