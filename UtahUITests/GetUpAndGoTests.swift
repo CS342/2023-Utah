@@ -24,7 +24,12 @@ class GetUpAndGoTests: XCTestCase {
     func testGetUpAndGo() throws {
         let app = XCUIApplication()
         
-        // nothing to test yet
-        XCTAssertFalse(app.tabBars["Tab Bar"].buttons["GetUpAndGo"].waitForExistence(timeout: 0.5))
+        XCTAssertTrue(app.tabBars["Tab Bar"].buttons["Questions"].waitForExistence(timeout: 0.5))
+        app.tabBars["Tab Bar"].buttons["Questions"].tap()
+
+        XCTAssertTrue(app.buttons["Get Up and Go Question"].waitForExistence(timeout: 0.5))
+        app.buttons["Get Up and Go Question"].tap()
+        XCTAssertTrue(app.staticTexts["Do not do this alone. Please have someone by you to help you if necessary."].waitForExistence(timeout: 0.5))
+        XCTAssertTrue(app.staticTexts["Start"].waitForExistence(timeout: 0.5))
     }
 }

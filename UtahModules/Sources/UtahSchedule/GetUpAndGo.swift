@@ -11,7 +11,7 @@ import UIKit
 import UtahSharedContext
 
 
-struct GetUpAndGo: View {
+public struct GetUpAndGo: View {
     @State private var primaryActionLoading = false
     private var _primaryAction = { print("hi") }
     
@@ -43,7 +43,7 @@ struct GetUpAndGo: View {
         .tint(Color(.systemGreen))
     }
     
-    var body: some View {
+    public var body: some View {
         NavigationStack {
             ZStack {
                 Color(.systemGroupedBackground).ignoresSafeArea()
