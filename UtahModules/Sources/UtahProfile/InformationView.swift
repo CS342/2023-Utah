@@ -46,39 +46,48 @@ struct InformationView: View {
             }
             .padding(.bottom, 30)
             .sheet(isPresented: $isEditing) {
-                Form {
-                    Section(header: Text("Email")) {
-                        TextField("Enter your email", text: $email)
-                            .font(.subheadline)
-                            .padding(.vertical, 10)
-                    }
-                    Section(header: Text("Disease")) {
-                        Picker("Select your disease", selection: $disease) {
-                            ForEach(diseaseOptions, id: \.self) { option in
-                                Text(option)
-                            }
-                        }
-                        .padding(.vertical, 10)
-                    }
-                    Button(action: {
-                        isEditing = false
-                    }) {
-                        Text("Save")
-                            .padding()
-                            .frame(maxWidth: .infinity)
-                            .background(Color.blue)
-                            .foregroundColor(.white)
-                            .cornerRadius(10)
-                            .font(.headline)
-                            .padding(.horizontal, 30)
-                    }
-                }
+                FormView(email: $email, disease: $disease, isEditing: $isEditing)
             }
         }
         .padding(.horizontal, 30)
     }
 }
 
+struct FormView: View {
+    @Binding var email: String
+    @Binding var disease: String
+    @Binding var isEditing: Bool
+    let diseaseOptions = ["Peripheral Arterial Disease", "Venous Insufficiency", "I'm not sure"]
+    var body: some View{
+        Form {
+            Section(header: Text("Email")) {
+                TextField("Enter your email", text: $email)
+                    .font(.subheadline)
+                    .padding(.vertical, 10)
+            }
+            Section(header: Text("Disease")) {
+                Picker("Select your disease", selection: $disease) {
+                    ForEach(diseaseOptions, id: \.self) { option in
+                        Text(option)
+                    }
+                }
+                .padding(.vertical, 10)
+            }
+            Button(action: {
+                isEditing = false
+            }) {
+                Text("Save")
+                    .padding()
+                    .frame(maxWidth: .infinity)
+                    .background(Color.blue)
+                    .foregroundColor(.white)
+                    .cornerRadius(10)
+                    .font(.headline)
+                    .padding(.horizontal, 30)
+            }
+        }
+    }
+}
 
 struct InformationView_Previews: PreviewProvider {
     static var previews: some View {
