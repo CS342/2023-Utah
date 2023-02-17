@@ -35,6 +35,5 @@ class ProfileTests: XCTestCase {
         XCTAssertTrue(app.staticTexts["6504208566"].waitForExistence(timeout: 0.5))
         XCTAssertTrue(app.staticTexts["Address"].waitForExistence(timeout: 0.5))
         XCTAssertTrue(app.staticTexts["1047 Campus Drive, CA"].waitForExistence(timeout: 0.5))
-
     }
 }
