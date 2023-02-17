@@ -174,23 +174,6 @@ extension XCUIApplication {
     }
     
     
-    private func navigateOnboardingFlowHealthKitAccess(assertThatHealthKitConsentIsShown: Bool = true) throws {
-        //        XCTAssertTrue(staticTexts["HealthKit"].waitForExistence(timeout: 0.5))
-        //        XCTAssertTrue(
-        //            staticTexts["CardinalKit can access data from HealthKit using the HealthKitDataSource module."].waitForExistence(timeout: 0.5)
-        //        )
-        XCTAssertTrue(images["heart.text.square.fill"].waitForExistence(timeout: 0.5))
-        XCTAssertTrue(buttons["Grant Access"].waitForExistence(timeout: 0.5))
-        buttons["Grant Access"].tap()
-        
-        if self.navigationBars["Health Access"].waitForExistence(timeout: 30) {
-            self.tables.staticTexts["Turn On All"].tap()
-            self.navigationBars["Health Access"].buttons["Allow"].tap()
-        } else if assertThatHealthKitConsentIsShown {
-            XCTFail("Did not display the Health Consent Screen")
-        }
-    }
-    
     private func navigateOnboardingAccount() throws {
         XCTAssertTrue(staticTexts["Your Account"].waitForExistence(timeout: 2))
         
@@ -235,6 +218,23 @@ extension XCUIApplication {
             XCTAssertTrue(staticTexts["leland@stanford.edu"].waitForExistence(timeout: 2))
             XCTAssertTrue(scrollViews.otherElements.buttons["Next"].waitForExistence(timeout: 2))
             scrollViews.otherElements.buttons["Next"].tap()
+        }
+    }
+    
+    private func navigateOnboardingFlowHealthKitAccess(assertThatHealthKitConsentIsShown: Bool = true) throws {
+        //        XCTAssertTrue(staticTexts["HealthKit"].waitForExistence(timeout: 0.5))
+        //        XCTAssertTrue(
+        //            staticTexts["CardinalKit can access data from HealthKit using the HealthKitDataSource module."].waitForExistence(timeout: 0.5)
+        //        )
+        XCTAssertTrue(images["heart.text.square.fill"].waitForExistence(timeout: 0.5))
+        XCTAssertTrue(buttons["Grant Access"].waitForExistence(timeout: 0.5))
+        buttons["Grant Access"].tap()
+        
+        if self.navigationBars["Health Access"].waitForExistence(timeout: 30) {
+            self.tables.staticTexts["Turn On All"].tap()
+            self.navigationBars["Health Access"].buttons["Allow"].tap()
+        } else if assertThatHealthKitConsentIsShown {
+            XCTFail("Did not display the Health Consent Screen")
         }
     }
 }
