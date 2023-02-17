@@ -25,18 +25,19 @@ public struct ScheduleView: View {
     
     public var body: some View {
         NavigationStack {
-            List(startOfDays, id: \.timeIntervalSinceNow) { startOfDay in
-                Section(format(startOfDay: startOfDay)) {
-                    ForEach(eventContextsByDate[startOfDay] ?? [], id: \.event) { eventContext in
-                        EventContextView(eventContext: eventContext)
-                            .onTapGesture {
-                                if !eventContext.event.complete {
-                                    presentedContext = eventContext
+            ZStack {
+                List(startOfDays, id: \.timeIntervalSinceNow) { startOfDay in
+                    Section(format(startOfDay: startOfDay)) {
+                        ForEach(eventContextsByDate[startOfDay] ?? [], id: \.event) { eventContext in
+                            EventContextView(eventContext: eventContext)
+                                .onTapGesture {
+                                    if !eventContext.event.complete {
+                                        presentedContext = eventContext
+                                    }
                                 }
-                            }
+                        }
                     }
                 }
-            }
                 .onChange(of: scheduler) { _ in
                     calculateEventContextsByDate()
                 }
@@ -46,7 +47,18 @@ public struct ScheduleView: View {
                 .sheet(item: $presentedContext) { presentedContext in
                     destination(withContext: presentedContext)
                 }
-                .navigationTitle(String(localized: "SCHEDULE_LIST_TITLE", bundle: .module))
+                NavigationLink(destination: GetUpAndGo()) {
+                                    Text("Get Up And Go Question")
+                }.frame(alignment: .topLeading)
+                    .padding(.all, 10)
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 25)
+                        .stroke(Color.white, lineWidth: 2)
+                )
+                    .background(Color(.white))
+                    .cornerRadius(25)
+                .navigationTitle(String(localized: "QUESTIONNAIRE_LIST_TITLE", bundle: .module))
+            }
         }
     }
     
@@ -100,25 +112,13 @@ public struct ScheduleView: View {
     }
 }
 
-
+#if DEBUG
 struct SchedulerView_Previews: PreviewProvider {
     static var previews: some View {
         ScheduleView()
             .environmentObject(
-                UtahScheduler(
-                    tasks: [
-                        Task(
-                            title: String(localized: "TASK_SOCIAL_SUPPORT_QUESTIONNAIRE_TITLE"),
-                            description: String(localized: "TASK_SOCIAL_SUPPORT_QUESTIONNAIRE_DESCRIPTION"),
-                            schedule: Schedule(
-                                start: Calendar.current.startOfDay(for: Date()),
-                                dateComponents: .init(hour: 0, minute: 30), // Every Day at 12:30 AM
-                                end: .numberOfEvents(356)
-                            ),
-                            context: UtahTaskContext.questionnaire(Bundle.main.questionnaire(withName: "SocialSupportQuestionnaire"))
-                        )
-                    ]
-                )
+                UtahScheduler()
             )
     }
 }
+#endif

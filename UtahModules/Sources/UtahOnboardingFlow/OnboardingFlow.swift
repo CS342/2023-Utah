@@ -16,6 +16,9 @@ public struct OnboardingFlow: View {
         case interestingModules
         case conditionQuestionaire
         case consent
+        case accountSetup
+        case login
+        case signUp
         case healthKitPermissions
     }
     
@@ -34,6 +37,12 @@ public struct OnboardingFlow: View {
                         ConditionQuestionaire(onboardingSteps: $onboardingSteps)
                     case .consent:
                         Consent(onboardingSteps: $onboardingSteps)
+                    case .accountSetup:
+                        AccountSetup(onboardingSteps: $onboardingSteps)
+                    case .login:
+                        UtahLogin()
+                    case .signUp:
+                        UtahSignUp()
                     case .healthKitPermissions:
                         HealthKitPermissions()
                     }
