@@ -58,7 +58,7 @@ struct FormView: View {
     @Binding var disease: String
     @Binding var isEditing: Bool
     let diseaseOptions = ["Peripheral Arterial Disease", "Venous Insufficiency", "I'm not sure"]
-    var body: some View{
+    var body: some View {
         Form {
             Section(header: Text("Email")) {
                 TextField("Enter your email", text: $email)

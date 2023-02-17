@@ -26,5 +26,6 @@ class ProfileTests: XCTestCase {
         
         XCTAssertTrue(app.tabBars["Tab Bar"].buttons["Profile"].waitForExistence(timeout: 0.5))
         app.tabBars["Tab Bar"].buttons["Profile"].tap()
+        
     }
 }
