@@ -8,7 +8,7 @@
 
 import SwiftUI
 
-struct InformationView: View {
+struct UserInformationView: View {
     @State private var email = "jane@example.com"
     @State private var disease = "Peripheral Arterial Disease"
     @State private var isEditing = false

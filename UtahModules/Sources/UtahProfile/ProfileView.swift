@@ -15,7 +15,7 @@ public struct Profile: View {
         VStack {
             Header()
             ProfileText()
-            InformationView()
+            UserInformationView()
         }
     }
     public init() {}
