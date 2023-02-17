@@ -89,8 +89,8 @@ struct FormView: View {
     }
 }
 
-struct InformationView_Previews: PreviewProvider {
+struct UserInformationView_Previews: PreviewProvider {
     static var previews: some View {
-        InformationView()
+        UserInformationView()
     }
 }
