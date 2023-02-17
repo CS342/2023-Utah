@@ -8,6 +8,42 @@
 
 import SwiftUI
 
+struct FormView: View {
+    @Binding var email: String
+    @Binding var disease: String
+    @Binding var isEditing: Bool
+    let diseaseOptions = ["Peripheral Arterial Disease", "Venous Insufficiency", "I'm not sure"]
+    var body: some View {
+        Form {
+            Section(header: Text("Email")) {
+                TextField("Enter your email", text: $email)
+                    .font(.subheadline)
+                    .padding(.vertical, 10)
+            }
+            Section(header: Text("Disease")) {
+                Picker("Select your disease", selection: $disease) {
+                    ForEach(diseaseOptions, id: \.self) { option in
+                        Text(option)
+                    }
+                }
+                .padding(.vertical, 10)
+            }
+            Button(action: {
+                isEditing = false
+            }) {
+                Text("Save")
+                    .padding()
+                    .frame(maxWidth: .infinity)
+                    .background(Color.blue)
+                    .foregroundColor(.white)
+                    .cornerRadius(10)
+                    .font(.headline)
+                    .padding(.horizontal, 30)
+            }
+        }
+    }
+}
+
 struct UserInformationView: View {
     @State private var email = "jane@example.com"
     @State private var disease = "Peripheral Arterial Disease"
@@ -50,42 +86,6 @@ struct UserInformationView: View {
             }
         }
         .padding(.horizontal, 30)
-    }
-}
-
-struct FormView: View {
-    @Binding var email: String
-    @Binding var disease: String
-    @Binding var isEditing: Bool
-    let diseaseOptions = ["Peripheral Arterial Disease", "Venous Insufficiency", "I'm not sure"]
-    var body: some View {
-        Form {
-            Section(header: Text("Email")) {
-                TextField("Enter your email", text: $email)
-                    .font(.subheadline)
-                    .padding(.vertical, 10)
-            }
-            Section(header: Text("Disease")) {
-                Picker("Select your disease", selection: $disease) {
-                    ForEach(diseaseOptions, id: \.self) { option in
-                        Text(option)
-                    }
-                }
-                .padding(.vertical, 10)
-            }
-            Button(action: {
-                isEditing = false
-            }) {
-                Text("Save")
-                    .padding()
-                    .frame(maxWidth: .infinity)
-                    .background(Color.blue)
-                    .foregroundColor(.white)
-                    .cornerRadius(10)
-                    .font(.headline)
-                    .padding(.horizontal, 30)
-            }
-        }
     }
 }
 
