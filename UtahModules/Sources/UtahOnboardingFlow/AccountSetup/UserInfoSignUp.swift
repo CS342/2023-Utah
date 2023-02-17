@@ -41,7 +41,7 @@ struct UserInfoSignUp: View {
                     Button(action: {
                         isEditing = false
                     }) {
-                        Text("Save")
+                        Text("Next")
                             .frame(maxWidth: .infinity, minHeight: 38)
                     }
                     .padding(.horizontal, 36)
