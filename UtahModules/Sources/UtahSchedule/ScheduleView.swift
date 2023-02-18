@@ -11,17 +11,17 @@ import Questionnaires
 import Scheduler
 import SwiftUI
 
-
 public struct ScheduleView: View {
     @EnvironmentObject var scheduler: UtahScheduler
     @State var eventContextsByDate: [Date: [EventContext]] = [:]
     @State var presentedContext: EventContext?
+    @State private var showingSurvey = false
+    @State private var showingSurvey2 = false
     
     
     var startOfDays: [Date] {
         Array(eventContextsByDate.keys)
     }
-    
     
     public var body: some View {
         NavigationStack {
@@ -47,17 +47,39 @@ public struct ScheduleView: View {
                 .sheet(item: $presentedContext) { presentedContext in
                     destination(withContext: presentedContext)
                 }
-                NavigationLink(destination: GetUpAndGo()) {
-                                    Text("Get Up And Go Question")
-                }.frame(alignment: .topLeading)
-                    .padding(.all, 10)
-                    .overlay(
-                        RoundedRectangle(cornerRadius: 25)
-                        .stroke(Color.white, lineWidth: 2)
-                )
-                    .background(Color(.white))
-                    .cornerRadius(25)
-                .navigationTitle(String(localized: "QUESTIONNAIRE_LIST_TITLE", bundle: .module))
+                VStack{
+                    Button("Edmonton Frail Scale"){
+                        showingSurvey.toggle()
+                    }
+                    .foregroundColor(Color.white)
+                    .padding()
+                    .background(.red)
+                    .cornerRadius(10)
+                    .sheet(isPresented: $showingSurvey){
+                        EdmontonViewController()
+                    }
+                    Button("Walking Impairement Questionnaire"){
+                        showingSurvey2.toggle()
+                    }
+                    .foregroundColor(Color.white)
+                    .padding()
+                    .background(.blue)
+                    .cornerRadius(10)
+                    .sheet(isPresented: $showingSurvey2){
+                        WIQViewController()
+                    }
+                    NavigationLink(destination: GetUpAndGo()) {
+                        Text("Get Up And Go Question")
+                    }.frame(alignment: .topLeading)
+                        .padding(.all, 10)
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 25)
+                                .stroke(Color.white, lineWidth: 2)
+                        )
+                        .background(Color(.white))
+                        .cornerRadius(25)
+                        .navigationTitle(String(localized: "QUESTIONNAIRE_LIST_TITLE", bundle: .module))
+                }
             }
         }
     }
