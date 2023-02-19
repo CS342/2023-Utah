@@ -18,7 +18,6 @@ public struct ScheduleView: View {
     @State private var showingSurvey = false
     @State private var showingSurvey2 = false
     
-    
     var startOfDays: [Date] {
         Array(eventContextsByDate.keys)
     }

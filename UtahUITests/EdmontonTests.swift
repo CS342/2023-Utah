@@ -8,7 +8,6 @@
 
 import XCTest
 
-
 class EdmontonTests: XCTestCase {
     override func setUpWithError() throws {
         try super.setUpWithError()
@@ -19,7 +18,6 @@ class EdmontonTests: XCTestCase {
         app.launchArguments = ["--skipOnboarding"]
         app.launch()
     }
-    
     
     func testEdmonton() throws {
         let app = XCUIApplication()
@@ -51,7 +49,5 @@ class EdmontonTests: XCTestCase {
         XCTAssertTrue(app.tables.staticTexts["Thank you."].waitForExistence(timeout: 0.5))
         XCTAssertTrue(app.tables.buttons["Done"].waitForExistence(timeout: 0.5))
         app.tables.buttons["Done"].tap()
-        
-        
     }
 }

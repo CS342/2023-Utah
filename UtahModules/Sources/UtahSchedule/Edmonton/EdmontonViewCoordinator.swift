@@ -15,5 +15,3 @@ class EdmontonViewCoordinator: NSObject, ORKTaskViewControllerDelegate {
         taskViewController.dismiss(animated: true, completion: nil)
     }
 }
-
-

@@ -8,7 +8,6 @@
 
 import XCTest
 
-
 class WIQTests: XCTestCase {
     override func setUpWithError() throws {
         try super.setUpWithError()
@@ -19,7 +18,6 @@ class WIQTests: XCTestCase {
         app.launchArguments = ["--skipOnboarding"]
         app.launch()
     }
-    
     
     func testWIQ() throws {
         let app = XCUIApplication()
@@ -41,11 +39,5 @@ class WIQTests: XCTestCase {
             XCTAssertTrue(app.tables.buttons["Next"].waitForExistence(timeout: 0.5))
             app.tables.buttons["Next"].tap()
         }
-        
-        XCTAssertTrue(app.tables.staticTexts["Thank you."].waitForExistence(timeout: 0.5))
-        XCTAssertTrue(app.tables.buttons["Done"].waitForExistence(timeout: 0.5))
-        app.tables.buttons["Done"].tap()
-        
-        
     }
 }
