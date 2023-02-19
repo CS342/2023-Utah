@@ -8,7 +8,9 @@
 
 import Account
 import class FHIR.FHIR
+import Firebase
 import FirebaseAccount
+import FirebaseFirestore
 import Onboarding
 import SwiftUI
 
@@ -35,22 +37,25 @@ struct AccountSetup: View {
                 actionView
             }
         )
-            .onReceive(account.objectWillChange) {
-                if account.signedIn {
-                    onboardingSteps.append(.healthKitPermissions)
-                    // Unfortunately, SwiftUI currently animates changes in the navigation path that do not change
-                    // the current top view. Therefore we need to do the following async procedure to remove the
-                    // `.login` and `.signUp` steps while disabling the animations before and re-enabling them
-                    // after the elements have been changed.
-                    Task { @MainActor in
-                        try? await Task.sleep(for: .seconds(1.0))
-                        UIView.setAnimationsEnabled(false)
-                        onboardingSteps.removeAll(where: { $0 == .login || $0 == .signUp })
-                        try? await Task.sleep(for: .seconds(1.0))
-                        UIView.setAnimationsEnabled(true)
-                    }
+        .onReceive(account.objectWillChange) {
+            if account.signedIn {
+                if onboardingSteps.contains(where: { $0 == .signUp }) {
+                    onboardingSteps.append(.userInfo)
                 }
             }
+             onboardingSteps.append(.healthKitPermissions)
+            // Unfortunately, SwiftUI currently animates changes in the navigation path that do not change
+            // the current top view. Therefore we need to do the following async procedure to remove the
+            // `.login` and `.signUp` steps while disabling the animations before and re-enabling them
+            // after the elements have been changed.
+            Task { @MainActor in
+                try? await Task.sleep(for: .seconds(1.0))
+                UIView.setAnimationsEnabled(false)
+                onboardingSteps.removeAll(where: { $0 == .login || $0 == .signUp })
+                try? await Task.sleep(for: .seconds(1.0))
+                UIView.setAnimationsEnabled(true)
+            }
+        }
     }
     
     @ViewBuilder

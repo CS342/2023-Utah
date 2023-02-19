@@ -5,6 +5,8 @@
 //
 // SPDX-License-Identifier: MIT
 //
+import Firebase
+import FirebaseFirestore
 import SwiftUI
 
 struct UserInfoSignUp: View {
@@ -22,12 +24,9 @@ struct UserInfoSignUp: View {
                     Form {
                         Section(header: Text("Name")) {
                             TextField("First Name", text: $firstName)
-                                .font(.subheadline)
-                                .padding(.vertical, 10)
                             TextField("Last Name", text: $lastName)
-                                .font(.subheadline)
-                                .padding(.vertical, 10)
                         }
+                        .font(.subheadline)
                         .padding(.vertical, 10)
                         Section(header: Text("Disease")) {
                             Picker("Select your Disease", selection: $disease) {
@@ -39,7 +38,10 @@ struct UserInfoSignUp: View {
                         }
                     }
                     Button(action: {
-                        isEditing = false
+                        if let user = Auth.auth().currentUser {
+                            let data: [String: String] = ["firstName": firstName, "lastName": lastName, "disease": disease, "email": user.email ?? ""]
+                            Firestore.firestore().collection("users").document(user.uid).setData(data)
+                        }
                     }) {
                         Text("Next")
                             .frame(maxWidth: .infinity, minHeight: 38)
