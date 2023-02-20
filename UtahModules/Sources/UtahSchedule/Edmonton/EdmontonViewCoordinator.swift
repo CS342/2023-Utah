@@ -6,6 +6,8 @@
 // SPDX-License-Identifier: MIT
 //
 
+// swiftlint:disable lower_acl_than_parent
+
 import Foundation
 import ResearchKit
 

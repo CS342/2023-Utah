@@ -11,8 +11,8 @@
 import Foundation
 import ResearchKit
 
-class WIQViewCoordinator: NSObject, ORKTaskViewControllerDelegate {
-    // called when the survey is completed, need to figure out how to upload data to firestore
+class TimedWalkViewCoordinator: NSObject, ORKTaskViewControllerDelegate {
+    // called when the activity is completed, need to figure out how to upload data to firestore
     public func taskViewController(
         _ taskViewController: ORKTaskViewController,
         didFinishWith reason: ORKTaskViewControllerFinishReason,

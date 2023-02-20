@@ -6,6 +6,7 @@
 // SPDX-License-Identifier: MIT
 //
 
+// swiftlint:disable closure_body_length
 
 import Questionnaires
 import Scheduler
@@ -17,6 +18,7 @@ public struct ScheduleView: View {
     @State var presentedContext: EventContext?
     @State private var showingEdmontonSurvey = false
     @State private var showingWIQSurvey = false
+    @State private var showingTimedWalk = false
     
     var startOfDays: [Date] {
         Array(eventContextsByDate.keys)
@@ -34,7 +36,7 @@ public struct ScheduleView: View {
             .sheet(isPresented: $showingEdmontonSurvey) {
                 EdmontonViewController()
             }
-            .padding(.top, 60)
+            .padding(.top, 130)
             Button("Walking Impairement Questionnaire") {
                 showingWIQSurvey.toggle()
             }
@@ -44,6 +46,16 @@ public struct ScheduleView: View {
             .cornerRadius(10)
             .sheet(isPresented: $showingWIQSurvey) {
                 WIQViewController()
+            }
+            Button("Timed Walk (ResearchKit)") {
+                showingTimedWalk.toggle()
+            }
+            .foregroundColor(Color.white)
+            .padding()
+            .background(.pink)
+            .cornerRadius(10)
+            .sheet(isPresented: $showingTimedWalk) {
+                TimedWalkViewController()
             }
             NavigationLink(destination: GetUpAndGo()) {
                 Text("Get Up And Go Question")
