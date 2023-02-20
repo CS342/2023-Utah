@@ -27,17 +27,30 @@ class WIQTests: XCTestCase {
 
         XCTAssertTrue(app.buttons["Walking Impairement Questionnaire"].waitForExistence(timeout: 0.5))
         app.buttons["Walking Impairement Questionnaire"].tap()
-        XCTAssertTrue(app.staticTexts["Walking Impairment Questionnaire"].waitForExistence(timeout: 0.5))
+        XCTAssertTrue(app.staticTexts["Walking Impairement Questionnaire"].waitForExistence(timeout: 0.5))
+        XCTAssertTrue(app.staticTexts["Patient Mobility Assessment"].waitForExistence(timeout: 0.5))
         XCTAssertTrue(app.buttons["Get Started"].waitForExistence(timeout: 0.5))
         app.buttons["Get Started"].tap()
         
         // Go through each question
-        let answers = ["No Difficulty", "Slight Difficulty", "Some Difficulty", "Much Difficulty", "Unable to Do", "Slight Difficulty", "No Difficulty"]
+        let answers = [
+            "No Difficulty",
+            "Slight Difficulty",
+            "Some Difficulty",
+            "Much Difficulty",
+            "Unable to Do",
+            "Slight Difficulty",
+            "No Difficulty"
+        ]
         for answer in answers {
             XCTAssertTrue(app.tables.staticTexts[answer].waitForExistence(timeout: 0.5))
             app.tables.staticTexts[answer].tap()
             XCTAssertTrue(app.tables.buttons["Next"].waitForExistence(timeout: 0.5))
             app.tables.buttons["Next"].tap()
         }
+        
+        XCTAssertTrue(app.staticTexts["Thank you."].waitForExistence(timeout: 0.5))
+        XCTAssertTrue(app.buttons["Done"].waitForExistence(timeout: 0.5))
+        app.buttons["Done"].tap()
     }
 }

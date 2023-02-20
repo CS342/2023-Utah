@@ -6,8 +6,13 @@
 // SPDX-License-Identifier: MIT
 //
 
-import SwiftUI
+// swiftlint:disable function_body_length
+// swiftlint:disable closure_body_length
+// swiftlint:disable legacy_objc_type
+
+import Foundation
 import ResearchKit
+import SwiftUI
 import UIKit
 
 struct EdmontonViewController: UIViewControllerRepresentable {
@@ -20,7 +25,7 @@ struct EdmontonViewController: UIViewControllerRepresentable {
     func updateUIViewController(_ taskViewController: ORKTaskViewController, context: Context) {}
     
     func makeUIViewController(context: Context) -> ORKTaskViewController {
-        let sampleSurveyTask: ORKOrderedTask = {
+        let edmontonSurveyTask: ORKOrderedTask = {
             var steps = [ORKStep]()
             
             // Instruction step
@@ -31,9 +36,9 @@ struct EdmontonViewController: UIViewControllerRepresentable {
             to do your usual activities. If you are unsure about how to answer a question, please give the
             best answer you can and make a written comment beside your answer.
             """
-            
+
             steps += [instructionStep]
-            
+
             // Clock test step
             let clockTestInstructionStep = ORKInstructionStep(identifier: "ClockStep")
             clockTestInstructionStep.title = "Draw a clock"
@@ -41,7 +46,7 @@ struct EdmontonViewController: UIViewControllerRepresentable {
             Place numbers the correct positions on a pre-drawn circle, and place hands to
             indicate the time of ‘ten after eleven’. Upload a photo in the next step
             """
-            
+
             steps += [clockTestInstructionStep]
             
             // Image capture step
@@ -124,48 +129,25 @@ struct EdmontonViewController: UIViewControllerRepresentable {
             steps += [q5Step]
             
             // Question 6-10
-            let q6to10Choices = [
-                ORKTextChoice(text: "Yes", value: 1 as NSNumber),
-                ORKTextChoice(text: "No", value: 0 as NSNumber)
-            ]
+            let q6to10Choices = [ ORKTextChoice(text: "Yes", value: 1 as NSNumber), ORKTextChoice(text: "No", value: 0 as NSNumber) ]
             let q6to10ChoiceAnswerFormat = ORKAnswerFormat.choiceAnswerFormat(with: .singleChoice, textChoices: q6to10Choices)
-            let q6Step = ORKQuestionStep(
-                identifier: "q6",
-                title: "",
-                question: "Do you use five or more different prescription medications on a regular basis?",
-                answer: q6to10ChoiceAnswerFormat
-            )
-            q6Step.isOptional = false
-            let q7Step = ORKQuestionStep(
-                identifier: "q7",
-                title: "",
-                question: "At times, do you forget to take your prescription medications?",
-                answer: q6to10ChoiceAnswerFormat
-            )
-            q7Step.isOptional = false
-            let q8Step = ORKQuestionStep(
-                identifier: "q8",
-                title: "",
-                question: "Have you recently lost weight such that your clothing has become looser?",
-                answer: q6to10ChoiceAnswerFormat
-            )
-            q8Step.isOptional = false
-            let q9Step = ORKQuestionStep(
-                identifier: "q9",
-                title: "",
-                question: "Do you often feel sad or depressed?",
-                answer: q6to10ChoiceAnswerFormat
-            )
-            q9Step.isOptional = false
-            let q10Step = ORKQuestionStep(
-                identifier: "q10",
-                title: "",
-                question: "Do you have a problem with losing control of urine when you don’t want to?",
-                answer: q6to10ChoiceAnswerFormat
-            )
-            q10Step.isOptional = false
-            
-            steps += [q6Step, q7Step, q8Step, q9Step, q10Step]
+            let questions = [
+                "Do you use five or more different prescription medications on a regular basis?",
+                "At times, do you forget to take your prescription medications?",
+                "Have you recently lost weight such that your clothing has become looser?",
+                "Do you often feel sad or depressed?",
+                "Do you have a problem with losing control of urine when you don’t want to?"
+            ]
+            for (idx, question) in questions.enumerated() {
+                let qStep = ORKQuestionStep(
+                    identifier: String(format: "Edmonton %d", idx + 6),
+                    title: "",
+                    question: question,
+                    answer: q6to10ChoiceAnswerFormat
+                )
+                qStep.isOptional = false
+                steps += [qStep]
+            }
             
             // SUMMARY
             let summaryStep = ORKCompletionStep(identifier: "SummaryStep")
@@ -177,11 +159,10 @@ struct EdmontonViewController: UIViewControllerRepresentable {
             return ORKOrderedTask(identifier: "SurveyTask-Assessment", steps: steps)
         }()
         
-        let taskViewController = ORKTaskViewController(task: sampleSurveyTask, taskRun: nil)
+        let taskViewController = ORKTaskViewController(task: edmontonSurveyTask, taskRun: nil)
         taskViewController.delegate = context.coordinator
         
         // & present the VC!
         return taskViewController
     }
-    
 }

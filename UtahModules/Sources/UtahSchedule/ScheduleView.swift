@@ -15,11 +15,45 @@ public struct ScheduleView: View {
     @EnvironmentObject var scheduler: UtahScheduler
     @State var eventContextsByDate: [Date: [EventContext]] = [:]
     @State var presentedContext: EventContext?
-    @State private var showingSurvey = false
-    @State private var showingSurvey2 = false
+    @State private var showingEdmontonSurvey = false
+    @State private var showingWIQSurvey = false
     
     var startOfDays: [Date] {
         Array(eventContextsByDate.keys)
+    }
+    
+    private var temporyButtons: some View {
+        VStack {
+            Button("Edmonton Frail Scale") {
+                showingEdmontonSurvey.toggle()
+            }
+            .foregroundColor(Color.white)
+            .padding()
+            .background(.red)
+            .cornerRadius(10)
+            .sheet(isPresented: $showingEdmontonSurvey) {
+                EdmontonViewController()
+            }
+            .padding(.top, 60)
+            Button("Walking Impairement Questionnaire") {
+                showingWIQSurvey.toggle()
+            }
+            .foregroundColor(Color.white)
+            .padding()
+            .background(.blue)
+            .cornerRadius(10)
+            .sheet(isPresented: $showingWIQSurvey) {
+                WIQViewController()
+            }
+            NavigationLink(destination: GetUpAndGo()) {
+                Text("Get Up And Go Question")
+            }.frame(alignment: .topLeading)
+                .padding(.all, 15)
+                .foregroundColor(Color.white)
+                .background(.green)
+                .cornerRadius(15)
+                .navigationTitle(String(localized: "QUESTIONNAIRE_LIST_TITLE", bundle: .module))
+        }
     }
     
     public var body: some View {
@@ -46,39 +80,7 @@ public struct ScheduleView: View {
                 .sheet(item: $presentedContext) { presentedContext in
                     destination(withContext: presentedContext)
                 }
-                VStack{
-                    Button("Edmonton Frail Scale"){
-                        showingSurvey.toggle()
-                    }
-                    .foregroundColor(Color.white)
-                    .padding()
-                    .background(.red)
-                    .cornerRadius(10)
-                    .sheet(isPresented: $showingSurvey){
-                        EdmontonViewController()
-                    }
-                    Button("Walking Impairement Questionnaire"){
-                        showingSurvey2.toggle()
-                    }
-                    .foregroundColor(Color.white)
-                    .padding()
-                    .background(.blue)
-                    .cornerRadius(10)
-                    .sheet(isPresented: $showingSurvey2){
-                        WIQViewController()
-                    }
-                    NavigationLink(destination: GetUpAndGo()) {
-                        Text("Get Up And Go Question")
-                    }.frame(alignment: .topLeading)
-                        .padding(.all, 10)
-                        .overlay(
-                            RoundedRectangle(cornerRadius: 25)
-                                .stroke(Color.white, lineWidth: 2)
-                        )
-                        .background(Color(.white))
-                        .cornerRadius(25)
-                        .navigationTitle(String(localized: "QUESTIONNAIRE_LIST_TITLE", bundle: .module))
-                }
+                temporyButtons
             }
         }
     }

@@ -11,7 +11,11 @@ import ResearchKit
 
 class EdmontonViewCoordinator: NSObject, ORKTaskViewControllerDelegate {
     // called when the survey is completed, need to figure out how to upload data to firestore
-    public func taskViewController(_ taskViewController: ORKTaskViewController, didFinishWith reason: ORKTaskViewControllerFinishReason, error: Error?) {
+    public func taskViewController(
+        _ taskViewController: ORKTaskViewController,
+        didFinishWith reason: ORKTaskViewControllerFinishReason,
+        error: Error?
+    ) {
         taskViewController.dismiss(animated: true, completion: nil)
     }
 }
