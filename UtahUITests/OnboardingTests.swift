@@ -67,7 +67,6 @@ extension XCUIApplication {
         XCTAssertTrue(staticTexts["What condition do you have?"].waitForExistence(timeout: 0.5))
         XCTAssertTrue(buttons["Next"].waitForExistence(timeout: 0.5))
         buttons["Next"].tap()
-
     }
     
     private func navigateOnboardingFlowConsent() throws {
