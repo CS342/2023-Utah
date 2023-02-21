@@ -49,12 +49,11 @@ extension XCUIApplication {
     
     func navigateOnboardingFlow(assertThatHealthKitConsentIsShown: Bool = true) throws {
         try navigateOnboardingFlowWelcome()
-        try navigateOnboardingFlowInterestingModules()
-        
+        try navigateOnboardingAccount()
         if staticTexts["Consent"].waitForExistence(timeout: 0.5) {
             try navigateOnboardingFlowConsent()
         }
-        try navigateOnboardingAccount()
+        try navigateOnboardingFlowInterestingModules()
         try navigateOnboardingFlowHealthKitAccess(assertThatHealthKitConsentIsShown: assertThatHealthKitConsentIsShown)
     }
     

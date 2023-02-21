@@ -91,7 +91,7 @@ struct AccountSetup: View {
             OnboardingActionsView(
                 "ACCOUNT_NEXT".moduleLocalized,
                 action: {
-                    onboardingSteps.append(.interestingModules)
+                    onboardingSteps.append(.consent)
                 }
             )
         } else {

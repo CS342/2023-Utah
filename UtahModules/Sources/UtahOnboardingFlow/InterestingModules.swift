@@ -39,7 +39,7 @@ struct InterestingModules: View {
                 OnboardingActionsView(
                     "Next".moduleLocalized,
                     action: {
-                        onboardingSteps.append(.consent)
+                        onboardingSteps.append(.healthKitPermissions)
                     }
                 )
             }
