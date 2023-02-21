@@ -37,7 +37,11 @@ struct Welcome: View {
             ],
             actionText: "Next".moduleLocalized,
             action: {
-                onboardingSteps.append(.interestingModules)
+                if !CommandLine.arguments.contains("--disableFirebase") {
+                    onboardingSteps.append(.accountSetup)
+                } else {
+                    onboardingSteps.append(.consent)
+                }
             }
         )
     }
