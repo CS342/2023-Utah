@@ -65,6 +65,14 @@ public struct ScheduleView: View {
                 .background(.green)
                 .cornerRadius(15)
                 .navigationTitle(String(localized: "QUESTIONNAIRE_LIST_TITLE", bundle: .module))
+            NavigationLink(destination: ClockTestView()) {
+                Text("Clock Test")
+            }.frame(alignment: .topLeading)
+                .padding(.all, 15)
+                .foregroundColor(Color.white)
+                .background(.green)
+                .cornerRadius(15)
+                .navigationTitle(String(localized: "QUESTIONNAIRE_LIST_TITLE", bundle: .module))
         }
     }
     
