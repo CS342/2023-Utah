@@ -88,8 +88,8 @@ extension XCUIApplication {
         try textFields["Enter your family name ..."].enter(value: "Stanford")
         textFields["Enter your family name ..."].typeText("\n")
         
-        XCTAssertTrue(staticTexts["Leland Stanford"].waitForExistence(timeout: 2))
-        staticTexts["Leland Stanford"].firstMatch.swipeUp()
+        XCTAssertTrue(staticTexts["The University of Utah"].waitForExistence(timeout: 2))
+        staticTexts["The University of Utah"].firstMatch.swipeUp()
         
         XCTAssertTrue(buttons["I Consent"].waitForExistence(timeout: 2))
         buttons["I Consent"].tap()
@@ -135,7 +135,7 @@ extension XCUIApplication {
         if staticTexts["HealthKit Access"].waitForExistence(timeout: 5) && navigationBars.buttons["Back"].waitForExistence(timeout: 5) {
             navigationBars.buttons["Back"].tap()
             
-            XCTAssertTrue(staticTexts["Leland Stanford"].waitForExistence(timeout: 2))
+            XCTAssertTrue(staticTexts["The University of Utah"].waitForExistence(timeout: 2))
             XCTAssertTrue(staticTexts["leland@stanford.edu"].waitForExistence(timeout: 2))
             XCTAssertTrue(scrollViews.otherElements.buttons["Next"].waitForExistence(timeout: 2))
             scrollViews.otherElements.buttons["Next"].tap()
