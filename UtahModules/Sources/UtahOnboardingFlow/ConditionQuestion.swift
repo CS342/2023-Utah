@@ -13,10 +13,11 @@ import SwiftUI
 import UtahSharedContext
 
 
-struct InterestingModules: View {
+struct ConditionQuestion: View {
     @Binding var onboardingSteps: [OnboardingFlow.Step]
     @State private var selection = "Arterial Disease"
     let conditions = ["Arterial Disease", "Venous Disease"]
+    
     
     var body: some View {
         OnboardingView(
@@ -52,6 +53,6 @@ struct ThingsToKnow_Previews: PreviewProvider {
     @State private static var path: [OnboardingFlow.Step] = []
     
     static var previews: some View {
-        InterestingModules(onboardingSteps: $path)
+        ConditionQuestion(onboardingSteps: $path)
     }
 }
