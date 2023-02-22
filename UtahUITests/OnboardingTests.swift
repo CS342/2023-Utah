@@ -42,7 +42,7 @@ class OnboardingTests: XCTestCase {
 
 extension XCUIApplication {
     func conductOnboardingIfNeeded() throws {
-        if self.staticTexts["Welcome to\nVascuTrack"].waitForExistence(timeout: 0.5) {
+        if self.staticTexts["Welcome to VascuTrack"].waitForExistence(timeout: 5) {
             try navigateOnboardingFlow(assertThatHealthKitConsentIsShown: false)
         }
     }
@@ -124,15 +124,6 @@ extension XCUIApplication {
         collectionViews.buttons["Sign Up"].tap()
         
         sleep(3)
-        
-        if staticTexts["HealthKit Access"].waitForExistence(timeout: 5) && navigationBars.buttons["Back"].waitForExistence(timeout: 5) {
-            navigationBars.buttons["Back"].tap()
-            
-            XCTAssertTrue(staticTexts["Leland Stanford"].waitForExistence(timeout: 2))
-            XCTAssertTrue(staticTexts["leland@stanford.edu"].waitForExistence(timeout: 2))
-            XCTAssertTrue(scrollViews.otherElements.buttons["Next"].waitForExistence(timeout: 2))
-            scrollViews.otherElements.buttons["Next"].tap()
-        }
     }
     
     private func navigateOnboardingFlowHealthKitAccess(assertThatHealthKitConsentIsShown: Bool = true) throws {
