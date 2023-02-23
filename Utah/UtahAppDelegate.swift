@@ -10,8 +10,8 @@ import CardinalKit
 import FHIR
 import FHIRToFirestoreAdapter
 import FirebaseAccount
-import FirebaseCore
 import FirebaseAuth
+import FirebaseCore
 import FirestoreDataStorage
 import FirestoreStoragePrefixUserIdAdapter
 import HealthKit

@@ -8,7 +8,6 @@
 
 // swiftlint:disable function_body_length
 // swiftlint:disable closure_body_length
-// swiftlint:disable legacy_objc_type
 
 import Foundation
 import ResearchKit

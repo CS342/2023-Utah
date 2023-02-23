@@ -6,8 +6,6 @@
 // SPDX-License-Identifier: MIT
 //
 
-// swiftlint:disable legacy_objc_type
-
 import ResearchKit
 import SwiftUI
 import UIKit
