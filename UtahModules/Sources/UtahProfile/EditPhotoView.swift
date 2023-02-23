@@ -15,21 +15,11 @@ struct EditPhotoView: View {
     
     var body: some View {
         VStack {
-            if let image = image {
-                Image(uiImage: image)
-                    .accessibilityLabel(Text("Image user uploads"))
-                    .aspectRatio(contentMode: .fit)
-                    .frame(width: 200, height: 200)
-            } else {
-                Text("No image selected")
-            }
-            
             Button("Select Photo") {
                 self.showImagePicker = true
             }
             .padding()
-            .background(Color.blue)
-            .foregroundColor(.white)
+            .foregroundColor(.accentColor)
             .cornerRadius(10)
             .sheet(isPresented: $showImagePicker) {
                 ImagePicker(image: self.$image, isShown: self.$showImagePicker)
