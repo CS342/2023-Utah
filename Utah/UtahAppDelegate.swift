@@ -46,8 +46,7 @@ class UtahAppDelegate: CardinalKitAppDelegate {
             adapter: {
                 FHIRToFirestoreAdapter()
                 FirestoreStoragePrefixUserIdAdapter()
-            },
-            settings: .emulator
+            }
         )
     }
     

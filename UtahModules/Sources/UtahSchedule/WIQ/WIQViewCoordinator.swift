@@ -8,9 +8,10 @@
 
 // swiftlint:disable lower_acl_than_parent
 import Firebase
+import FirebaseFirestore
 import Foundation
-import ResearchKit
 import ModelsR4
+import ResearchKit
 
 class WIQViewCoordinator: NSObject, ORKTaskViewControllerDelegate {
     // called when the survey is completed, need to figure out how to upload data to firestore
@@ -31,11 +32,28 @@ class WIQViewCoordinator: NSObject, ORKTaskViewControllerDelegate {
                 // Parse the FHIR object into JSON
                 let encoder = JSONEncoder()
                 encoder.outputFormatting = .prettyPrinted
+                let data = try encoder.encode(fhirResponses)
 
                 // Print out the JSON for debugging
-                let data = try encoder.encode(fhirResponses)
                 let json = String(decoding: data, as: UTF8.self)
                 print(json)
+
+                // Convert to dictionary and upload to Firebase
+                let jsonDict = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any]
+                let identifier = fhirResponses.id?.value?.string ?? UUID().uuidString
+
+                guard let jsonDict else {
+                    return
+                }
+
+                let db = Firestore.firestore()
+                db.collection("wiqsurveys").document(identifier).setData(jsonDict) { err in
+                    if let err {
+                        print("Error writing document: \(err)")
+                    } else {
+                        print("Document successfully written.")
+                    }
+                }
             } catch {
                 // Something didn't work!
                 print(error.localizedDescription)
