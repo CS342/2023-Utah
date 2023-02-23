@@ -15,7 +15,6 @@ import ResearchKit
 
 
 class EdmontonViewCoordinator: NSObject, ORKTaskViewControllerDelegate {
-    // called when the survey is completed, need to figure out how to upload data to firestore
     public func taskViewController(
         _ taskViewController: ORKTaskViewController,
         didFinishWith reason: ORKTaskViewControllerFinishReason,
@@ -47,8 +46,8 @@ class EdmontonViewCoordinator: NSObject, ORKTaskViewControllerDelegate {
                     return
                 }
 
-                let db = Firestore.firestore()
-                db.collection("edmontonsurveys").document(identifier).setData(jsonDict) { err in
+                let database = Firestore.firestore()
+                database.collection("edmontonsurveys").document(identifier).setData(jsonDict) { err in
                     if let err {
                         print("Error writing document: \(err)")
                     } else {
@@ -65,7 +64,7 @@ class EdmontonViewCoordinator: NSObject, ORKTaskViewControllerDelegate {
                             }
 
                             // Get a reference to the Cloud Storage service
-                            let storageRef = Storage.storage.reference()
+                            let storageRef = Storage.storage().reference()
 
                             // Create a reference for the new file
                             // and put it in the "edmonton" file on Cloud Storage
@@ -73,14 +72,13 @@ class EdmontonViewCoordinator: NSObject, ORKTaskViewControllerDelegate {
                             let fileRef = storageRef.child("edmonton/" + fileName)
 
                             // Upload the file to Cloud Storage using the reference
-                            let uploadTask = fileRef.putData(from: fileURL, metadata: nil) { metadata, error in
+                            fileRef.putFile(from: fileURL, metadata: nil) { _, error in
                                 if let error {
                                     print("An error occurred: \(error)")
                                 } else {
                                     print("\(fileName) was uploaded successfully!")
                                 }
                             }
-
                         }
                     }
                 }

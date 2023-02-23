@@ -46,8 +46,8 @@ class WIQViewCoordinator: NSObject, ORKTaskViewControllerDelegate {
                     return
                 }
 
-                let db = Firestore.firestore()
-                db.collection("wiqsurveys").document(identifier).setData(jsonDict) { err in
+                let database = Firestore.firestore()
+                database.collection("wiqsurveys").document(identifier).setData(jsonDict) { err in
                     if let err {
                         print("Error writing document: \(err)")
                     } else {
