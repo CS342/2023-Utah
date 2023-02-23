@@ -9,25 +9,6 @@
 import SwiftUI
 import UIKit
 
-struct EditPhotoView: View {
-    @State var image: UIImage?
-    @State var showImagePicker = false
-
-    var body: some View {
-        VStack {
-            Button("Select Photo") {
-                self.showImagePicker = true
-            }
-            .padding()
-            .foregroundColor(.accentColor)
-            .cornerRadius(10)
-            .sheet(isPresented: $showImagePicker) {
-                ImagePicker(image: self.$image, isShown: self.$showImagePicker)
-            }
-        }
-    }
-}
-
 struct ImagePicker: UIViewControllerRepresentable {
     @Binding var image: UIImage?
     @Binding var isShown: Bool
@@ -67,8 +48,21 @@ struct ImagePicker: UIViewControllerRepresentable {
     }
 }
 
-struct EditPhotoView_Previews: PreviewProvider {
-    static var previews: some View {
-        EditPhotoView()
+struct EditPhotoView: View {
+    @State var image: UIImage?
+    @State var showImagePicker = false
+
+    var body: some View {
+        VStack {
+            Button("Select Photo") {
+                self.showImagePicker = true
+            }
+            .padding()
+            .foregroundColor(.accentColor)
+            .cornerRadius(10)
+            .sheet(isPresented: $showImagePicker) {
+                ImagePicker(image: self.$image, isShown: self.$showImagePicker)
+            }
+        }
     }
 }
