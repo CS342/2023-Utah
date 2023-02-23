@@ -9,6 +9,7 @@
 import CardinalKit
 import FHIR
 import FHIRToFirestoreAdapter
+import FirebaseCore
 import FirebaseAccount
 import FirebaseAuth
 import FirestoreDataStorage
