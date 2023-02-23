@@ -66,8 +66,6 @@ let package = Package(
             dependencies: [
                 .target(name: "UtahSharedContext"),
                 .product(name: "FHIR", package: "CardinalKit"),
-                .product(name: "Questionnaires", package: "CardinalKit"),
-                .product(name: "Scheduler", package: "CardinalKit")
             ]
         ),
         .target(
@@ -76,7 +74,10 @@ let package = Package(
         .target(
             name: "UtahTrends",
             dependencies: [
-                .target(name: "UtahSharedContext")
+                .target(name: "UtahSharedContext"),
+                .product(name: "FHIR", package: "CardinalKit"),
+                .product(name: "Questionnaires", package: "CardinalKit"),
+                .product(name: "Scheduler", package: "CardinalKit")
             ]
         )
     ]
