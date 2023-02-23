@@ -34,7 +34,7 @@ struct FormView: View {
             Button(action: {
                 isEditing = false
             }) {
-                HStack{
+                HStack {
                     Spacer()
                     Text("Save")
                     Spacer()
@@ -44,5 +44,3 @@ struct FormView: View {
         .navigationTitle(Text("Setting"))
     }
 }
-
-

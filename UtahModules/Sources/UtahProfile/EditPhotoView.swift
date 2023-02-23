@@ -12,7 +12,7 @@ import UIKit
 struct EditPhotoView: View {
     @State var image: UIImage?
     @State var showImagePicker = false
-    
+
     var body: some View {
         VStack {
             Button("Select Photo") {
@@ -31,42 +31,41 @@ struct EditPhotoView: View {
 struct ImagePicker: UIViewControllerRepresentable {
     @Binding var image: UIImage?
     @Binding var isShown: Bool
-    
+
     func makeUIViewController(context: UIViewControllerRepresentableContext<ImagePicker>) -> UIImagePickerController {
         let imagePicker = UIImagePickerController()
         imagePicker.sourceType = .photoLibrary
         imagePicker.delegate = context.coordinator
         return imagePicker
     }
-    
+
     func updateUIViewController(_ uiViewController: UIImagePickerController, context: UIViewControllerRepresentableContext<ImagePicker>) {
         // No update needed
     }
-    
+
     func makeCoordinator() -> Coordinator {
         Coordinator(self)
     }
-    
+
     class Coordinator: NSObject, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
         let parent: ImagePicker
-        
+
         init(_ parent: ImagePicker) {
             self.parent = parent
         }
-        
+
         func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
             if let pickedImage = info[.originalImage] as? UIImage {
                 parent.image = pickedImage
             }
             parent.isShown = false
         }
-        
+
         func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
             parent.isShown = false
         }
     }
 }
-
 
 struct EditPhotoView_Previews: PreviewProvider {
     static var previews: some View {

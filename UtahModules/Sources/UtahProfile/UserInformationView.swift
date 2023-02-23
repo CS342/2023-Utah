@@ -13,7 +13,7 @@ struct UserInformationView: View {
     @State private var disease = "Peripheral Arterial Disease"
     @State private var isEditing = false
     let diseaseOptions = ["Peripheral Arterial Disease", "Venous Insufficiency", "I'm not sure"]
-    
+
     var body: some View {
         VStack {
             Text("Email")
