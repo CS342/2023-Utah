@@ -14,7 +14,7 @@ public struct Trends: View {
     public var body: some View {
         NavigationStack {
             VStack(alignment: .leading) {
-                TrendWrapper(code: "55423-8")
+                TrendWrapper(code: "55423-8", icon: "shoeprints.fill", title: "Daily Step Count", unit: "steps", color: Color.green)
                 DataCard(icon: "list.clipboard.fill", title: "Survey Score", unit: "points", color: Color.blue, observations: [])
             }
             .padding()
