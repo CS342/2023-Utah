@@ -13,15 +13,15 @@ import SwiftUI
 
 // Edmonton frail scale
 struct EFS: Identifiable {
-    var date: String
-    var score: Int
+    let date: String
+    let score: Int
     var id = UUID()
 }
 
 // Step count
 struct StepCount: Identifiable {
-    var date: String
-    var count: Int
+    let date: String
+    let count: Int
     var id = UUID()
 }
 
@@ -35,16 +35,22 @@ func date_formatter(date: Date) -> String {
 
 
 // dummy data
-var efsDummyData: [EFS] = [
-    .init(date: date_formatter(date: Date()), score: 15),
-    .init(date: date_formatter(date: Date().addingTimeInterval(60 * 60 * 24 * 30)), score: 17),
-    .init(date: date_formatter(date: Date().addingTimeInterval(60 * 60 * 24 * 60)), score: 3)
+let efsDummyData: [EFS] = [
+    .init(date: "January", score: 15),
+    .init(date: "February", score: 17),
+    .init(date: "March", score: 3),
+    .init(date: "April", score: 8),
+    .init(date: "May", score: 9)
 ]
 
 var stepDummyData: [StepCount] = [
-    .init(date: date_formatter(date: Date()), count: 5000),
-    .init(date: date_formatter(date: Date().addingTimeInterval(60 * 60 * 24)), count: 6000),
-    .init(date: date_formatter(date: Date().addingTimeInterval(60 * 60 * 24 * 2)), count: 3809)
+    .init(date: "MON", count: 5000),
+    .init(date: "TUES", count: 6000),
+    .init(date: "WED", count: 3809),
+    .init(date: "THURS", count: 4072),
+    .init(date: "FRI", count: 12000),
+    .init(date: "SAT", count: 220),
+    .init(date: "SUN", count: 2000),
 ]
 
 // Initializing barcharts
@@ -58,10 +64,10 @@ struct EFSBarChart: View {
                 )
             }
         }
-        .chartXAxisLabel(position: .bottom, alignment: .center) {
-            Text("Date")
-                .font(.system(size: 15, weight: .bold, design: .default))
-        }
+//        .chartXAxisLabel(position: .bottom, alignment: .center) {
+//            Text("Date")
+//                .font(.system(size: 15, weight: .bold, design: .default))
+//        }
     }
 }
 
@@ -75,10 +81,10 @@ struct StepBarChart: View {
                 )
             }
         }
-        .chartXAxisLabel(position: .bottom, alignment: .center) {
-            Text("Date")
-                .font(.system(size: 15, weight: .bold, design: .default))
-        }
+//        .chartXAxisLabel(position: .bottom, alignment: .center) {
+//            Text("Date")
+//                .font(.system(size: 15, weight: .bold, design: .default))
+//        }
     }
 }
 
@@ -105,6 +111,7 @@ struct DataCard: View {
                 Spacer()
                 Text("Edmonton Frail Scale")
                     .font(.headline)
+                    .padding(.top)
                 EFSBarChart()
 //                Text("500")
 //                    .font(.largeTitle)
@@ -114,8 +121,8 @@ struct DataCard: View {
 //                Spacer()
             }
         }
-        .frame(width: 350)
-        .padding(.leading, 20)
+        //.frame(width: 380)
+        .padding(30)
         .background {
             RoundedRectangle(cornerRadius: 10)
                 .foregroundColor(Color(.systemBackground))
