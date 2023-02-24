@@ -30,6 +30,7 @@ let package = Package(
 //        .package(url: "https://github.com/carekit-apple/CareKit.git", .upToNextMinor(from: "2.0.1")),
 //        .package(url: "https://github.com/StanfordBDHG/ResearchKit.git", .upToNextMinor(from: "2.2.8"))
     
+        .package(url: "https://github.com/firebase/firebase-ios-sdk", from: "10.3.0")
     ],
     targets: [
         .target(
@@ -70,7 +71,9 @@ let package = Package(
                 .target(name: "UtahSharedContext"),
                 .product(name: "FHIR", package: "CardinalKit"),
                 .product(name: "Questionnaires", package: "CardinalKit"),
-                .product(name: "Scheduler", package: "CardinalKit")
+                .product(name: "Scheduler", package: "CardinalKit"),
+                .product(name: "FirebaseFirestore", package: "firebase-ios-sdk"),
+                .product(name: "FirebaseStorage", package: "firebase-ios-sdk")
             ]
         ),
         .target(
