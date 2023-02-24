@@ -37,6 +37,7 @@ struct DataCard: View {
                     .font(.largeTitle)
                     .fontWeight(.bold)
                     .foregroundColor(color)
+                    .accessibility(identifier: "\(unit)_val")
                 Text(unit)
                 Spacer()
             }
