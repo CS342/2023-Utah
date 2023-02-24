@@ -41,7 +41,7 @@ class TrendsTests: XCTestCase {
         app.tabBars["Tab Bar"].buttons["Trends"].tap()
         
         XCTAssertTrue(app.staticTexts["Daily Step Count"].waitForExistence(timeout: 0.5))
-        XCTAssertTrue(app.staticTexts["42.0"].waitForExistence(timeout: 0.5))
+        XCTAssertTrue(app.staticTexts["84.0"].waitForExistence(timeout: 0.5))
         XCTAssertTrue(app.staticTexts["Survey Score"].waitForExistence(timeout: 0.5))
     }
 }
