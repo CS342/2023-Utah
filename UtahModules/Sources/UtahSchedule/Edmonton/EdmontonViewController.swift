@@ -104,8 +104,6 @@ struct EdmontonViewController: UIViewControllerRepresentable {
                 question: """
                     With how many of the following activities do you require help? (meal preparation, shopping, transportation, telephone,
                     housekeeping, laundry, managing money, taking medications)
-                    
-                    When you're ready to start, click Next
                     """,
                 answer: q4ChoiceAnswerFormat
             )
@@ -161,6 +159,8 @@ struct EdmontonViewController: UIViewControllerRepresentable {
             Sit in this chair with your back and arms resting. Then, when I say ‘GO’, please
             stand up and walk at a safe and comfortable pace to the mark on the floor (approximately 3m away), return to the
             chair and sit down
+                                
+            When you're ready to start, click Next
             """
 
             steps += [getUpAndGoInstructionStep]
