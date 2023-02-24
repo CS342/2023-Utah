@@ -80,7 +80,7 @@ let package = Package(
             name: "UtahTrends",
             dependencies: [
                 .target(name: "UtahSharedContext"),
-                .product(name: "FHIR", package: "CardinalKit"),
+                .product(name: "FHIR", package: "CardinalKit")
             ]
         )
     ]

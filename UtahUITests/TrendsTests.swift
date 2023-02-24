@@ -30,9 +30,6 @@ class TrendsTests: XCTestCase {
         app.activate()
         sleep(5)
         try navigateToTrends()
-        
-        
-        
     }
     
     func navigateToTrends() throws {

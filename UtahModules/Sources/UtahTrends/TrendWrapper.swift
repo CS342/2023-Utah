@@ -1,8 +1,11 @@
 //
-//  SwiftUIView.swift
-//  
+// This source file is part of the CS342 2023 Utah Team Application project
 //
-//  Created by Jennifer Xu on 2/21/23.
+// SPDX-FileCopyrightText: 2023 Stanford University
+//
+// SPDX-License-Identifier: MIT
+//
+// loadObservations funcution pulled from CardinalKit FHIRChart module
 
 import FHIR
 import ModelsR4
@@ -20,8 +23,6 @@ import SwiftUI
     
     
     public var body: some View {
-        
-        
         DataCard(icon: icon, title: title, unit: unit, color: color, observations: observations)
             .task {
                 loadObservations()
@@ -43,6 +44,7 @@ import SwiftUI
      }
     
     
+    // filters data based on specified observation code
     func loadObservations() {
         _Concurrency.Task { @MainActor in
             let observations = await fhirStandard.resources(resourceType: Observation.self)

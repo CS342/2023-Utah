@@ -5,6 +5,7 @@
 //
 // SPDX-License-Identifier: MIT
 //
+// Group and recalculateChartData function pulled from CardinalKit FHIRChart module
 
 
 import FHIR
@@ -52,6 +53,7 @@ struct DataCard: View {
         }
     }
     
+    // sums up all data points from current day
     func group(_ data: [(date: Date, value: Double)]) -> [(date: Date, value: Double)] {
             var latestDate: Date = Calendar.current.startOfDay(for: Date())
             var filteredData: [(Date, Double)] = []
@@ -86,6 +88,7 @@ struct DataCard: View {
             return filteredData
         }
     
+    // recalculates data when new observation is added
     func recalculateChartData(basedOn newObservations: [Observation]) {
             chartData = group(
                 observations
