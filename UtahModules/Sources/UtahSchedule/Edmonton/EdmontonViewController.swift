@@ -8,6 +8,8 @@
 
 // swiftlint:disable function_body_length
 // swiftlint:disable closure_body_length
+// swiftlint:disable object_literal
+// swiftlint:disable force_unwrapping
 
 import Foundation
 import ResearchKit
@@ -49,7 +51,7 @@ struct EdmontonViewController: UIViewControllerRepresentable {
             steps += [clockTestInstructionStep]
             
             let imageCaptureStep = ORKImageCaptureStep(identifier: "ImageCaptureStep") // we should add a circle template image here
-            if let image = UIImage(named: "circle-1") {
+            if let image = UIImage(named: "circle") {
                 imageCaptureStep.templateImage = image
             }
             imageCaptureStep.templateImageInsets = UIEdgeInsets(top: 0.1, left: 0.1, bottom: 0.1, right: 0.1)
