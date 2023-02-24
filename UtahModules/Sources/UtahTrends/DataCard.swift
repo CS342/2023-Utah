@@ -8,6 +8,11 @@
 
 
 import SwiftUI
+import UIKit
+import CareKit
+import CareKitUI
+import Charts
+//import ResearchKit
 
 struct DataCard: View {
     let icon: String

@@ -14,7 +14,7 @@ public struct Trends: View {
         NavigationStack {
             VStack(alignment: .leading) {
                 DataCard(icon: "shoeprints.fill", title: "Daily Step Count", unit: "steps", color: Color.green)
-                DataCard(icon: "list.clipboard.fill", title: "Survey Score", unit: "points", color: Color.blue)
+                DataCard(icon: "list.clipboard.fill", title: "EFS Survey Score", unit: "points", color: Color.blue)
             }
             .padding()
             Spacer()
