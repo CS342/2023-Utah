@@ -27,8 +27,8 @@ let package = Package(
     ],
     dependencies: [
         .package(url: "https://github.com/StanfordBDHG/CardinalKit.git", .upToNextMinor(from: "0.3.1")),
-        .package(url: "https://github.com/carekit-apple/CareKit.git", .upToNextMinor(from: "2.0.1")),
-        .package(url: "https://github.com/StanfordBDHG/ResearchKit.git", .upToNextMinor(from: "2.2.8"))
+//        .package(url: "https://github.com/carekit-apple/CareKit.git", .upToNextMinor(from: "2.0.1")),
+//        .package(url: "https://github.com/StanfordBDHG/ResearchKit.git", .upToNextMinor(from: "2.2.8"))
     
     ],
     targets: [
@@ -79,10 +79,10 @@ let package = Package(
         .target(
             name: "UtahTrends",
             dependencies: [
-                .target(name: "UtahSharedContext"),
-                .product(name: "CareKit", package: "CareKit"),
-                .product(name: "CareKitUI", package: "CareKit"),
-                .product(name: "ResearchKit", package: "ResearchKit")
+                .target(name: "UtahSharedContext")
+//                .product(name: "CareKit", package: "CareKit"),
+//                .product(name: "CareKitUI", package: "CareKit"),
+//                .product(name: "ResearchKit", package: "ResearchKit")
             ]
         )
     ]
