@@ -7,25 +7,25 @@
 //
 
 
-import SwiftUI
 import Charts
-//import ResearchKit
+import SwiftUI
+// import ResearchKit
 
-//Edmonton frail scale
+// Edmonton frail scale
 struct EFS: Identifiable {
     var date: String
     var score: Int
     var id = UUID()
 }
 
-//Step count
+// Step count
 struct StepCount: Identifiable {
     var date: String
     var count: Int
     var id = UUID()
 }
 
-//Date converter to string
+// Date converter to string
 func date_formatter(date: Date) -> String {
     let dateFormatter = DateFormatter()
     dateFormatter.locale = Locale(identifier: "en_US")
@@ -34,20 +34,20 @@ func date_formatter(date: Date) -> String {
 }
 
 
-//dummy data
+// dummy data
 var efsDummyData: [EFS] = [
     .init(date: date_formatter(date: Date()), score: 15),
     .init(date: date_formatter(date: Date().addingTimeInterval(60 * 60 * 24 * 30)), score: 17),
-    .init(date: date_formatter(date: Date().addingTimeInterval(60 * 60 * 24 * 60)), score: 3),
+    .init(date: date_formatter(date: Date().addingTimeInterval(60 * 60 * 24 * 60)), score: 3)
 ]
 
 var stepDummyData: [StepCount] = [
     .init(date: date_formatter(date: Date()), count: 5000),
     .init(date: date_formatter(date: Date().addingTimeInterval(60 * 60 * 24)), count: 6000),
-    .init(date: date_formatter(date: Date().addingTimeInterval(60 * 60 * 24 * 2)), count: 3809),
+    .init(date: date_formatter(date: Date().addingTimeInterval(60 * 60 * 24 * 2)), count: 3809)
 ]
 
-//Initializing barcharts
+// Initializing barcharts
 struct EFSBarChart: View {
     var body: some View {
         Chart {
