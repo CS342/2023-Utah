@@ -11,6 +11,7 @@ import FHIR
 import FHIRToFirestoreAdapter
 import FirebaseAccount
 import FirebaseAuth
+import FirebaseCore
 import FirestoreDataStorage
 import FirestoreStoragePrefixUserIdAdapter
 import HealthKit
@@ -27,7 +28,7 @@ class UtahAppDelegate: CardinalKitAppDelegate {
     override var configuration: Configuration {
         Configuration(standard: FHIR()) {
             if !CommandLine.arguments.contains("--disableFirebase") {
-                FirebaseAccountConfiguration(emulatorSettings: (host: "localhost", port: 9099))
+                FirebaseAccountConfiguration()
                 firestore
             }
             if HKHealthStore.isHealthDataAvailable() {
@@ -45,8 +46,7 @@ class UtahAppDelegate: CardinalKitAppDelegate {
             adapter: {
                 FHIRToFirestoreAdapter()
                 FirestoreStoragePrefixUserIdAdapter()
-            },
-            settings: .emulator
+            }
         )
     }
     
