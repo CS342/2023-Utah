@@ -53,6 +53,7 @@ extension XCUIApplication {
         if staticTexts["Consent"].waitForExistence(timeout: 5) {
             try navigateOnboardingFlowConsent()
         }
+        try navigateOnboardingDOBQuestion()
         try navigateOnboardingConditionQuestion()
         try navigateOnboardingFlowHealthKitAccess(assertThatHealthKitConsentIsShown: assertThatHealthKitConsentIsShown)
     }
@@ -121,6 +122,12 @@ extension XCUIApplication {
     
     private func navigateOnboardingConditionQuestion() throws {
         XCTAssertTrue(staticTexts["What condition do you have?"].waitForExistence(timeout: 0.5))
+        XCTAssertTrue(buttons["Next"].waitForExistence(timeout: 0.5))
+        buttons["Next"].tap()
+    }
+    
+    private func navigateOnboardingDOBQuestion() throws {
+        XCTAssertTrue(staticTexts["What is your Date of Birth?"].waitForExistence(timeout: 0.5))
         XCTAssertTrue(buttons["Next"].waitForExistence(timeout: 0.5))
         buttons["Next"].tap()
     }
