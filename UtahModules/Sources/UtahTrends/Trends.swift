@@ -13,12 +13,14 @@ import SwiftUI
 public struct Trends: View {
     public var body: some View {
         NavigationStack {
-            VStack(alignment: .leading) {
-                DataCard(icon: "shoeprints.fill", title: "Daily Step Count", unit: "steps", color: Color.green)
-//                DataCard(icon: "list.clipboard.fill", title: "EFS Survey Score", unit: "points", color: Color.blue, data: efsDummyData)
+            VStack(alignment: .center) {
+                Charts()
+                Spacer()
+                DataCard(icon: "shoeprints.fill", title: "Yesterday's Step Count", unit: "steps", color: Color.green)
+                Spacer()
+                DataCard(icon: "list.clipboard.fill", title: "Last EFS Survey Score", unit: "points", color: Color.blue)
             }
             .padding()
-            Spacer()
             .navigationTitle("Trends")
         }
     }

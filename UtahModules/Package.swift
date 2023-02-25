@@ -27,9 +27,6 @@ let package = Package(
     ],
     dependencies: [
         .package(url: "https://github.com/StanfordBDHG/CardinalKit.git", .upToNextMinor(from: "0.3.1")),
-//        .package(url: "https://github.com/carekit-apple/CareKit.git", .upToNextMinor(from: "2.0.1")),
-//        .package(url: "https://github.com/StanfordBDHG/ResearchKit.git", .upToNextMinor(from: "2.2.8"))
-    
         .package(url: "https://github.com/firebase/firebase-ios-sdk", from: "10.3.0")
     ],
     targets: [
