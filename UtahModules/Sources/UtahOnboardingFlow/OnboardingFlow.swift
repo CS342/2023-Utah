@@ -17,6 +17,7 @@ public struct OnboardingFlow: View {
         case login
         case signUp
         case consent
+        case dateOfBirth
         case conditionQuestion
         case healthKitPermissions
     }
@@ -38,6 +39,8 @@ public struct OnboardingFlow: View {
                         UtahSignUp()
                     case .consent:
                         Consent(onboardingSteps: $onboardingSteps)
+                    case .dateOfBirth:
+                        DateOfBirthQuestion(onboardingSteps: $onboardingSteps)
                     case .conditionQuestion:
                         ConditionQuestion(onboardingSteps: $onboardingSteps)
                     case .healthKitPermissions:

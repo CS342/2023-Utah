@@ -129,7 +129,7 @@ struct AccountSetup: View {
     private func appendNextOnboardingStep() {
         #if targetEnvironment(simulator) && (arch(i386) || arch(x86_64))
         print("PKCanvas view-related views are currently skipped on Intel-based iOS simulators due to a metal bug on the simulator.")
-        onboardingSteps.append(.conditionQuestion)
+        onboardingSteps.append(.dateOfBirth)
         #else
         onboardingSteps.append(.consent)
         #endif
