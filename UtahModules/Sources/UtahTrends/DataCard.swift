@@ -11,38 +11,38 @@ import Charts
 import SwiftUI
 
 //// Edmonton frail scale
-//struct EFS: Identifiable {
+// struct EFS: Identifiable {
 //    let date: String
 //    let score: Int
 //    var id = UUID()
-//}
+// }
 //
 //// Step count
-//struct StepCount: Identifiable {
+// struct StepCount: Identifiable {
 //    let date: String
 //    let count: Int
 //    var id = UUID()
-//}
+// }
 //
 //// Date converter to string
-//func date_formatter(date: Date) -> String {
+// func date_formatter(date: Date) -> String {
 //    let dateFormatter = DateFormatter()
 //    dateFormatter.locale = Locale(identifier: "en_US")
 //    let formatted = dateFormatter.string(from: date)
 //    return formatted
-//}
+// }
 //
 //
 //// dummy data
-//let efsDummyData: [EFS] = [
+// let efsDummyData: [EFS] = [
 //    .init(date: "January", score: 15),
 //    .init(date: "February", score: 17),
 //    .init(date: "March", score: 3),
 //    .init(date: "April", score: 8),
 //    .init(date: "May", score: 9)
-//]
+// ]
 //
-//var stepDummyData: [StepCount] = [
+// var stepDummyData: [StepCount] = [
 //    .init(date: "MON", count: 5000),
 //    .init(date: "TUES", count: 6000),
 //    .init(date: "WED", count: 3809),
@@ -50,10 +50,10 @@ import SwiftUI
 //    .init(date: "FRI", count: 12000),
 //    .init(date: "SAT", count: 220),
 //    .init(date: "SUN", count: 2000)
-//]
+// ]
 //
 //// Initializing barcharts
-//struct EFSBarChart: View {
+// struct EFSBarChart: View {
 //    var body: some View {
 //        Chart {
 //            ForEach(efsDummyData) { datum in
@@ -68,9 +68,9 @@ import SwiftUI
 ////                .font(.system(size: 15, weight: .bold, design: .default))
 ////        }
 //    }
-//}
+// }
 //
-//struct StepBarChart: View {
+// struct StepBarChart: View {
 //    var body: some View {
 //        Chart {
 //            ForEach(stepDummyData) { datum in
@@ -85,7 +85,7 @@ import SwiftUI
 ////                .font(.system(size: 15, weight: .bold, design: .default))
 ////        }
 //    }
-//}
+// }
 
 struct DataCard: View {
     let icon: String

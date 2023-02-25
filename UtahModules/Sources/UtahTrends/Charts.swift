@@ -54,7 +54,7 @@ var stepDummyData: [StepCount] = [
 ]
 
 //// Initializing barcharts
-//struct EFSBarChart: View {
+// struct EFSBarChart: View {
 //    var body: some View {
 //        Chart {
 //            ForEach(efsDummyData) { datum in
@@ -65,9 +65,9 @@ var stepDummyData: [StepCount] = [
 //            }
 //        }
 //    }
-//}
+// }
 //
-//struct StepBarChart: View {
+// struct StepBarChart: View {
 //    var body: some View {
 //        Chart {
 //            ForEach(stepDummyData) { datum in
@@ -78,7 +78,7 @@ var stepDummyData: [StepCount] = [
 //            }
 //        }
 //    }
-//}
+// }
 
 struct Charts: View {
     var body: some View {
