@@ -19,6 +19,7 @@ import SwiftUI
 struct AccountSetup: View {
     @Binding private var onboardingSteps: [OnboardingFlow.Step]
     @EnvironmentObject var account: Account
+    @State var isSigningUp: Bool
     
     
     var body: some View {
@@ -26,16 +27,19 @@ struct AccountSetup: View {
             contentView: {
                 VStack {
                     OnboardingTitleView(
-                        title: "ACCOUNT_TITLE".moduleLocalized,
-                        subtitle: "ACCOUNT_SUBTITLE".moduleLocalized
+                        title: "ACCOUNT_TITLE".moduleLocalized/*,
+                        subtitle: "ACCOUNT_SUBTITLE".moduleLocalized*/
                     )
-                    Spacer(minLength: 0)
+                    .offset(y: 120)
+                    //Spacer(minLength: 0)
                     accountImage
-                    accountDescription
-                    Spacer(minLength: 0)
+                        .offset(y: 80)
+                    //accountDescription
+                    //Spacer(minLength: 0)
                 }
             }, actionView: {
                 actionView
+                    .offset(y: -200)
             }
         )
             .onReceive(account.objectWillChange) {
@@ -84,9 +88,9 @@ struct AccountSetup: View {
             Group {
                 if account.signedIn {
                     Text("ACCOUNT_SIGNED_IN_DESCRIPTION", bundle: .module)
-                } else {
+                } /*else {
                     Text("ACCOUNT_SETUP_DESCRIPTION", bundle: .module)
-                }
+                }*/
             }
                 .multilineTextAlignment(.center)
                 .padding(.vertical, 16)
@@ -110,10 +114,12 @@ struct AccountSetup: View {
             OnboardingActionsView(
                 primaryText: "ACCOUNT_SIGN_UP".moduleLocalized,
                 primaryAction: {
+                    isSigningUp = true
                     onboardingSteps.append(.signUp)
                 },
                 secondaryText: "ACCOUNT_LOGIN".moduleLocalized,
                 secondaryAction: {
+                    isSigningUp = false
                     onboardingSteps.append(.login)
                 }
             )
@@ -123,16 +129,20 @@ struct AccountSetup: View {
     
     init(onboardingSteps: Binding<[OnboardingFlow.Step]>) {
         self._onboardingSteps = onboardingSteps
+        self.isSigningUp = false
     }
     
-    
     private func appendNextOnboardingStep() {
-        #if targetEnvironment(simulator) && (arch(i386) || arch(x86_64))
-        print("PKCanvas view-related views are currently skipped on Intel-based iOS simulators due to a metal bug on the simulator.")
-        onboardingSteps.append(.conditionQuestion)
-        #else
-        onboardingSteps.append(.consent)
-        #endif
+        if isSigningUp {
+            #if targetEnvironment(simulator) && (arch(i386) || arch(x86_64))
+            print("PKCanvas view-related views are currently skipped on Intel-based iOS simulators due to a metal bug on the simulator.")
+            onboardingSteps.append(.conditionQuestion)
+            #else
+            onboardingSteps.append(.consent)
+            #endif
+        } else {
+            onboardingSteps.append(.healthKitPermissions)
+        }
     }
 }
 

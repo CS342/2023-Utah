@@ -8,6 +8,7 @@
 
 import Onboarding
 import SwiftUI
+import UtahSharedContext
 
 
 struct Welcome: View {
@@ -16,28 +17,28 @@ struct Welcome: View {
     
     var body: some View {
         OnboardingView(
-            title: "Welcome to VascuTrack".moduleLocalized,
+            title: "Welcome to U-STEP".moduleLocalized,
             subtitle: "A collaboration between Stanford University & University of Utah".moduleLocalized,
             areas: [
                 .init(
                     icon: Image(systemName: "apps.iphone"),
                     title: "Track your health".moduleLocalized,
-                    description: "Easily see your biometric data".moduleLocalized
+                    description: "Easily see your health data".moduleLocalized
                 ),
                 .init(
-                    icon: Image(systemName: "shippingbox.fill"),
-                    title: "Report your outcomes".moduleLocalized,
+                    icon: Image(systemName: "figure.walk"),
+                    title: "Report your health aoutcomes".moduleLocalized,
                     description: "Fill out surveys about your health".moduleLocalized
                 ),
                 .init(
-                    icon: Image(systemName: "list.bullet.clipboard.fill"),
+                    icon: Image(systemName: "cross.circle.fill"),
                     title: "Streamline your care".moduleLocalized,
                     description: "Help your doctors help you get better".moduleLocalized
                 )
             ],
             actionText: "Next".moduleLocalized,
             action: {
-                if !CommandLine.arguments.contains("--disableFirebase") {
+                if !FeatureFlags.disableFirebase {
                     onboardingSteps.append(.accountSetup)
                 } else {
                     onboardingSteps.append(.consent)
