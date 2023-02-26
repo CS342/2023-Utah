@@ -7,6 +7,7 @@
 //
 
 // swiftlint:disable lower_acl_than_parent
+// swiftlint:disable function_body_length
 import Firebase
 import FirebaseStorage
 import Foundation
@@ -22,6 +23,7 @@ class EdmontonViewCoordinator: NSObject, ORKTaskViewControllerDelegate {
     ) {
         switch reason {
         case .completed:
+            var score = 0
             // Convert the responses into a FHIR object using ResearchKitOnFHIR
             let fhirResponse = taskViewController.result.fhirResponse
 
@@ -60,6 +62,8 @@ class EdmontonViewCoordinator: NSObject, ORKTaskViewControllerDelegate {
                     for item in responseItems {
                         if case let .attachment(value) = item.answer?.first?.value {
                             guard let fileURL = value.url?.value?.url else {
+                                print(value)
+                                print(value.data)
                                 continue
                             }
 
