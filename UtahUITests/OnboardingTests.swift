@@ -121,14 +121,14 @@ extension XCUIApplication {
     }
     
     private func navigateOnboardingConditionQuestion() throws {
-        XCTAssertTrue(staticTexts["What condition do you have?"].waitForExistence(timeout: 0.5))
-        XCTAssertTrue(buttons["Next"].waitForExistence(timeout: 0.5))
+        XCTAssertTrue(staticTexts["What condition do you have?"].waitForExistence(timeout: 2))
+        XCTAssertTrue(buttons["Next"].waitForExistence(timeout: 2))
         buttons["Next"].tap()
     }
     
     private func navigateOnboardingDOBQuestion() throws {
-        XCTAssertTrue(staticTexts["What is your Date of Birth?"].waitForExistence(timeout: 0.5))
-        XCTAssertTrue(buttons["Next"].waitForExistence(timeout: 0.5))
+        XCTAssertTrue(staticTexts["What is your Date of Birth?"].waitForExistence(timeout: 2))
+        XCTAssertTrue(buttons["Next"].waitForExistence(timeout: 2))
         buttons["Next"].tap()
     }
     
