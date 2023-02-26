@@ -8,6 +8,7 @@
 
 // swiftlint:disable function_body_length
 // swiftlint:disable closure_body_length
+// swiftlint:disable line_length
 
 import Foundation
 import ResearchKit
@@ -37,6 +38,21 @@ struct EdmontonViewController: UIViewControllerRepresentable {
             """
 
             steps += [instructionStep]
+            
+            // Walk
+            // Instruction step
+            let getUpIntroStep = ORKInstructionStep(identifier: "GetUpAndGoIntro")
+            getUpIntroStep.title = "Get Up and Go"
+            getUpIntroStep.text = """
+            I would like you to sit in this chair with your back and arms resting. Then, when you are ready, click the ‘Next’ button and please stand up and walk at a safe and comfortable pace approximately 3m away. Then click the 'Stop' button. When you are finished, turn around and return to the chair and sit down.
+            """
+
+            steps += [getUpIntroStep]
+
+            let q11Step = TimedWalkStep(identifier: "Get Up and Go")
+            q11Step.isOptional = false
+            
+            steps += [q11Step]
 
             // Clock test step
             let clockTestInstructionStep = ORKInstructionStep(identifier: "ClockStep")
