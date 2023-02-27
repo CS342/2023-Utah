@@ -8,6 +8,7 @@
 
 import Onboarding
 import SwiftUI
+import UtahSharedContext
 
 
 struct Welcome: View {
@@ -16,7 +17,7 @@ struct Welcome: View {
     
     var body: some View {
         OnboardingView(
-            title: "Welcome to VascuTrack".moduleLocalized,
+            title: "Welcome to U-STEP".moduleLocalized,
             subtitle: "A collaboration between Stanford University & University of Utah".moduleLocalized,
             areas: [
                 .init(
@@ -37,7 +38,7 @@ struct Welcome: View {
             ],
             actionText: "Next".moduleLocalized,
             action: {
-                if !CommandLine.arguments.contains("--disableFirebase") {
+                if !FeatureFlags.disableFirebase {
                     onboardingSteps.append(.accountSetup)
                 } else {
                     onboardingSteps.append(.consent)
