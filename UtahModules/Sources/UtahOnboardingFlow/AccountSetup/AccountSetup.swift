@@ -19,6 +19,7 @@ import SwiftUI
 struct AccountSetup: View {
     @Binding private var onboardingSteps: [OnboardingFlow.Step]
     @EnvironmentObject var account: Account
+    @State var isSigningUp: Bool
     
     
     var body: some View {
@@ -49,7 +50,11 @@ struct AccountSetup: View {
                              let firstName = fullName?[0] ?? ""
                              let lastName = fullName?[1] ?? ""
                              let data: [String: Any] = ["firstName": firstName, "lastName": lastName, "email": user.email ?? "", "dateJoined": Timestamp()]
-                            Firestore.firestore().collection("users").document(user.uid).setData(data)
+                             Firestore.firestore().collection("users").document(user.uid).setData(data) { err in
+                                 if let err = err {
+                                     print("Error updating document: \(err)")
+                                 }
+                             }
                         }
                     }
                     appendNextOnboardingStep()
@@ -113,10 +118,12 @@ struct AccountSetup: View {
             OnboardingActionsView(
                 primaryText: "ACCOUNT_SIGN_UP".moduleLocalized,
                 primaryAction: {
+                    isSigningUp = true
                     onboardingSteps.append(.signUp)
                 },
                 secondaryText: "ACCOUNT_LOGIN".moduleLocalized,
                 secondaryAction: {
+                    isSigningUp = false
                     onboardingSteps.append(.login)
                 }
             )
@@ -126,16 +133,20 @@ struct AccountSetup: View {
     
     init(onboardingSteps: Binding<[OnboardingFlow.Step]>) {
         self._onboardingSteps = onboardingSteps
+        self.isSigningUp = false
     }
     
-    
     private func appendNextOnboardingStep() {
-        #if targetEnvironment(simulator) && (arch(i386) || arch(x86_64))
-        print("PKCanvas view-related views are currently skipped on Intel-based iOS simulators due to a metal bug on the simulator.")
-        onboardingSteps.append(.conditionQuestion)
-        #else
-        onboardingSteps.append(.consent)
-        #endif
+        if isSigningUp {
+            #if targetEnvironment(simulator) && (arch(i386) || arch(x86_64))
+            print("PKCanvas view-related views are currently skipped on Intel-based iOS simulators due to a metal bug on the simulator.")
+            onboardingSteps.append(.conditionQuestion)
+            #else
+            onboardingSteps.append(.consent)
+            #endif
+        } else {
+            onboardingSteps.append(.healthKitPermissions)
+        }
     }
 }
 
