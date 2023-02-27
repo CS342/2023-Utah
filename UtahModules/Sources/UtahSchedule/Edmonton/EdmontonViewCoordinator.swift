@@ -10,6 +10,7 @@
 // swiftlint:disable function_body_length
 // swiftlint:disable force_cast
 // swiftlint:disable force_unwrapping
+// swiftlint:disable cyclomatic_complexity
 
 import Firebase
 import FirebaseStorage
