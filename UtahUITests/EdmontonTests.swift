@@ -45,19 +45,20 @@ class EdmontonTests: XCTestCase {
             XCTAssertTrue(app.tables.buttons["Next"].waitForExistence(timeout: 0.5))
             app.tables.buttons["Next"].tap()
         }
-        /* Need to update view controller to allow tests
+    
         XCTAssertTrue(app.staticTexts["Get Up and Go"].waitForExistence(timeout: 0.5))
         XCTAssertTrue(app.buttons["Next"].waitForExistence(timeout: 0.5))
         app.buttons["Next"].tap()
         
+        /* Need to update view controller to allow tests
         XCTAssertTrue(app.staticTexts["Stop"].waitForExistence(timeout: 1))
         app.staticTexts["Stop"].tap()
         
         XCTAssertTrue(app.staticTexts["11-20 Seconds"].waitForExistence(timeout: 1))
         app.staticTexts["11-20 Seconds"].tap()
-        
         XCTAssertTrue(app.staticTexts["Thank you."].waitForExistence(timeout: 0.5))
         XCTAssertTrue(app.buttons["Done"].waitForExistence(timeout: 0.5))
+        app.buttons["Done"].tap()*/
         app.buttons["Done"].tap()*/
     }
 }

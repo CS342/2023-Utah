@@ -9,6 +9,8 @@
 // swiftlint:disable function_body_length
 // swiftlint:disable closure_body_length
 // swiftlint:disable line_length
+// swiftlint:disable object_literal
+// swiftlint:disable force_unwrapping
 
 import Foundation
 import ResearchKit
@@ -49,10 +51,11 @@ struct EdmontonViewController: UIViewControllerRepresentable {
 
             steps += [clockTestInstructionStep]
             
-            // Image capture step
-            
             let imageCaptureStep = ORKImageCaptureStep(identifier: "ImageCaptureStep") // we should add a circle template image here
-            
+            if let image = UIImage(named: "circle") {
+                imageCaptureStep.templateImage = image
+            }
+            imageCaptureStep.templateImageInsets = UIEdgeInsets(top: 0.1, left: 0.1, bottom: 0.1, right: 0.1)
             steps += [imageCaptureStep]
             
             // Question 2
@@ -157,9 +160,11 @@ struct EdmontonViewController: UIViewControllerRepresentable {
             let getUpIntroStep = ORKInstructionStep(identifier: "GetUpAndGoIntro")
             getUpIntroStep.title = "Get Up and Go"
             getUpIntroStep.text = """
-            I would like you to sit in this chair with your back and arms resting. Then, when you are ready, click the ‘Next’ button and please stand up and walk at a safe and comfortable pace approximately 3m away. Then click the 'Stop' button. When you are finished, turn around and return to the chair and sit down.
+            Sit in this chair with your back and arms resting. Then, when you are ready, click the ‘Next’ button and please stand up and walk at a safe and comfortable pace approximately 3m away. Then click the 'Stop' button. When you are finished, turn around and return to the chair and sit down.
+            
+            When you're ready to start, click Next.
             """
-
+            
             steps += [getUpIntroStep]
 
             let q11Step = TimedWalkStep(identifier: "Get Up and Go")
@@ -179,6 +184,7 @@ struct EdmontonViewController: UIViewControllerRepresentable {
         
         let taskViewController = ORKTaskViewController(task: edmontonSurveyTask, taskRun: nil)
         taskViewController.delegate = context.coordinator
+        taskViewController.outputDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
         
         // & present the VC!
         return taskViewController
