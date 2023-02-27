@@ -34,9 +34,9 @@ struct EdmontonViewController: UIViewControllerRepresentable {
             let instructionStep = ORKInstructionStep(identifier: "IntroStep")
             instructionStep.title = "Patient Questionnaire"
             instructionStep.text = """
-            This information will help your doctors keep track of how you feel and how well you are able
-            to do your usual activities. If you are unsure about how to answer a question, please give the
-            best answer you can and make a written comment beside your answer.
+            This information will help your doctors keep track of how you feel and how well you are able to do your usual activities. If you are unsure about how to answer a question, please give the best answer you can.
+            
+            You will be asked to complete this questionnaire at regular intervals to track your progress over time. You will be able to view your progress in the trends tab.
             """
 
             steps += [instructionStep]
@@ -45,8 +45,15 @@ struct EdmontonViewController: UIViewControllerRepresentable {
             let clockTestInstructionStep = ORKInstructionStep(identifier: "ClockStep")
             clockTestInstructionStep.title = "Draw a clock"
             clockTestInstructionStep.text = """
-            Place numbers the correct positions on a pre-drawn circle, and place hands to
-            indicate the time of ‘ten after eleven’. Upload a photo in the next step
+            First, we would like you to get out a piece of paper and something to write with.
+            
+            Now, we want you to draw a clock.
+             (1) Draw a circle
+             (2) Put in all of the numbers where they go
+             (3) Set the hands of the clock to 10 after 11
+            
+            When you are finished, upload a photo of your clock in the next step.
+
             """
 
             steps += [clockTestInstructionStep]
@@ -105,8 +112,7 @@ struct EdmontonViewController: UIViewControllerRepresentable {
                 identifier: "q4",
                 title: "",
                 question: """
-                    With how many of the following activities do you require help? (meal preparation, shopping, transportation, telephone,
-                    housekeeping, laundry, managing money, taking medications)
+                    With how many of the following activities do you require help? (meal preparation, shopping, transportation, telephone, housekeeping, laundry, managing money, taking medications)
                     """,
                 answer: q4ChoiceAnswerFormat
             )
@@ -160,7 +166,13 @@ struct EdmontonViewController: UIViewControllerRepresentable {
             let getUpIntroStep = ORKInstructionStep(identifier: "GetUpAndGoIntro")
             getUpIntroStep.title = "Get Up and Go"
             getUpIntroStep.text = """
-            Sit in this chair with your back and arms resting. Then, when you are ready, click the ‘Next’ button and please stand up and walk at a safe and comfortable pace approximately 3m away. Then click the 'Stop' button. When you are finished, turn around and return to the chair and sit down.
+            We would like you to perform a walking test
+            
+            Instructions:
+            Sit in a chair with your back and arms resting, when you are ready, click the ‘Start’ button below. Please stand from your seated position and walk at a safe and comfortable pace approximately 3 meters away. Then, click the ‘STOP’ button on the phone.
+            
+            If you are unable to perform this test safely please have someone help you or click the STOP button immediately.
+            
             
             When you're ready to start, click Next.
             """
@@ -175,7 +187,7 @@ struct EdmontonViewController: UIViewControllerRepresentable {
             // SUMMARY
             let summaryStep = ORKCompletionStep(identifier: "SummaryStep")
             summaryStep.title = "Thank you."
-            summaryStep.text = "We appreciate your time."
+            summaryStep.text = "You can view your progress in the trends tab."
             
             steps += [summaryStep]
             
