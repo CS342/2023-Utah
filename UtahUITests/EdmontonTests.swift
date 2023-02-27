@@ -46,6 +46,16 @@ class EdmontonTests: XCTestCase {
             app.tables.buttons["Next"].tap()
         }
         
+        XCTAssertTrue(app.staticTexts["Get Up and Go"].waitForExistence(timeout: 0.5))
+        XCTAssertTrue(app.buttons["Next"].waitForExistence(timeout: 0.5))
+        app.buttons["Next"].tap()
+        
+        XCTAssertTrue(app.buttons["Stop"].waitForExistence(timeout: 1))
+        app.buttons["Stop"].tap()
+        
+        XCTAssertTrue(app.buttons["11-20 Seconds"].waitForExistence(timeout: 1))
+        app.buttons["11-20 Seconds"].tap()
+        
         XCTAssertTrue(app.staticTexts["Thank you."].waitForExistence(timeout: 0.5))
         XCTAssertTrue(app.buttons["Done"].waitForExistence(timeout: 0.5))
         app.buttons["Done"].tap()
