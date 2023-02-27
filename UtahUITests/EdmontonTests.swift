@@ -59,6 +59,5 @@ class EdmontonTests: XCTestCase {
         XCTAssertTrue(app.staticTexts["Thank you."].waitForExistence(timeout: 0.5))
         XCTAssertTrue(app.buttons["Done"].waitForExistence(timeout: 0.5))
         app.buttons["Done"].tap()*/
-        app.buttons["Done"].tap()*/
     }
 }
