@@ -50,7 +50,7 @@ extension XCUIApplication {
     func navigateOnboardingFlow(assertThatHealthKitConsentIsShown: Bool = true) throws {
         try navigateOnboardingFlowWelcome()
         try navigateOnboardingAccount()
-        if staticTexts["Consent"].waitForExistence(timeout: 5) {
+        if staticTexts["Consent Form"].waitForExistence(timeout: 5) {
             try navigateOnboardingFlowConsent()
             try navigateOnboardingConditionQuestion()
         }
@@ -101,24 +101,17 @@ extension XCUIApplication {
     }
     
     private func navigateOnboardingFlowConsent() throws {
-        XCTAssertTrue(staticTexts["Consent"].waitForExistence(timeout: 2))
+        XCTAssertTrue(staticTexts["Consent Form"].waitForExistence(timeout: 2))
         
         swipeUp(velocity: .fast)
         swipeUp(velocity: .fast)
+        swipeUp(velocity: .fast)
+        swipeUp(velocity: .fast)
+        swipeUp(velocity: .fast)
+        swipeUp(velocity: .fast)
         
-        XCTAssertTrue(staticTexts["Given Name"].waitForExistence(timeout: 2))
-        try textFields["Enter your given name ..."].enter(value: "Leland")
-        textFields["Enter your given name ..."].typeText("\n")
-        
-        XCTAssertTrue(staticTexts["Family Name"].waitForExistence(timeout: 2))
-        try textFields["Enter your family name ..."].enter(value: "Stanford")
-        textFields["Enter your family name ..."].typeText("\n")
-        
-        XCTAssertTrue(staticTexts["Leland Stanford"].waitForExistence(timeout: 2))
-        staticTexts["Leland Stanford"].firstMatch.swipeUp()
-        
-        XCTAssertTrue(buttons["I Consent"].waitForExistence(timeout: 2))
-        buttons["I Consent"].tap()
+        XCTAssertTrue(buttons["I accept"].waitForExistence(timeout: 2))
+        buttons["I accept"].tap()
     }
     
     private func navigateOnboardingConditionQuestion() throws {
