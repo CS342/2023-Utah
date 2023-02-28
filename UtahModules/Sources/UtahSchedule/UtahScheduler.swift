@@ -22,14 +22,14 @@ extension UtahScheduler {
         self.init(
             tasks: [
                 Task(
-                    title: String(localized: "QUESTIONNAIRE_TITLE", bundle: .module),
-                    description: String(localized: "QUESTIONNAIRE_DESCRIPTION", bundle: .module),
+                    title: String(localized: "RESEARCHKIT_TASK_TITLE", bundle: .module),
+                    description: String(localized: "RESEARCHKIT_TASK_DESCRIPTION", bundle: .module),
                     schedule: Schedule(
                         start: Calendar.current.startOfDay(for: Date()),
-                        dateComponents: .init(hour: 0, minute: 30), // Every Day at 12:30 AM
+                        dateComponents: .init(hour: 00, minute: 30),
                         end: .numberOfEvents(356)
                     ),
-                    context: UtahTaskContext.questionnaire(Bundle.module.questionnaire(withName: "EdmontonFrailScale"))
+                    context: UtahTaskContext.researchKitTask(.edmonton)
                 )
             ]
         )

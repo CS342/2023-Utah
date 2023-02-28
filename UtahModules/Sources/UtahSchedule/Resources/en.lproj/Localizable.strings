@@ -7,10 +7,15 @@
 //
 
 // MARK: - Schedule
-"QUESTIONNAIRE_LIST_TITLE" = "Questionaires";
+"QUESTIONNAIRE_LIST_TITLE" = "Tasks";
+
 "QUESTIONNAIRE_TITLE" = "Monthly Questionnaire";
 "QUESTIONNAIRE_DESCRIPTION" = "Please fill out this Questionnaire every month.";
 "QUESTIONNAIRE_ACTION" = "Start Questionnaire";
+
+"RESEARCHKIT_TASK_TITLE" = "Edmonton Frail Scale";
+"RESEARCHKIT_TASK_DESCRIPTION" = "Please complete this task once a month.";
+"RESEARCHKIT_TASK_ACTION" = "Start Task";
 
 // MARK: - GetUpAndGo
 "GET_UP_GO_TITLE" = "Get Up and Go";
