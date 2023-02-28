@@ -50,11 +50,18 @@ struct HealthKitPermissions: View {
             }
         )
     }
+
+    init(onboardingSteps: Binding<[OnboardingFlow.Step]>) {
+        self._onboardingSteps = onboardingSteps
+    }
 }
 
 
 struct HealthKitPermissions_Previews: PreviewProvider {
+    @State private static var path: [OnboardingFlow.Step] = []
+
+    
     static var previews: some View {
-        HealthKitPermissions()
+        HealthKitPermissions(onboardingSteps: $path)
     }
 }
