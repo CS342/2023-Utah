@@ -6,7 +6,6 @@
 // SPDX-License-Identifier: MIT
 //
 
-
 // swiftlint:disable line_length
 
 import ResearchKit
