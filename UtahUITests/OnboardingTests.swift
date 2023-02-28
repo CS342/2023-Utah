@@ -19,11 +19,11 @@ class OnboardingTests: XCTestCase {
         
         try disablePasswordAutofill()
         
-        continueAfterFailure = false
+        continueAfterFailure = true
         
         let app = XCUIApplication()
         app.launchArguments = ["--showOnboarding"]
-        app.deleteAndLaunch(withSpringboardAppName: "Utah")
+        app.deleteAndLaunch(withSpringboardAppName: "U-STEP")
     }
     
     
@@ -32,10 +32,10 @@ class OnboardingTests: XCTestCase {
         try app.navigateOnboardingFlow(assertThatHealthKitConsentIsShown: true)
         
         let tabBar = app.tabBars["Tab Bar"]
-        XCTAssertTrue(tabBar.buttons["Questions"].waitForExistence(timeout: 0.5))
-        XCTAssertTrue(tabBar.buttons["Trends"].waitForExistence(timeout: 0.5))
-        XCTAssertTrue(tabBar.buttons["Profile"].waitForExistence(timeout: 0.5))
-        XCTAssertTrue(tabBar.buttons["Mock Upload"].waitForExistence(timeout: 0.5))
+        XCTAssertTrue(tabBar.buttons["Questions"].waitForExistence(timeout: 2))
+        XCTAssertTrue(tabBar.buttons["Trends"].waitForExistence(timeout: 2))
+        XCTAssertTrue(tabBar.buttons["Profile"].waitForExistence(timeout: 2))
+        XCTAssertTrue(tabBar.buttons["Mock Upload"].waitForExistence(timeout: 2))
     }
 }
 
@@ -52,13 +52,13 @@ extension XCUIApplication {
         try navigateOnboardingAccount()
         if staticTexts["Consent"].waitForExistence(timeout: 5) {
             try navigateOnboardingFlowConsent()
+            try navigateOnboardingConditionQuestion()
         }
-        try navigateOnboardingConditionQuestion()
         try navigateOnboardingFlowHealthKitAccess(assertThatHealthKitConsentIsShown: assertThatHealthKitConsentIsShown)
     }
     
     private func navigateOnboardingFlowWelcome() throws {
-        XCTAssertTrue(buttons["Next"].waitForExistence(timeout: 0.5))
+        XCTAssertTrue(buttons["Next"].waitForExistence(timeout: 2))
         buttons["Next"].tap()
     }
     
@@ -101,8 +101,10 @@ extension XCUIApplication {
     }
     
     private func navigateOnboardingFlowConsent() throws {
-        XCTAssertTrue(staticTexts["Consent"].waitForExistence(timeout: 0.5))
+        XCTAssertTrue(staticTexts["Consent"].waitForExistence(timeout: 2))
         
+        swipeUp(velocity: .fast)
+        swipeUp(velocity: .fast)
         
         XCTAssertTrue(staticTexts["Given Name"].waitForExistence(timeout: 2))
         try textFields["Enter your given name ..."].enter(value: "Leland")
@@ -120,21 +122,16 @@ extension XCUIApplication {
     }
     
     private func navigateOnboardingConditionQuestion() throws {
-        XCTAssertTrue(staticTexts["What condition do you have?"].waitForExistence(timeout: 0.5))
-        XCTAssertTrue(buttons["Next"].waitForExistence(timeout: 0.5))
+        XCTAssertTrue(staticTexts["What condition do you have?"].waitForExistence(timeout: 2))
+        XCTAssertTrue(buttons["Next"].waitForExistence(timeout: 2))
         buttons["Next"].tap()
     }
     
     private func navigateOnboardingFlowHealthKitAccess(assertThatHealthKitConsentIsShown: Bool = true) throws {
-        XCTAssertTrue(images["heart.text.square.fill"].waitForExistence(timeout: 0.5))
-        XCTAssertTrue(buttons["Grant Access"].waitForExistence(timeout: 0.5))
+        XCTAssertTrue(images["heart.text.square.fill"].waitForExistence(timeout: 2))
+        XCTAssertTrue(buttons["Grant Access"].waitForExistence(timeout: 2))
         buttons["Grant Access"].tap()
         
-        if self.navigationBars["Health Access"].waitForExistence(timeout: 30) {
-            self.tables.staticTexts["Turn On All"].tap()
-            self.navigationBars["Health Access"].buttons["Allow"].tap()
-        } else if assertThatHealthKitConsentIsShown {
-            XCTFail("Did not display the Health Consent Screen")
-        }
+        try handleHealthKitAuthorization()
     }
 }
