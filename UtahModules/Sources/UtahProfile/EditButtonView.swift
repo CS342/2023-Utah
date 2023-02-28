@@ -10,7 +10,7 @@ import SwiftUI
 
 struct EditButton: View {
     @State private var isEditing = false
-    @Binding var disease: String 
+    @Binding var disease: String
     
     var body: some View {
         HStack {

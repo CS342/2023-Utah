@@ -34,4 +34,3 @@ struct UserInformationView: View {
         .padding(.bottom, 20)
     }
 }
-

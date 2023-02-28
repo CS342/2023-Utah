@@ -9,7 +9,7 @@
 import SwiftUI
 
 public struct Profile: View {
-    @State var disease = "Peripheral Arterial Disease" 
+    @State var disease = "Peripheral Arterial Disease"
 
     public var body: some View {
         VStack {
