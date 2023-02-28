@@ -17,6 +17,7 @@
 "RESEARCHKIT_TASK_DESCRIPTION" = "Please complete this task once a month.";
 "RESEARCHKIT_TASK_ACTION" = "Start Task";
 
+
 // MARK: - GetUpAndGo
 "GET_UP_GO_TITLE" = "Get Up and Go";
 "GET_UP_AND_GO_DESCRIPTION" = "I would like you to sit in this chair with your back and arms resting. Then, when you are ready, click the ‘Start’ button and please stand up and walk at a safe and comfortable pace approximately 3m away. Turn around and return to the chair and sit down. Then click the 'Finish' button.";
