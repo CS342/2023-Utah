@@ -52,8 +52,8 @@ extension XCUIApplication {
         try navigateOnboardingAccount()
         if staticTexts["Consent"].waitForExistence(timeout: 5) {
             try navigateOnboardingFlowConsent()
+            try navigateOnboardingConditionQuestion()
         }
-        try navigateOnboardingConditionQuestion()
         try navigateOnboardingFlowHealthKitAccess(assertThatHealthKitConsentIsShown: assertThatHealthKitConsentIsShown)
     }
     
@@ -102,8 +102,8 @@ extension XCUIApplication {
     
     private func navigateOnboardingFlowConsent() throws {
         XCTAssertTrue(staticTexts["Consent"].waitForExistence(timeout: 0.5))
-        
-        
+        swipeUp()
+        swipeUp()
         XCTAssertTrue(staticTexts["Given Name"].waitForExistence(timeout: 2))
         try textFields["Enter your given name ..."].enter(value: "Leland")
         textFields["Enter your given name ..."].typeText("\n")
