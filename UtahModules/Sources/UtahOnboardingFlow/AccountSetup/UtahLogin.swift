@@ -19,6 +19,7 @@ struct UtahLogin: View {
             Text("LOGIN_SUBTITLE", bundle: .module)
                 .multilineTextAlignment(.center)
                 .padding()
+                .font(.system(size: 31))
                 .padding()
             Spacer(minLength: 0)
         }

@@ -27,13 +27,13 @@ struct Welcome: View {
                 ),
                 .init(
                     icon: Image(systemName: "figure.walk"),
-                    title: "Report your health aoutcomes".moduleLocalized,
+                    title: "Report your health outcomes".moduleLocalized,
                     description: "Fill out surveys about your health".moduleLocalized
                 ),
                 .init(
                     icon: Image(systemName: "cross.circle.fill"),
                     title: "Streamline your care".moduleLocalized,
-                    description: "Help your doctors help you get better".moduleLocalized
+                    description: "Help your doctors help you get better\n".moduleLocalized
                 )
             ],
             actionText: "Next".moduleLocalized,
@@ -45,6 +45,7 @@ struct Welcome: View {
                 }
             }
         )
+        .font(.system(size:31))
     }
     
     

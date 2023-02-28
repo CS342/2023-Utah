@@ -30,18 +30,17 @@ struct AccountSetup: View {
                         title: "ACCOUNT_TITLE".moduleLocalized/*,
                         subtitle: "ACCOUNT_SUBTITLE".moduleLocalized*/
                     )
-                    .offset(y: 120)
-                    //Spacer(minLength: 0)
+                    .font(.title)
+                    // Spacer(minLength: 0)
                     accountImage
-                        .offset(y: 80)
-                    //accountDescription
-                    //Spacer(minLength: 0)
                 }
             }, actionView: {
                 actionView
                     .offset(y: -200)
+                    .font(.system(size: 32))
             }
         )
+        .font(.title)
             .onReceive(account.objectWillChange) {
                 if account.signedIn {
                     if onboardingSteps.contains(where: { $0 == .signUp }) {

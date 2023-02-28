@@ -61,10 +61,10 @@
 "USER_VIEW_LOADING" = "Loading user information ...";
 
 "LOGIN_TITLE" = "Login";
-"LOGIN_SUBTITLE" = "The PAWS Application demonstrates the usage of the Firebase Account Module to enable different authentication services, including an email and password-based login.";
+"LOGIN_SUBTITLE" = "Sign in using your email address and password.";
 
 "SIGN_UP_TITLE" = "Sign Up";
-"SIGN_UP_SUBTITLE" = "The PAWS Application demonstrates the usage of the Firebase Account Module to enable different authentication services, including an email and password-based sign-up.";
+"SIGN_UP_SUBTITLE" = "Sign up using your email address, and create a password.";
 
 
 // MARK: HealthKit

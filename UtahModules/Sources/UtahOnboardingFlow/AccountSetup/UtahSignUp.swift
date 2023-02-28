@@ -19,6 +19,7 @@ struct UtahSignUp: View {
             Text("SIGN_UP_SUBTITLE", bundle: .module)
                 .multilineTextAlignment(.center)
                 .padding()
+                .font(.title)
             Spacer(minLength: 0)
         }
             .navigationBarTitleDisplayMode(.large)
