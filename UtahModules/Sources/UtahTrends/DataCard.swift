@@ -56,7 +56,8 @@ struct DataCard: View {
     
     // sums up all data points from current day
     func group(_ data: [(date: Date, value: Double)]) -> [(date: Date, value: Double)] {
-            var latestDate: Date = Calendar.current.startOfDay(for: Date())
+            var currDate: Date = Calendar.current.startOfDay(for: Date())
+            var latestDate: Date =  Calendar.current.date(byAdding: .day, value: -6, to: currDate) ?? Date()
             var filteredData: [(Date, Double)] = []
             
             Calendar.current.enumerateDates(
