@@ -89,7 +89,7 @@ extension XCUIApplication {
         secureTextFields["Repeat your password ..."].typeText("StanfordRocks")
         swipeUp()
         
-        try textFields["Enter your first name ..."].enter(value: "Leland")
+        try textFields["Enter your given name ..."].enter(value: "Leland")
         staticTexts["Repeat\nPassword"].swipeUp()
         
         try textFields["Enter your family name ..."].enter(value: "Stanford")
@@ -104,9 +104,9 @@ extension XCUIApplication {
         XCTAssertTrue(staticTexts["Consent"].waitForExistence(timeout: 0.5))
         
         
-        XCTAssertTrue(staticTexts["First Name"].waitForExistence(timeout: 2))
-        try textFields["Enter your first name ..."].enter(value: "Leland")
-        textFields["Enter your first name ..."].typeText("\n")
+        XCTAssertTrue(staticTexts["Given Name"].waitForExistence(timeout: 2))
+        try textFields["Enter your given name ..."].enter(value: "Leland")
+        textFields["Enter your given name ..."].typeText("\n")
         
         XCTAssertTrue(staticTexts["Family Name"].waitForExistence(timeout: 2))
         try textFields["Enter your family name ..."].enter(value: "Stanford")
