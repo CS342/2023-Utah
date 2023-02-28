@@ -44,7 +44,6 @@ struct HealthKitPermissions: View {
                         } catch {
                             print("Could not request HealthKit permissions.")
                         }
-                        completedOnboardingFlow = true
                     }
                 )
             }
