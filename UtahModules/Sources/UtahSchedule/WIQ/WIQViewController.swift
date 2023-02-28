@@ -6,6 +6,8 @@
 // SPDX-License-Identifier: MIT
 //
 
+// swiftlint:disable line_length
+
 import ResearchKit
 import SwiftUI
 import UIKit
@@ -25,7 +27,12 @@ struct WIQViewController: UIViewControllerRepresentable {
             
             let instruction = ORKInstructionStep(identifier: "WIQ")
                     instruction.title = "Walking Impairement Questionnaire"
-                    instruction.text = "Patient Mobility Assessment"
+                    instruction.text = """
+                        This information will help your doctors keep track of how you feel and how well you are able to do your usual activities. If you are unsure about how to answer a question, please give the best answer you can.
+                        
+                        You will be asked to complete this questionnaire at regular intervals to track your progress over time. You will be able to view your progress in the trends tab.
+
+                        """
                     
                     steps += [instruction]
 
@@ -46,9 +53,7 @@ struct WIQViewController: UIViewControllerRepresentable {
                     for (idx, question) in questions.enumerated() {
                         let wiq = ORKQuestionStep(
                             identifier: String(format: "WIQ Endurance %d", idx + 1),
-                            title: "How difficult was it for you to:",
-                            question: question,
-                            answer: wiqAnswerFormat
+                            title: "How difficult was it for you to:", question: question, answer: wiqAnswerFormat
                         )
                         wiq.isOptional = false
                         steps += [wiq]
@@ -57,10 +62,10 @@ struct WIQViewController: UIViewControllerRepresentable {
                     // SUMMARY
                     let summaryStep = ORKCompletionStep(identifier: "SummaryStep")
                     summaryStep.title = "Thank you."
-                    summaryStep.text = "We appreciate your time."
+                    summaryStep.text = "You can view your progress in the trends tab."
                     steps += [summaryStep]
                     
-                    return ORKOrderedTask(identifier: "WIQ", steps: steps)
+                    return ORKOrderedTask(identifier: "wiq", steps: steps)
         }()
         
         let taskViewController = ORKTaskViewController(task: wiqSurveyTask, taskRun: nil)

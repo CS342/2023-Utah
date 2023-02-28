@@ -9,7 +9,6 @@
 
 import Charts
 import SwiftUI
-// import ResearchKit
 
 // Edmonton frail scale
 struct EFS: Identifiable {
@@ -53,32 +52,6 @@ var stepDummyData: [StepCount] = [
     .init(date: "SUN", count: 2000)
 ]
 
-//// Initializing barcharts
-// struct EFSBarChart: View {
-//    var body: some View {
-//        Chart {
-//            ForEach(efsDummyData) { datum in
-//                BarMark(
-//                    x: .value("Date", datum.date),
-//                    y: .value("Edmonton Frail Scale Score", datum.score)
-//                )
-//            }
-//        }
-//    }
-// }
-//
-// struct StepBarChart: View {
-//    var body: some View {
-//        Chart {
-//            ForEach(stepDummyData) { datum in
-//                BarMark(
-//                    x: .value("Date", datum.date),
-//                    y: .value("Step Count", datum.count)
-//                )
-//            }
-//        }
-//    }
-// }
 
 struct Charts: View {
     var body: some View {
@@ -119,6 +92,6 @@ struct Charts: View {
 
 struct Chart_Previews: PreviewProvider {
     static var previews: some View {
-        DataCard(icon: "shoeprints.fill", title: "Daily Step Count", unit: "steps", color: Color.green)
+        Charts()
     }
 }

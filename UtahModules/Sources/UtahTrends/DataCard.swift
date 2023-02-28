@@ -5,93 +5,24 @@
 //
 // SPDX-License-Identifier: MIT
 //
+// Group and recalculateChartData function pulled from CardinalKit FHIRChart module
 
 
 import Charts
+import FHIR
 import SwiftUI
 
-//// Edmonton frail scale
-// struct EFS: Identifiable {
-//    let date: String
-//    let score: Int
-//    var id = UUID()
-// }
-//
-//// Step count
-// struct StepCount: Identifiable {
-//    let date: String
-//    let count: Int
-//    var id = UUID()
-// }
-//
-//// Date converter to string
-// func date_formatter(date: Date) -> String {
-//    let dateFormatter = DateFormatter()
-//    dateFormatter.locale = Locale(identifier: "en_US")
-//    let formatted = dateFormatter.string(from: date)
-//    return formatted
-// }
-//
-//
-//// dummy data
-// let efsDummyData: [EFS] = [
-//    .init(date: "January", score: 15),
-//    .init(date: "February", score: 17),
-//    .init(date: "March", score: 3),
-//    .init(date: "April", score: 8),
-//    .init(date: "May", score: 9)
-// ]
-//
-// var stepDummyData: [StepCount] = [
-//    .init(date: "MON", count: 5000),
-//    .init(date: "TUES", count: 6000),
-//    .init(date: "WED", count: 3809),
-//    .init(date: "THURS", count: 4072),
-//    .init(date: "FRI", count: 12000),
-//    .init(date: "SAT", count: 220),
-//    .init(date: "SUN", count: 2000)
-// ]
-//
-//// Initializing barcharts
-// struct EFSBarChart: View {
-//    var body: some View {
-//        Chart {
-//            ForEach(efsDummyData) { datum in
-//                BarMark(
-//                    x: .value("Date", datum.date),
-//                    y: .value("Edmonton Frail Scale Score", datum.score)
-//                )
-//            }
-//        }
-////        .chartXAxisLabel(position: .bottom, alignment: .center) {
-////            Text("Date")
-////                .font(.system(size: 15, weight: .bold, design: .default))
-////        }
-//    }
-// }
-//
-// struct StepBarChart: View {
-//    var body: some View {
-//        Chart {
-//            ForEach(stepDummyData) { datum in
-//                BarMark(
-//                    x: .value("Date", datum.date),
-//                    y: .value("Step Count", datum.count)
-//                )
-//            }
-//        }
-////        .chartXAxisLabel(position: .bottom, alignment: .center) {
-////            Text("Date")
-////                .font(.system(size: 15, weight: .bold, design: .default))
-////        }
-//    }
-// }
 
 struct DataCard: View {
     let icon: String
     let title: String
     let unit: String
     let color: Color
+    let observations: [Observation]
+    
+    @State private var chartData: [(date: Date, value: Double)] = []
+    @State private var maxValue: Double = 0.0
+
     
     var body: some View {
         VStack(alignment: .center) {
@@ -101,19 +32,14 @@ struct DataCard: View {
                 Text(title)
                     .font(.headline)
             }
-            VStack(alignment: .center) {
-//                Text("Step Count")
-//                    .font(.headline)
-//                StepBarChart()
-//                Spacer()
-//                Text("Edmonton Frail Scale")
-//                    .font(.headline)
-//                    .padding(.top)
-//                EFSBarChart()
-                Text("500")
+            .padding(.bottom, 2)
+            // data
+            HStack(alignment: .firstTextBaseline) {
+                Text(maxValue.description)
                     .font(.largeTitle)
                     .fontWeight(.bold)
                     .foregroundColor(color)
+                    .accessibility(identifier: "\(unit)_val")
                 Text(unit)
                 Spacer()
             }
@@ -126,11 +52,64 @@ struct DataCard: View {
                 .foregroundColor(Color(.systemBackground))
                 .shadow(radius: 5)
         }
+        .task {
+            recalculateChartData(basedOn: observations)
+        }
     }
+    
+    // sums up all data points from current day
+    func group(_ data: [(date: Date, value: Double)]) -> [(date: Date, value: Double)] {
+            var latestDate: Date = Calendar.current.startOfDay(for: Date())
+            var filteredData: [(Date, Double)] = []
+            
+            Calendar.current.enumerateDates(
+                startingAfter: latestDate,
+                matching: DateComponents(hour: 0),
+                matchingPolicy: .nextTime
+            ) { result, _, stop in
+                guard let result else {
+                    stop = true
+                    return
+                }
+                
+                let summedUpData = data
+                    .filter { element in
+                        latestDate < element.date && element.date < result
+                    }
+                    .map {
+                        $0.value
+                    }
+                    .reduce(0.0, +)
+                filteredData.append((result, summedUpData))
+                
+                latestDate = result
+                
+                if result > Date() {
+                    stop = true
+                }
+            }
+            
+            return filteredData
+        }
+    
+    // recalculates data when new observation is added
+    func recalculateChartData(basedOn newObservations: [Observation]) {
+            chartData = group(
+                observations
+                    .compactMap { observation in
+                        observation.chartData
+                    }
+                )
+            maxValue = chartData
+                .max {
+                    $0.value < $1.value
+                }?
+                .value ?? 0.0
+        }
 }
 
 struct DataCard_Previews: PreviewProvider {
     static var previews: some View {
-        DataCard(icon: "shoeprints.fill", title: "Daily Step Count", unit: "steps", color: Color.green)
+        DataCard(icon: "shoeprints.fill", title: "Daily Step Count", unit: "steps", color: Color.green, observations: [])
     }
 }

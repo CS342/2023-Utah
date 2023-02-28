@@ -70,7 +70,8 @@ let package = Package(
                 .product(name: "Questionnaires", package: "CardinalKit"),
                 .product(name: "Scheduler", package: "CardinalKit"),
                 .product(name: "FirebaseFirestore", package: "firebase-ios-sdk"),
-                .product(name: "FirebaseStorage", package: "firebase-ios-sdk")
+                .product(name: "FirebaseStorage", package: "firebase-ios-sdk"),
+                .product(name: "FirebaseAuth", package: "firebase-ios-sdk")
             ]
         ),
         .target(
@@ -79,10 +80,8 @@ let package = Package(
         .target(
             name: "UtahTrends",
             dependencies: [
-                .target(name: "UtahSharedContext")
-//                .product(name: "CareKit", package: "CareKit"),
-//                .product(name: "CareKitUI", package: "CareKit"),
-//                .product(name: "ResearchKit", package: "ResearchKit")
+                .target(name: "UtahSharedContext"),
+                .product(name: "FHIR", package: "CardinalKit")
             ]
         )
     ]
