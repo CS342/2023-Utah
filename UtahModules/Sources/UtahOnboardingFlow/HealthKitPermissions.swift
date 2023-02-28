@@ -15,7 +15,7 @@ import UtahSharedContext
 
 struct HealthKitPermissions: View {
     @EnvironmentObject var healthKitDataSource: HealthKit<FHIR>
-    @AppStorage(StorageKeys.onboardingFlowComplete) var completedOnboardingFlow = false
+    @Binding private var onboardingSteps: [OnboardingFlow.Step]
     
     
     var body: some View {
@@ -44,6 +44,7 @@ struct HealthKitPermissions: View {
                         } catch {
                             print("Could not request HealthKit permissions.")
                         }
+                        onboardingSteps.append(.taskScheduling)
                     }
                 )
             }
