@@ -7,6 +7,11 @@
 //
 
 // swiftlint:disable lower_acl_than_parent
+// swiftlint:disable function_body_length
+// swiftlint:disable force_unwrapping
+// swiftlint:disable cyclomatic_complexity
+// swiftlint:disable line_length
+
 import Firebase
 import FirebaseAuth
 import FirebaseFirestore
