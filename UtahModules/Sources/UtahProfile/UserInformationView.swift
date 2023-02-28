@@ -8,46 +8,73 @@
 
 import SwiftUI
 
+struct InfoRow: View {
+    var field: String
+    var value: String
+    
+    var body: some View {
+        HStack {
+            Text(field)
+                .font(.caption)
+                .foregroundColor(.gray)
+            Spacer()
+        }
+        .padding(.bottom, 5)
+        
+        HStack {
+            Text(value)
+                .font(.body)
+            Spacer()
+        }
+        Divider()
+            .padding(.bottom, 20)
+    }
+}
+
+struct MenuButton: View {
+    @Binding var eventBool: Bool
+    var buttonLabel: String
+    var foregroundColor: Color
+    var backgroundColor: Color
+    var body: some View {
+        Button(action: {
+            eventBool = true
+        }) {
+            Text(buttonLabel)
+                .padding()
+                .frame(maxWidth: .infinity)
+                .background(backgroundColor)
+                .foregroundColor(foregroundColor)
+                .cornerRadius(10)
+                .font(.headline)
+                .overlay(
+                    RoundedRectangle(cornerRadius: 10)
+                        .stroke(Color.red, lineWidth: 2)
+                )
+        }
+        .padding(.bottom, 30)
+    }
+}
+
 struct UserInformationView: View {
     @State private var email = "jane@example.com"
     @State private var disease = "Peripheral Arterial Disease"
-    @State private var isEditing = false
+    @State private var needHelp = false
+    @State private var logOut = false
     let diseaseOptions = ["Peripheral Arterial Disease", "Venous Insufficiency", "I'm not sure"]
 
     var body: some View {
         VStack {
-            Text("Email")
-                .font(.headline)
-            Text(email)
-                .font(.title)
-                .fontWeight(.medium)
-                .padding(.bottom, 20)
-            Divider()
-                .padding(.bottom, 20)
-            Text("Disease")
-                .font(.headline)
-            Text(disease)
-                .font(.title)
-                .fontWeight(.medium)
-                .padding(.bottom, 20)
-            Divider()
-                .padding(.bottom, 20)
-            Button(action: {
-                isEditing = true
-            }) {
-                Text("Edit")
-                    .padding()
-                    .frame(maxWidth: .infinity)
-                    .background(Color.accentColor)
-                    .foregroundColor(.white)
-                    .cornerRadius(10)
-                    .font(.headline)
-                    .padding(.horizontal, 30)
-            }
-            .padding(.bottom, 30)
-            .sheet(isPresented: $isEditing) {
-                FormView(email: $email, disease: $disease, isEditing: $isEditing)
-            }
+            InfoRow(field: "EMAIL", value: email)
+            InfoRow(field: "CONDITION", value: disease)
+            MenuButton(eventBool: $needHelp, buttonLabel: "Need help?", foregroundColor: Color.accentColor, backgroundColor: Color(.white))
+                .sheet(isPresented: $needHelp) {
+                    FormView(email: $email, disease: $disease, isEditing: $needHelp)
+                }
+            MenuButton(eventBool: $logOut, buttonLabel: "Logout", foregroundColor: Color(.white), backgroundColor: Color.accentColor)
+                .sheet(isPresented: $needHelp) {
+                    FormView(email: $email, disease: $disease, isEditing: $needHelp)
+                }
         }
         .padding(.horizontal, 30)
     }
