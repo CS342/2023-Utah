@@ -21,7 +21,7 @@ struct Welcome: View {
             subtitle: "A collaboration between Stanford University & University of Utah".moduleLocalized,
             areas: [
                 .init(
-                    icon: Image(systemName: "apps.iphone"),
+                    icon: Image(systemName: "list.clipboard"),
                     title: "Report your health outcomes".moduleLocalized,
                     description: "Fill out surveys about your health".moduleLocalized
                 ),
@@ -31,7 +31,7 @@ struct Welcome: View {
                     description: "Record your daily activity levels".moduleLocalized
                 ),
                 .init(
-                    icon: Image(systemName: "cross.circle.fill"),
+                    icon: Image(systemName: "server.rack"),
                     title: "Monitor your progress".moduleLocalized,
                     description: "View your progression over time\n".moduleLocalized
                 )
