@@ -29,8 +29,9 @@ class ProfileTests: XCTestCase {
         
         XCTAssertTrue(app.staticTexts["Jiahui Chen"].waitForExistence(timeout: 2))
         XCTAssertTrue(app.staticTexts["Patient at University of Utah Hospital"].waitForExistence(timeout: 2))
-        XCTAssertTrue(app.staticTexts["Email"].waitForExistence(timeout: 2))
+        XCTAssertTrue(app.staticTexts["EMAIL"].waitForExistence(timeout: 2))
         XCTAssertTrue(app.staticTexts["jane@example.com"].waitForExistence(timeout: 2))
+        XCTAssertTrue(app.staticTexts["CONDITION"].waitForExistence(timeout: 2))
         XCTAssertTrue(app.staticTexts["Peripheral Arterial Disease"].waitForExistence(timeout: 2))
     }
 }
