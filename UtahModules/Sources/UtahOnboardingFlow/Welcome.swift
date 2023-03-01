@@ -45,7 +45,7 @@ struct Welcome: View {
                 }
             }
         )
-        .font(.system(size: 31))
+        .font(.title)
     }
     
     

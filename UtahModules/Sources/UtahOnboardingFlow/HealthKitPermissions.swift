@@ -48,7 +48,7 @@ struct HealthKitPermissions: View {
                     }
                 )
             }
-        )
+        ).font(.title)
     }
 }
 

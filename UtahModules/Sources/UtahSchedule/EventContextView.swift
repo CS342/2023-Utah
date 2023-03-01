@@ -25,21 +25,22 @@ struct EventContextView: View {
                     }
                     VStack(alignment: .leading, spacing: 8) {
                         Text(eventContext.task.title)
-                            .font(.headline)
+                            .font(.title2)
                         Text(format(eventDate: eventContext.event.scheduledAt))
-                            .font(.subheadline)
+                            .font(.title3)
                     }
                 }
                 Divider()
                 Text(eventContext.task.description)
-                    .font(.callout)
+                    .font(.title2)
                 if !eventContext.event.complete {
                     Text(eventContext.task.context.actionType)
                         .frame(maxWidth: .infinity, minHeight: 50)
                         .foregroundColor(.white)
                         .background(Color.accentColor)
                         .clipShape(RoundedRectangle(cornerRadius: 8))
-                        .padding(.top, 8)
+                        .font(.title2)
+                        //.padding(.top, 20)
                 }
             }
         }

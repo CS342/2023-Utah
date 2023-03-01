@@ -33,6 +33,7 @@ import SwiftUI
                     loadObservations()
                 }
             }
+            .font(.title2)
     }
      
      public init (code: String, icon: String, title: String, unit: String, color: Color) {

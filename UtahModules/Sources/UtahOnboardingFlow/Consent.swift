@@ -36,7 +36,7 @@ struct Consent: View {
             action: {
                 onboardingSteps.append(.conditionQuestion)
             }
-        )
+        ).font(.title)
     }
     
     

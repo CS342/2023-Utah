@@ -16,14 +16,16 @@ public struct GetUpAndGoView: View {
     private var _primaryAction = { print("hi") }
     
     private var question: some View {
-        VStack(alignment: .center) {
+        VStack(alignment: .trailing) {
             Text("GET_UP_AND_GO_DESCRIPTION", bundle: .module)
                 .multilineTextAlignment(.leading)
                 .padding(.vertical)
                 .bold()
+                .font(.title)
             Text("GET_UP_AND_GO_WARNING", bundle: .module)
                 .multilineTextAlignment(.center)
                 .italic()
+                .font(.title)
         }.padding(.horizontal, 36)
     }
     
@@ -34,6 +36,7 @@ public struct GetUpAndGoView: View {
                     ProgressView()
                 } else {
                     Text(String(localized: "GET_UP_AND_GO_START_BUTTON", bundle: .module))
+                        .font(.title2)
                 }
             }
             .frame(maxWidth: .infinity, minHeight: 38)

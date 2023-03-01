@@ -55,6 +55,7 @@ struct ConditionQuestion: View {
                 )
             }
         )
+        .font(.title)
     }
 }
 

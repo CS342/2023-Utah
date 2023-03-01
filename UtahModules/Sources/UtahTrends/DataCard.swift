@@ -28,7 +28,7 @@ struct DataCard: View {
             HStack(alignment: .firstTextBaseline) {
                 Image(systemName: icon)
                 Text(title)
-                    .font(.headline)
+                    .font(.title2)
             }
             .padding(.bottom, 2)
             // data
@@ -39,6 +39,7 @@ struct DataCard: View {
                     .foregroundColor(color)
                     .accessibility(identifier: "\(unit)_val")
                 Text(unit)
+                    .font(.title2)
                 Spacer()
             }
         }

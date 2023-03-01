@@ -33,12 +33,13 @@ struct ProfileText: View {
                     .bold()
                     .font(.title)
                 Text(subtitle)
-                    .font(.body)
+                    .font(.title2)
                     .foregroundColor(.secondary)
             }.padding()
             Text(description)
                 .multilineTextAlignment(.center)
                 .padding()
+                .font(.title3)
             Spacer()
         }
     }

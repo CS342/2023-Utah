@@ -17,7 +17,7 @@ struct UserInformationView: View {
     var body: some View {
         VStack {
             Text("Email")
-                .font(.headline)
+                .font(.title2)
             Text(email)
                 .font(.title)
                 .fontWeight(.medium)
@@ -25,7 +25,7 @@ struct UserInformationView: View {
             Divider()
                 .padding(.bottom, 20)
             Text("Disease")
-                .font(.headline)
+                .font(.title2)
             Text(disease)
                 .font(.title)
                 .fontWeight(.medium)
@@ -41,7 +41,7 @@ struct UserInformationView: View {
                     .background(Color.accentColor)
                     .foregroundColor(.white)
                     .cornerRadius(10)
-                    .font(.headline)
+                    .font(.title2)
                     .padding(.horizontal, 30)
             }
             .padding(.bottom, 30)
