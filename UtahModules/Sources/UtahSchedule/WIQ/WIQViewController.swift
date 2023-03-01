@@ -6,7 +6,6 @@
 // SPDX-License-Identifier: MIT
 //
 
-
 // swiftlint:disable line_length
 
 import ResearchKit
@@ -66,7 +65,7 @@ struct WIQViewController: UIViewControllerRepresentable {
                     summaryStep.text = "You can view your progress in the trends tab."
                     steps += [summaryStep]
                     
-                    return ORKOrderedTask(identifier: "WIQ", steps: steps)
+                    return ORKOrderedTask(identifier: "wiq", steps: steps)
         }()
         
         let taskViewController = ORKTaskViewController(task: wiqSurveyTask, taskRun: nil)
