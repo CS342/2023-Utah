@@ -22,18 +22,18 @@ struct Welcome: View {
             areas: [
                 .init(
                     icon: Image(systemName: "apps.iphone"),
-                    title: "Track your health".moduleLocalized,
-                    description: "Easily see your health data".moduleLocalized
-                ),
-                .init(
-                    icon: Image(systemName: "figure.walk"),
                     title: "Report your health outcomes".moduleLocalized,
                     description: "Fill out surveys about your health".moduleLocalized
                 ),
                 .init(
+                    icon: Image(systemName: "figure.walk"),
+                    title: "Track your health".moduleLocalized,
+                    description: "Record your daily activity levels".moduleLocalized
+                ),
+                .init(
                     icon: Image(systemName: "cross.circle.fill"),
-                    title: "Streamline your care".moduleLocalized,
-                    description: "Help your doctors help you get better\n".moduleLocalized
+                    title: "Monitor your progress".moduleLocalized,
+                    description: "View your progression over time\n".moduleLocalized
                 )
             ],
             actionText: "Next".moduleLocalized,
