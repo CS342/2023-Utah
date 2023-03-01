@@ -48,7 +48,7 @@ public struct ScheduleView: View {
             .sheet(isPresented: $showingWIQSurvey) {
                 WIQViewController()
             }
-            Button("VEINES-QOL/Sym") {
+            Button("VEINES-QOL/Sym Questionnaire") {
                 showingVEINESSurvey.toggle()
             }
             .foregroundColor(Color.white)
@@ -56,7 +56,7 @@ public struct ScheduleView: View {
             .background(.green)
             .cornerRadius(10)
             .sheet(isPresented: $showingVEINESSurvey) {
-                WIQViewController()
+                VEINESViewController()
             }
             Button("6 Minute Walk Test (active task)") {
                 showingWalkTest.toggle()

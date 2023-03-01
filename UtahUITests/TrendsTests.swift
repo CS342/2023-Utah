@@ -47,5 +47,4 @@ class TrendsTests: XCTestCase {
         XCTAssertTrue(app.staticTexts["Daily Step Count"].waitForExistence(timeout: 2))
         XCTAssertTrue(app.staticTexts["Last EFS Survey Score"].waitForExistence(timeout: 2))
     }
-    
 }
