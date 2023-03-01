@@ -30,4 +30,3 @@ struct InfoRow: View {
             .padding(.bottom, 20)
     }
 }
-
