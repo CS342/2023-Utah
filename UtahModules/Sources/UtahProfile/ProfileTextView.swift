@@ -17,9 +17,9 @@ struct ProfileText: View {
             VStack(spacing: 5) {
                 Text(name)
                     .bold()
-                    .font(.title)
+                    .font(.system(size: 32))
                 Text(subtitle)
-                    .font(.body)
+                    .font(.system(size: 20))
                     .foregroundColor(.secondary)
             }
                 .padding()

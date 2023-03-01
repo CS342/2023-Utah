@@ -14,8 +14,8 @@ struct FormView: View {
     let diseaseOptions = ["Peripheral Arterial Disease", "Venous Insufficiency", "I'm not sure"]
     var body: some View {
         Form {
-            Section(header: Text("Disease")) {
-                Picker("Select your disease", selection: $disease) {
+            Section(header: Text("Condition")) {
+                Picker("Select your condition", selection: $disease) {
                     ForEach(diseaseOptions, id: \.self) { option in
                         Text(option)
                     }
@@ -28,6 +28,7 @@ struct FormView: View {
                 HStack {
                     Spacer()
                     Text("Save")
+                        .font(.system(size: 25))
                     Spacer()
                 }
             }

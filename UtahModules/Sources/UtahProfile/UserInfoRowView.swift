@@ -15,7 +15,7 @@ struct InfoRow: View {
     var body: some View {
         HStack {
             Text(field)
-                .font(.subheadline)
+                .font(.system(size: 20))
                 .foregroundColor(.gray)
             Spacer()
         }
@@ -23,10 +23,11 @@ struct InfoRow: View {
         
         HStack {
             Text(value)
-                .font(.subheadline)
+                .font(.system(size: 25))
             Spacer()
         }
         Divider()
             .padding(.bottom, 20)
     }
 }
+
