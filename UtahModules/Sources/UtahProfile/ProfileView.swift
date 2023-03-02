@@ -10,7 +10,6 @@ import SwiftUI
 
 public struct Profile: View {
     @State var disease = "Peripheral Arterial Disease"
-
     public var body: some View {
         VStack {
             EditButton(disease: $disease)

@@ -33,5 +33,13 @@ class ProfileTests: XCTestCase {
         XCTAssertTrue(app.staticTexts["jane@example.com"].waitForExistence(timeout: 2))
         XCTAssertTrue(app.staticTexts["CONDITION"].waitForExistence(timeout: 2))
         XCTAssertTrue(app.staticTexts["Peripheral Arterial Disease"].waitForExistence(timeout: 2))
+        
+        app.buttons["Edit"].tap()
+        XCTAssertTrue(app.staticTexts["CONDITION"].waitForExistence(timeout: 2))
+        XCTAssertTrue(app.staticTexts["Select your condition"].waitForExistence(timeout: 2))
+        app.buttons["Save"].tap()
+        
+        app.buttons["Need help"].tap()
+        XCTAssertTrue(app.staticTexts["REPORT A PROBLEM"].waitForExistence(timeout: 2))
     }
 }
