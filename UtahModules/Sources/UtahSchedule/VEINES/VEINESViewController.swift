@@ -122,7 +122,7 @@ struct VEINESViewController: UIViewControllerRepresentable {
                         ORKTextChoice(text: "N/A", value: "0" as NSSecureCoding & NSCopying & NSObjectProtocol),
                         ORKTextChoice(text: "YES, limited a lot", value: "1" as NSSecureCoding & NSCopying & NSObjectProtocol),
                         ORKTextChoice(text: "YES, limited a little", value: "2" as NSSecureCoding & NSCopying & NSObjectProtocol),
-                        ORKTextChoice(text: "NO, not limited at all", value: "3" as NSSecureCoding & NSCopying & NSObjectProtocol),
+                        ORKTextChoice(text: "NO, not limited at all", value: "3" as NSSecureCoding & NSCopying & NSObjectProtocol)
                     ]
                     
                     let q4AnswerFormat = ORKAnswerFormat.choiceAnswerFormat(with: .singleChoice, textChoices: q4Choices)
@@ -162,7 +162,7 @@ struct VEINESViewController: UIViewControllerRepresentable {
                     // Question 5
                     let q5Choices = [
                         ORKTextChoice(text: "YES", value: "1" as NSSecureCoding & NSCopying & NSObjectProtocol),
-                        ORKTextChoice(text: "NO", value: "2" as NSSecureCoding & NSCopying & NSObjectProtocol),
+                        ORKTextChoice(text: "NO", value: "2" as NSSecureCoding & NSCopying & NSObjectProtocol)
                     ]
                     
                     let q5AnswerFormat = ORKAnswerFormat.choiceAnswerFormat(with: .singleChoice, textChoices: q5Choices)
