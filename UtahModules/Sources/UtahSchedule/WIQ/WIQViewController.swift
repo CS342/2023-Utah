@@ -7,7 +7,7 @@
 //
 
 // swiftlint:disable line_length
-// swiftlint:disable closure_body_length superfluous_disable_command
+// swiftlint:disable closure_body_length
 
 import ResearchKit
 import SwiftUI
