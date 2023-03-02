@@ -31,7 +31,7 @@ class TrendsTests: XCTestCase {
         try exitAppAndOpenHealth(.steps)
         app.activate()
         sleep(5)
-        let newVal = (prevValue ?? 0.0) + 42
+        let newVal = ((prevValue ?? 0.0) + 42) / 7
         // Need to navigate to another tab first to refresh number
         XCTAssertTrue(app.tabBars["Tab Bar"].buttons["Questions"].waitForExistence(timeout: 2))
         app.tabBars["Tab Bar"].buttons["Questions"].tap()

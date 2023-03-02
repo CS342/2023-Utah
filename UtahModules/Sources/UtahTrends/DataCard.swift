@@ -21,7 +21,7 @@ struct DataCard: View {
     let observations: [Observation]
     
     @State private var chartData: [(date: Date, value: Double)] = []
-    @State private var maxValue: Double = 0.0
+    @State private var avgValue: Double = 0.0
 
     
     var body: some View {
@@ -35,7 +35,7 @@ struct DataCard: View {
             .padding(.bottom, 2)
             // data
             HStack(alignment: .firstTextBaseline) {
-                Text(maxValue.description)
+                Text(avgValue.description)
                     .font(.largeTitle)
                     .fontWeight(.bold)
                     .foregroundColor(color)
@@ -59,8 +59,8 @@ struct DataCard: View {
     
     // sums up all data points from current day
     func group(_ data: [(date: Date, value: Double)]) -> [(date: Date, value: Double)] {
-            var currDate: Date = Calendar.current.startOfDay(for: Date())
-            var latestDate: Date =  Calendar.current.date(byAdding: .day, value: -6, to: currDate) ?? Date()
+            let currDate: Date = Calendar.current.startOfDay(for: Date())
+            var latestDate: Date = Calendar.current.date(byAdding: .day, value: -6, to: currDate) ?? Date()
             var filteredData: [(Date, Double)] = []
             
             Calendar.current.enumerateDates(
@@ -101,11 +101,8 @@ struct DataCard: View {
                         observation.chartData
                     }
                 )
-            maxValue = chartData
-                .max {
-                    $0.value < $1.value
-                }?
-                .value ?? 0.0
+        let counts = chartData.map { $0.value }
+        avgValue = counts.reduce(0, +) / 7
         }
 }
 
