@@ -16,6 +16,7 @@ import Onboarding
 
 struct UserInformationView: View {
     let user = Auth.auth().currentUser
+    var refesh: Bool = false
     @State private var needHelp = false
     @State private var logOut = false
     @EnvironmentObject var firestoreManager: FirestoreManager

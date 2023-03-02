@@ -15,6 +15,7 @@ struct LogoutButton: View {
     var buttonLabel: String
     var foregroundColor: Color
     var backgroundColor: Color
+    @AppStorage(StorageKeys.onboardingFlowComplete) var completedOnboardingFlow = true
     
     var body: some View {
         Button(action: {
@@ -25,7 +26,7 @@ struct LogoutButton: View {
               print("Error signing out: %@", signOutError)
             }
             eventBool = true
-            @AppStorage(StorageKeys.onboardingFlowComplete) var completedOnboardingFlow = false
+            completedOnboardingFlow = false
         }) {
             Text(buttonLabel)
                 .padding()

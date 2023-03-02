@@ -14,10 +14,14 @@ import FirebaseAuth
 import Foundation
 
 class FirestoreManager: ObservableObject {
-    @Published var condition: String = ""
     private var db = Firestore.firestore()
     let user = Auth.auth().currentUser
     @Published var disease: String = ""
+    var refresh = false
+
+    func update() {
+       refresh.toggle()
+    }
     
     func fetchData() {
         if let user = Auth.auth().currentUser {
