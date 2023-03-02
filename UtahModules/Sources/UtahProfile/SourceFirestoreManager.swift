@@ -6,6 +6,9 @@
 // SPDX-License-Identifier: MIT
 //
 
+// swiftlint:disable identifier_name
+// swiftlint:disable type_contents_order
+
 import Firebase
 import FirebaseAuth
 import Foundation
