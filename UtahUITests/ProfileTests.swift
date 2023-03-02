@@ -39,7 +39,10 @@ class ProfileTests: XCTestCase {
         XCTAssertTrue(app.staticTexts["Select your condition"].waitForExistence(timeout: 2))
         app.buttons["Save"].tap()
         
-        app.buttons["Need help"].tap()
+        XCTAssertTrue(app.buttons["Need help?"].waitForExistence(timeout: 2))
+        app.buttons["Need help?"].tap()
         XCTAssertTrue(app.staticTexts["REPORT A PROBLEM"].waitForExistence(timeout: 2))
+        XCTAssertTrue(app.staticTexts["SUPPORT"].waitForExistence(timeout: 2))
+        XCTAssertTrue(app.staticTexts["WITHDRAW FROM STUDY"].waitForExistence(timeout: 2))
     }
 }
