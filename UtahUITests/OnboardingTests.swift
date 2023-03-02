@@ -64,8 +64,8 @@ extension XCUIApplication {
     private func navigateOnboardingAccount() throws {
         XCTAssertTrue(staticTexts["Welcome to U-STEP"].waitForExistence(timeout: 2))
         
-        guard !buttons["Next"].waitForExistence(timeout: 5) else {
-            buttons["Next"].tap()
+        guard !buttons["Continue"].waitForExistence(timeout: 5) else {
+            buttons["Continue"].tap()
             return
         }
         
