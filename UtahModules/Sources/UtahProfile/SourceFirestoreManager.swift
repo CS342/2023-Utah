@@ -5,9 +5,9 @@
 //  Created by Jiahui Chen  on 3/1/23.
 //
 
-import Foundation
 import Firebase
 import FirebaseAuth
+import Foundation
 
 class FirestoreManager: ObservableObject {
     @Published var condition: String = ""
@@ -20,7 +20,7 @@ class FirestoreManager: ObservableObject {
         
         let docRef = db.collection("users").document(user?.uid ?? "")
         
-        docRef.getDocument { (document, error) in
+        docRef.getDocument { document, error in
             guard error == nil else {
                 print("error", error ?? "")
                 return

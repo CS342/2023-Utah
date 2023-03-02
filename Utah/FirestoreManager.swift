@@ -5,11 +5,11 @@
 //  Created by Jiahui Chen  on 3/1/23.
 //
 
-//import Foundation
-//import Firebase
-//import FirebaseAuth
+// import Foundation
+// import Firebase
+// import FirebaseAuth
 //
-//class FirestoreManager: ObservableObject {
+// class FirestoreManager: ObservableObject {
 //    @Published var condition: String = ""
 //    private var db = Firestore.firestore()
 //    let user = Auth.auth().currentUser
@@ -39,4 +39,4 @@
 //    init() {
 //        fetchData()
 //    }
-//}
+// }

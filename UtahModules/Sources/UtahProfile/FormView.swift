@@ -6,6 +6,8 @@
 // SPDX-License-Identifier: MIT
 //
 
+import FirebaseAuth
+import FirebaseFirestore
 import SwiftUI
 
 struct FormView: View {
@@ -25,6 +27,13 @@ struct FormView: View {
             }
             Button(action: {
                 isEditing = false
+                if let user = Auth.auth().currentUser {
+                    Firestore.firestore().collection("users").document(user.uid).updateData(["disease": disease]) { err in
+                        if let err = err {
+                            print("Error updating document: \(err)")
+                        }
+                    }
+               }
             }) {
                 HStack {
                     Spacer()

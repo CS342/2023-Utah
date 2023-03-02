@@ -6,8 +6,8 @@
 // SPDX-License-Identifier: MIT
 //
 
-import SwiftUI
 import Account
+import SwiftUI
 import class FHIR.FHIR
 import FirebaseAccount
 import FirebaseAuth
@@ -24,7 +24,6 @@ struct UserInformationView: View {
     
     var body: some View {
         VStack {
-            Text(firestoreManager.disease)
             InfoRow(field: "EMAIL", value: user?.email ?? "")
             InfoRow(field: "CONDITION", value: firestoreManager.disease)
             Spacer()
@@ -33,7 +32,7 @@ struct UserInformationView: View {
                     HelpPage()
                 }
                 .padding(.bottom, -15)
-            MenuButton(eventBool: $logOut, buttonLabel: "Logout", foregroundColor: Color(.white), backgroundColor: Color.accentColor)
+            LogoutButton(eventBool: $logOut, buttonLabel: "Logout", foregroundColor: Color(.white), backgroundColor: Color.accentColor)
                 .sheet(isPresented: $needHelp) {
                     FormView(disease: $firestoreManager.disease, isEditing: $needHelp)
                 }
