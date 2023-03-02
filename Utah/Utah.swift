@@ -15,7 +15,7 @@ import UtahSharedContext
 @main
 struct Utah: App {
     @UIApplicationDelegateAdaptor(UtahAppDelegate.self) var appDelegate
-    @AppStorage(StorageKeys.onboardingFlowComplete) var completedOnboardingFlow = true
+    @AppStorage(StorageKeys.onboardingFlowComplete) var completedOnboardingFlow = false
     
     
     var body: some Scene {

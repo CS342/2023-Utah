@@ -8,6 +8,7 @@
 
 import FirebaseAuth
 import SwiftUI
+import UtahSharedContext
 
 struct LogoutButton: View {
     @Binding var eventBool: Bool
@@ -24,6 +25,7 @@ struct LogoutButton: View {
               print("Error signing out: %@", signOutError)
             }
             eventBool = true
+            @AppStorage(StorageKeys.onboardingFlowComplete) var completedOnboardingFlow = false
         }) {
             Text(buttonLabel)
                 .padding()

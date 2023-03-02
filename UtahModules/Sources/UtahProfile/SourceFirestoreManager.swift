@@ -20,23 +20,20 @@ class FirestoreManager: ObservableObject {
     @Published var disease: String = ""
     
     func fetchData() {
-        let db = Firestore.firestore()
-        
-        let docRef = db.collection("users").document(user?.uid ?? "")
-        
-        docRef.getDocument { document, error in
-            guard error == nil else {
-                print("error", error ?? "")
-                return
-            }
-            
-            if let document = document, document.exists {
-                let data = document.data()
-                if let data = data {
-                    self.disease = data["disease"] as? String ?? ""
+        if let user = Auth.auth().currentUser {
+            Firestore.firestore().collection("users").document(user.uid).getDocument {document, err in
+                if let err = err {
+                    print("Error loading document: \(err)")
+                    return
+                }
+                if let document = document, document.exists {
+                    let data = document.data()
+                    if let data = data {
+                        self.disease = data["disease"] as? String ?? ""
+                    }
                 }
             }
-        }
+       }
     }
     
     init() {
