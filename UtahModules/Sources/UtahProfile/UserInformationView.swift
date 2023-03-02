@@ -7,18 +7,26 @@
 //
 
 import SwiftUI
+import Account
+import class FHIR.FHIR
+import FirebaseAccount
+import FirebaseAuth
+import FirebaseFirestore
+import Onboarding
 
 struct UserInformationView: View {
-    @State private var email = "jane@example.com"
-    @Binding var disease: String
+    let user = Auth.auth().currentUser
     @State private var needHelp = false
     @State private var logOut = false
+    @EnvironmentObject var firestoreManager: FirestoreManager
+    
     let diseaseOptions = ["Peripheral Arterial Disease", "Venous Insufficiency", "I'm not sure"]
-
+    
     var body: some View {
         VStack {
-            InfoRow(field: "EMAIL", value: $email)
-            InfoRow(field: "CONDITION", value: $disease)
+            Text(firestoreManager.disease)
+            InfoRow(field: "EMAIL", value: user?.email ?? "")
+            InfoRow(field: "CONDITION", value: firestoreManager.disease)
             Spacer()
             MenuButton(eventBool: $needHelp, buttonLabel: "Need help?", foregroundColor: Color.accentColor, backgroundColor: Color(.white))
                 .sheet(isPresented: $needHelp) {
@@ -27,7 +35,7 @@ struct UserInformationView: View {
                 .padding(.bottom, -15)
             MenuButton(eventBool: $logOut, buttonLabel: "Logout", foregroundColor: Color(.white), backgroundColor: Color.accentColor)
                 .sheet(isPresented: $needHelp) {
-                    FormView(disease: $disease, isEditing: $needHelp)
+                    FormView(disease: $firestoreManager.disease, isEditing: $needHelp)
                 }
         }
         .padding(.horizontal, 30)

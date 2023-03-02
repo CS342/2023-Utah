@@ -16,7 +16,7 @@ import SwiftUI
 
 public struct Profile: View {
     @State var disease = "Peripheral Arterial Disease"
-
+    @StateObject var firestoreManager = FirestoreManager()
     public var body: some View {
         VStack {
             EditButton(disease: $disease)
@@ -24,9 +24,10 @@ public struct Profile: View {
             Header()
             ProfileText()
                 .padding(.bottom, 30)
-            UserInformationView(disease: $disease)
+            UserInformationView()
         }
         .padding(.top, 30)
+        .environmentObject(firestoreManager)
     }
     public init() {}
 }

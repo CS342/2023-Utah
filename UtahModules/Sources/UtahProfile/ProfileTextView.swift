@@ -7,15 +7,21 @@
 //
 
 import SwiftUI
+import Account
+import class FHIR.FHIR
+import FirebaseAccount
+import FirebaseAuth
+import FirebaseFirestore
+import Onboarding
 
 struct ProfileText: View {
-    @AppStorage("name") var name = "Jiahui Chen"
+    let user = Auth.auth().currentUser
     @AppStorage("subtitle") var subtitle = "Patient at University of Utah Hospital"
-
+    
     var body: some View {
         VStack(spacing: 15) {
             VStack(spacing: 5) {
-                Text(name)
+                Text(user?.displayName ?? "")
                     .bold()
                     .font(.system(size: 30))
                 Text(subtitle)
