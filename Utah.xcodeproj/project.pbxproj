@@ -47,7 +47,6 @@
 		93E00346298DCF6400D6E494 /* UtahTrends in Frameworks */ = {isa = PBXBuildFile; productRef = 93E00345298DCF6400D6E494 /* UtahTrends */; };
 		93E00349298DFA8200D6E494 /* ProfileTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93E00348298DFA8200D6E494 /* ProfileTests.swift */; };
 		93E0034B298DFAF200D6E494 /* TrendsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93E0034A298DFAF200D6E494 /* TrendsTests.swift */; };
-		C73FA29829B08911009545F2 /* FirestoreManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C73FA29629B0883B009545F2 /* FirestoreManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -93,7 +92,6 @@
 		93CD054929A9634D00CC9DFB /* UtahDebug.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = UtahDebug.entitlements; sourceTree = "<group>"; };
 		93E00348298DFA8200D6E494 /* ProfileTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileTests.swift; sourceTree = "<group>"; };
 		93E0034A298DFAF200D6E494 /* TrendsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrendsTests.swift; sourceTree = "<group>"; };
-		C73FA29629B0883B009545F2 /* FirestoreManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -182,7 +180,6 @@
 		653A254F283387FE005D4D48 /* Utah */ = {
 			isa = PBXGroup;
 			children = (
-				C73FA29629B0883B009545F2 /* FirestoreManager.swift */,
 				93CD054929A9634D00CC9DFB /* UtahDebug.entitlements */,
 				653A2550283387FE005D4D48 /* Utah.swift */,
 				2F5E32BC297E05EA003432F8 /* UtahAppDelegate.swift */,
@@ -413,7 +410,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				23DA6D3129ADC1E7007A6B73 /* UtahAppSetup.swift in Sources */,
-				C73FA29829B08911009545F2 /* FirestoreManager.swift in Sources */,
 				2FC975A82978F11A00BA99FE /* Home.swift in Sources */,
 				2F4E23832989D51F0013F3D9 /* UtahAppTestingSetup.swift in Sources */,
 				2F5E32BD297E05EA003432F8 /* UtahAppDelegate.swift in Sources */,
