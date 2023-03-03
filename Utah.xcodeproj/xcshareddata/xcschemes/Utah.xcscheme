@@ -79,11 +79,7 @@
       <CommandLineArguments>
          <CommandLineArgument
             argument = "--useFirebaseEmulator"
-            isEnabled = "YES">
-         </CommandLineArgument>
-         <CommandLineArgument
-            argument = "--showOnboarding"
-            isEnabled = "YES">
+            isEnabled = "NO">
          </CommandLineArgument>
       </CommandLineArguments>
    </LaunchAction>

@@ -8,8 +8,8 @@
 
 import Account
 import FirebaseAuth
-import UtahOnboardingFlow
 import SwiftUI
+import UtahOnboardingFlow
 import UtahSharedContext
 
 struct LogoutButton: View {
