@@ -23,7 +23,7 @@ struct ConditionQuestion: View {
     
     
     var body: some View {
-        return OnboardingView(
+        OnboardingView(
             contentView: {
                 VStack {
                     OnboardingTitleView(

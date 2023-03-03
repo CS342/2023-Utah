@@ -51,10 +51,10 @@ extension XCUIApplication {
         try navigateOnboardingAccount()
         if staticTexts["Consent Form"].waitForExistence(timeout: 5) {
             try navigateOnboardingFlowConsent()
-            //try navigateOnboardingConditionQuestion()
+            // try navigateOnboardingConditionQuestion()
         }
         // must comment out bc I can't figure out how to test the condition picker
-        //try navigateOnboardingFlowHealthKitAccess(assertThatHealthKitConsentIsShown: assertThatHealthKitConsentIsShown)
+        // try navigateOnboardingFlowHealthKitAccess(assertThatHealthKitConsentIsShown: assertThatHealthKitConsentIsShown)
     }
     
     private func navigateOnboardingFlowWelcome() throws {
