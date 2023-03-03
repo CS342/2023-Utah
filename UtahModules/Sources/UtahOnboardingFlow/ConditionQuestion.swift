@@ -23,7 +23,6 @@ struct ConditionQuestion: View {
     
     
     var body: some View {
-        UITableView.appearance().backgroundColor = .clear
         return OnboardingView(
             contentView: {
                 VStack {
