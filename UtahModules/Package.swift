@@ -33,7 +33,6 @@ let package = Package(
             name: "UtahOnboardingFlow",
             dependencies: [
                 .target(name: "UtahSharedContext"),
-                .target(name: "UtahProfile"),
                 .product(name: "Account", package: "CardinalKit"),
                 .product(name: "FHIR", package: "CardinalKit"),
                 .product(name: "FirebaseAccount", package: "CardinalKit"),
@@ -49,6 +48,7 @@ let package = Package(
             name: "UtahProfile",
             dependencies: [
                 .target(name: "UtahSharedContext"),
+                .target(name: "UtahOnboardingFlow"),
                 .product(name: "FirebaseFirestore", package: "firebase-ios-sdk"),
                 .product(name: "FirebaseStorage", package: "firebase-ios-sdk"),
                 .product(name: "FirebaseAuth", package: "firebase-ios-sdk")
@@ -70,7 +70,8 @@ let package = Package(
             name: "UtahSharedContext",
             dependencies: [
                 .product(name: "FirebaseAuth", package: "firebase-ios-sdk"),
-                .product(name: "FirebaseFirestore", package: "firebase-ios-sdk")
+                .product(name: "FirebaseFirestore", package: "firebase-ios-sdk"),
+                .product(name: "Account", package: "CardinalKit")
             ]
         ),
         .target(

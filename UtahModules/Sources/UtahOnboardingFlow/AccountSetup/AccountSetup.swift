@@ -55,8 +55,9 @@ struct AccountSetup: View {
                                  }
                              }
                         }
+                    } else {
+                        firestoreManager.fetchData()
                     }
-                    firestoreManager.update()
                     appendNextOnboardingStep()
                     // Unfortunately, SwiftUI currently animates changes in the navigation path that do not change
                     // the current top view. Therefore we need to do the following async procedure to remove the
