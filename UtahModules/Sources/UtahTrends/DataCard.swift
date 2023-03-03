@@ -50,7 +50,7 @@ var stepDummyData: [StepCount] = [
     .init(date: "THURS", count: 4072),
     .init(date: "FRI", count: 12000),
     .init(date: "SAT", count: 220),
-    .init(date: "SUN", count: 2000),
+    .init(date: "SUN", count: 2000)
 ]
 
 // Initializing barcharts
@@ -121,7 +121,6 @@ struct DataCard: View {
 //                Spacer()
             }
         }
-        //.frame(width: 380)
         .padding(30)
         .background {
             RoundedRectangle(cornerRadius: 10)
