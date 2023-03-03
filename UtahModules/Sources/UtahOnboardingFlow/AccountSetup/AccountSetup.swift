@@ -14,11 +14,13 @@ import FirebaseAuth
 import FirebaseFirestore
 import Onboarding
 import SwiftUI
+import UtahSharedContext
 
 
 struct AccountSetup: View {
     @Binding private var onboardingSteps: [OnboardingFlow.Step]
     @EnvironmentObject var account: Account
+    @EnvironmentObject var firestoreManager: FirestoreManager
     @State var isSigningUp: Bool
     
     
@@ -54,6 +56,7 @@ struct AccountSetup: View {
                              }
                         }
                     }
+                    firestoreManager.update()
                     appendNextOnboardingStep()
                     // Unfortunately, SwiftUI currently animates changes in the navigation path that do not change
                     // the current top view. Therefore we need to do the following async procedure to remove the

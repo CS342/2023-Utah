@@ -7,6 +7,7 @@
 //
 
 import SwiftUI
+import UtahSharedContext
 
 struct EditButton: View {
     @State private var isEditing = false

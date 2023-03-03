@@ -19,6 +19,7 @@ import HealthKitToFHIRAdapter
 import Questionnaires
 import Scheduler
 import SwiftUI
+import UtahProfile
 import UtahSchedule
 import UtahSharedContext
 

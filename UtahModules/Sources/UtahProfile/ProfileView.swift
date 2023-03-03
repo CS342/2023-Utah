@@ -11,11 +11,12 @@ import class FHIR.FHIR
 import FirebaseAccount
 import FirebaseAuth
 import FirebaseFirestore
-import Onboarding
 import SwiftUI
+import UtahSharedContext
 
 public struct Profile: View {
-    @StateObject var firestoreManager = FirestoreManager()
+    @EnvironmentObject var firestoreManager: FirestoreManager
+    
     public var body: some View {
         VStack {
             EditButton()
@@ -28,8 +29,11 @@ public struct Profile: View {
         .padding(.top, 30)
         .environmentObject(firestoreManager)
     }
-    public init() {}
+    public init() {
+    }
 }
+
+
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {

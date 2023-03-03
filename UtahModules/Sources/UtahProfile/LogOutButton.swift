@@ -8,13 +8,16 @@
 
 import Account
 import FirebaseAuth
+import UtahOnboardingFlow
 import SwiftUI
 import UtahSharedContext
 
 struct LogoutButton: View {
     @Binding var eventBool: Bool
     @AppStorage(StorageKeys.onboardingFlowComplete) var completedOnboardingFlow = true
+    @SceneStorage(StorageKeys.onboardingFlowStep) private var onboardingSteps: [OnboardingFlow.Step] = []
     @EnvironmentObject var account: Account
+    @EnvironmentObject var firestoreManager: FirestoreManager
     
     var buttonLabel: String
     var foregroundColor: Color
@@ -25,12 +28,14 @@ struct LogoutButton: View {
             let firebaseAuth = Auth.auth()
             do {
                 try firebaseAuth.signOut()
+                firestoreManager.update()
+                onboardingSteps = []
+                eventBool = true
                 account.signedIn = false
+                completedOnboardingFlow = false
             } catch let signOutError as NSError {
                 print("Error signing out: %@", signOutError)
             }
-            eventBool = true
-            completedOnboardingFlow = false
         }) {
             Text(buttonLabel)
                 .padding()

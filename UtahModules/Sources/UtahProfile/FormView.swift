@@ -6,10 +6,10 @@
 // SPDX-License-Identifier: MIT
 //
 
-import UtahSharedContext
 import FirebaseAuth
 import FirebaseFirestore
 import SwiftUI
+import UtahSharedContext
 
 struct FormView: View {
     @Binding var disease: String

@@ -17,6 +17,7 @@ import UtahSharedContext
 
 struct ConditionQuestion: View {
     @Binding var onboardingSteps: [OnboardingFlow.Step]
+    @EnvironmentObject var firestoreManager: FirestoreManager
     @State private var selection = "Choose Diagnosis"
     var conditions = StorageKeys.conditions + ["Choose Diagnosis"]
     

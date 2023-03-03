@@ -9,21 +9,22 @@
 // swiftlint:disable identifier_name
 // swiftlint:disable type_contents_order
 
+import Account
 import Firebase
 import FirebaseAuth
 import Foundation
 
-class FirestoreManager: ObservableObject {
+public class FirestoreManager: ObservableObject {
     private var db = Firestore.firestore()
     let user = Auth.auth().currentUser
-    @Published var disease: String = ""
+    @Published public var disease: String = ""
     var refresh = false
 
-    func update() {
+    public func update() {
        refresh.toggle()
     }
     
-    func fetchData() {
+    public func fetchData() {
         if let user = Auth.auth().currentUser {
             Firestore.firestore().collection("users").document(user.uid).getDocument {document, err in
                 if let err = err {
@@ -40,8 +41,7 @@ class FirestoreManager: ObservableObject {
        }
     }
     
-    init() {
+    public init() {
         fetchData()
-        print(self.disease)
     }
 }
