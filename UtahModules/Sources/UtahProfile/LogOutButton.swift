@@ -6,24 +6,28 @@
 // SPDX-License-Identifier: MIT
 //
 
+import Account
 import FirebaseAuth
 import SwiftUI
 import UtahSharedContext
 
 struct LogoutButton: View {
     @Binding var eventBool: Bool
+    @AppStorage(StorageKeys.onboardingFlowComplete) var completedOnboardingFlow = true
+    @EnvironmentObject var account: Account
+    
     var buttonLabel: String
     var foregroundColor: Color
     var backgroundColor: Color
-    @AppStorage(StorageKeys.onboardingFlowComplete) var completedOnboardingFlow = true
     
     var body: some View {
         Button(action: {
             let firebaseAuth = Auth.auth()
             do {
-              try firebaseAuth.signOut()
+                try firebaseAuth.signOut()
+                account.signedIn = false
             } catch let signOutError as NSError {
-              print("Error signing out: %@", signOutError)
+                print("Error signing out: %@", signOutError)
             }
             eventBool = true
             completedOnboardingFlow = false

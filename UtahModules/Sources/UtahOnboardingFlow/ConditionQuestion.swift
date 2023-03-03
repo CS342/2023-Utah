@@ -17,25 +17,38 @@ import UtahSharedContext
 
 struct ConditionQuestion: View {
     @Binding var onboardingSteps: [OnboardingFlow.Step]
-    @State private var selection = "I Don't Know"
-    let conditions = ["Arterial Disease", "Venous Disease", "I Don't Know"]
+    @State private var selection = "Choose Diagnosis"
+    var conditions = StorageKeys.conditions + ["Choose Diagnosis"]
     
     
     var body: some View {
-        OnboardingView(
+        UITableView.appearance().backgroundColor = .clear
+        return OnboardingView(
             contentView: {
                 VStack {
                     OnboardingTitleView(
-                        title: "What condition do you have?".moduleLocalized,
-                        subtitle: "".moduleLocalized
+                        title: "What is your diagnosis?".moduleLocalized,
+                        subtitle: "Please consult your doctor if you are unsure.".moduleLocalized
                     )
-                    Picker("Select a condition", selection: $selection) {
-                        ForEach(conditions, id: \.self) {
-                            Text($0).scaleEffect(2)
-                        }
-                    }
+                    Spacer()
+                            Picker("Select your condition", selection: $selection) {
+                                ForEach(conditions, id: \.self) { option in
+                                    Text(option).disabled(option == "Choose Disease")
+                                }
+                            }
+                        .padding(.vertical, 20)
+                        .padding(.horizontal, 20)
+                        .frame(minWidth: 0, maxWidth: .infinity)
+                        .background(
+                            RoundedRectangle(cornerRadius: 8)
+                                .fill(Color(.systemBackground))
+                                .shadow(color: .gray, radius: 2)
+                                .padding(.horizontal, 15)
+                        )
                     .pickerStyle(.menu)
-                    .scaleEffect(2)
+                    Spacer()
+                    Spacer()
+                    Spacer()
                     Spacer()
                 }
             }, actionView: {
@@ -52,14 +65,14 @@ struct ConditionQuestion: View {
                             }
                        }
                     }
-                )
+                ).disabled(selection == "Choose Diagnosis")
             }
         )
     }
 }
 
 
-struct ThingsToKnow_Previews: PreviewProvider {
+struct Condition_Previews: PreviewProvider {
     @State private static var path: [OnboardingFlow.Step] = []
     
     static var previews: some View {

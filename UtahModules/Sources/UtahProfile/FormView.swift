@@ -6,6 +6,7 @@
 // SPDX-License-Identifier: MIT
 //
 
+import UtahSharedContext
 import FirebaseAuth
 import FirebaseFirestore
 import SwiftUI
@@ -13,12 +14,11 @@ import SwiftUI
 struct FormView: View {
     @Binding var disease: String
     @Binding var isEditing: Bool
-    let diseaseOptions = ["Peripheral Arterial Disease", "Venous Insufficiency", "I'm not sure"]
     var body: some View {
         Form {
             Section(header: Text("Condition")) {
                 Picker("Change your condition", selection: $disease) {
-                    ForEach(diseaseOptions, id: \.self) { option in
+                    ForEach(StorageKeys.conditions, id: \.self) { option in
                         Text(option)
                     }
                 }

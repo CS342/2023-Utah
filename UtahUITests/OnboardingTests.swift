@@ -114,7 +114,11 @@ extension XCUIApplication {
     }
     
     private func navigateOnboardingConditionQuestion() throws {
-        XCTAssertTrue(staticTexts["What condition do you have?"].waitForExistence(timeout: 2))
+        XCTAssertTrue(staticTexts["What is your diagnosis?"].waitForExistence(timeout: 2))
+        XCTAssertTrue(staticTexts["Choose Diagnosis"].waitForExistence(timeout: 2))
+        staticTexts["Choose Diagnosis"].tap()
+        XCTAssertTrue(staticTexts["Arterial Disease"].waitForExistence(timeout: 2))
+        staticTexts["Arterial Disease"].tap()
         XCTAssertTrue(buttons["Next"].waitForExistence(timeout: 2))
         buttons["Next"].tap()
     }
