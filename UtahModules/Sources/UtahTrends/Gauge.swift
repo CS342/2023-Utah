@@ -21,7 +21,6 @@ struct StyledGauge: View {
         TTGaugeViewSection(color: .yellow, size: 0.333),
         TTGaugeViewSection(color: .red, size: 0.333)
     ]
-    let gaugeDescription = "Risk"
     
     var body: some View {
         TTGaugeView(
@@ -29,8 +28,7 @@ struct StyledGauge: View {
             sections: sections,
             userValue: userScore,
             maxValue: maxScore,
-            minValue: minScore,
-            gaugeDescription: gaugeDescription
+            minValue: minScore
         )
         
 //        Gauge(value: userScore, in: minScore...maxScore) {
