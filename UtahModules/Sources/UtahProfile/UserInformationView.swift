@@ -6,55 +6,38 @@
 // SPDX-License-Identifier: MIT
 //
 
+import Account
 import SwiftUI
+import class FHIR.FHIR
+import FirebaseAccount
+import FirebaseAuth
+import FirebaseFirestore
+import Onboarding
+import UtahSharedContext
 
 struct UserInformationView: View {
-    @State private var email = "jane@example.com"
-    @State private var disease = "Peripheral Arterial Disease"
-    @State private var isEditing = false
-    let diseaseOptions = ["Peripheral Arterial Disease", "Venous Insufficiency", "I'm not sure"]
-
+    let user = Auth.auth().currentUser
+    var refesh = false
+    @State private var needHelp = false
+    @State private var logOut = false
+    @EnvironmentObject var firestoreManager: FirestoreManager
+    
     var body: some View {
         VStack {
-            Text("Email")
-                .font(.headline)
-            Text(email)
-                .font(.title)
-                .fontWeight(.medium)
-                .padding(.bottom, 20)
-            Divider()
-                .padding(.bottom, 20)
-            Text("Disease")
-                .font(.headline)
-            Text(disease)
-                .font(.title)
-                .fontWeight(.medium)
-                .padding(.bottom, 20)
-            Divider()
-                .padding(.bottom, 20)
-            Button(action: {
-                isEditing = true
-            }) {
-                Text("Edit")
-                    .padding()
-                    .frame(maxWidth: .infinity)
-                    .background(Color.accentColor)
-                    .foregroundColor(.white)
-                    .cornerRadius(10)
-                    .font(.headline)
-                    .padding(.horizontal, 30)
-            }
-            .padding(.bottom, 30)
-            .sheet(isPresented: $isEditing) {
-                FormView(email: $email, disease: $disease, isEditing: $isEditing)
-            }
+            InfoRow(field: "EMAIL", value: user?.email ?? "")
+            InfoRow(field: "CONDITION", value: firestoreManager.disease)
+            Spacer()
+            MenuButton(eventBool: $needHelp, buttonLabel: "Need help?", foregroundColor: Color.accentColor, backgroundColor: Color(.white))
+                .sheet(isPresented: $needHelp) {
+                    HelpPage()
+                }
+                .padding(.bottom, -15)
+            LogoutButton(eventBool: $logOut, buttonLabel: "Logout", foregroundColor: Color(.white), backgroundColor: Color.accentColor)
+                .sheet(isPresented: $needHelp) {
+                    FormView(disease: $firestoreManager.disease, isEditing: $needHelp)
+                }
         }
         .padding(.horizontal, 30)
-    }
-}
-
-struct UserInformationView_Previews: PreviewProvider {
-    static var previews: some View {
-        UserInformationView()
+        .padding(.bottom, 20)
     }
 }

@@ -12,7 +12,7 @@ import UtahSharedContext
 
 /// Displays an multi-step onboarding flow for the CS342 2023 Utah Team Application.
 public struct OnboardingFlow: View {
-    enum Step: String, Codable {
+    public enum Step: String, Codable {
         case accountSetup
         case login
         case signUp
@@ -24,6 +24,7 @@ public struct OnboardingFlow: View {
     
     
     @SceneStorage(StorageKeys.onboardingFlowStep) private var onboardingSteps: [Step] = []
+    @AppStorage(StorageKeys.onboardingFlowComplete) var completedOnboardingFlow = false
     
     
     public var body: some View {
@@ -49,6 +50,7 @@ public struct OnboardingFlow: View {
                 }
                 .navigationBarTitleDisplayMode(.inline)
         }
+        .interactiveDismissDisabled(!completedOnboardingFlow)
     }
     
     

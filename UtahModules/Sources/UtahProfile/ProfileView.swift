@@ -6,48 +6,36 @@
 // SPDX-License-Identifier: MIT
 //
 
+import Account
+import class FHIR.FHIR
+import FirebaseAccount
+import FirebaseAuth
+import FirebaseFirestore
 import SwiftUI
+import UtahSharedContext
 
 public struct Profile: View {
-    @State var isPresented = false
-
+    @EnvironmentObject var firestoreManager: FirestoreManager
+    
     public var body: some View {
         VStack {
+            EditButton()
+                .padding(.trailing, 35)
             Header()
             ProfileText()
+                .padding(.bottom, 30)
             UserInformationView()
         }
+        .padding(.top, 30)
+        .environmentObject(firestoreManager)
     }
-    public init() {}
-}
-
-struct ProfileText: View {
-    @AppStorage("name") var name = "Jiahui Chen"
-    @AppStorage("subtitle") var subtitle = "Patient at University of Utah Hospital"
-    @AppStorage("description") var description = ""
-
-    var body: some View {
-        VStack(spacing: 15) {
-            VStack(spacing: 5) {
-                Text(name)
-                    .bold()
-                    .font(.title)
-                Text(subtitle)
-                    .font(.body)
-                    .foregroundColor(.secondary)
-            }.padding()
-            Text(description)
-                .multilineTextAlignment(.center)
-                .padding()
-            Spacer()
-        }
+    public init() {
     }
 }
 
-#if DEBUG
+
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         Profile()
     }
 }
-#endif

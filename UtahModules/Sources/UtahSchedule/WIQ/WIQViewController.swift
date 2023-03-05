@@ -7,6 +7,7 @@
 //
 
 // swiftlint:disable line_length
+// swiftlint:disable closure_body_length
 
 import ResearchKit
 import SwiftUI
@@ -47,8 +48,13 @@ struct WIQViewController: UIViewControllerRepresentable {
                     let wiqAnswerFormat = ORKAnswerFormat.choiceAnswerFormat(with: .singleChoice, textChoices: wiqChoices)
                     
                     let questions = [
-                        "Walk indoors, such as around your home?", "Walk 50 feet?", "Walk 150 feet? (1/2 block)",
-                        "Walk 300 feet? 1 block?", "Walk 600 feet? 2 blocks?", "Walk 900 feet? 3 blocks?", "Walk 1500 feet? 5 blocks?"
+                        "Walk indoors, such as around your home?",
+                        "Walk 50 feet?",
+                        "Walk 150 feet? (1/2 block)",
+                        "Walk 300 feet? 1 block?",
+                        "Walk 600 feet? 2 blocks?",
+                        "Walk 900 feet? 3 blocks?",
+                        "Walk 1500 feet? 5 blocks?"
                     ]
                     for (idx, question) in questions.enumerated() {
                         let wiq = ORKQuestionStep(
