@@ -10,9 +10,11 @@ import Foundation
 import SwiftUI
 
 struct StyledGauge: View {
-    @State private var userScore = 100.0
-    @State private var minScore = 50.0
-    @State private var maxScore = 170.0
+    let userScore: Double
+    let minScore: Double
+    let maxScore: Double
+    
+    let gaugeDescription = "Risk Gauge"
     let gradient = Gradient(colors: [.green, .yellow, .orange, .red])
     
     let angle: Double = 260.0
@@ -28,7 +30,8 @@ struct StyledGauge: View {
             sections: sections,
             userValue: userScore,
             maxValue: maxScore,
-            minValue: minScore
+            minValue: minScore,
+            gaugeDescription: gaugeDescription
         )
         
 //        Gauge(value: userScore, in: minScore...maxScore) {
@@ -51,8 +54,8 @@ struct StyledGauge: View {
     }
 }
 
-struct Gauge_Previews: PreviewProvider {
+struct StyledGauge_Previews: PreviewProvider {
     static var previews: some View {
-        StyledGauge()
+        StyledGauge(userScore: 100.0, minScore: 50, maxScore: 160)
     }
 }

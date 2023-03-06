@@ -29,5 +29,6 @@ class TrendsTests: XCTestCase {
         
         XCTAssertTrue(app.staticTexts["Daily Step Count"].waitForExistence(timeout: 0.5))
         XCTAssertTrue(app.staticTexts["Survey Score"].waitForExistence(timeout: 0.5))
+        XCTAssertTrue(app.staticTexts["Risk Gauge"].waitForExistence(timeout: 0.5))
     }
 }

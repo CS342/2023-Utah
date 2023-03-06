@@ -15,6 +15,7 @@ public struct Trends: View {
             VStack(alignment: .leading) {
                 DataCard(icon: "shoeprints.fill", title: "Daily Step Count", unit: "steps", color: Color.green)
                 DataCard(icon: "list.clipboard.fill", title: "Survey Score", unit: "points", color: Color.blue)
+                StyledGauge(userScore: 100.0, minScore: 50.0, maxScore: 170.0)
             }
             .padding()
             Spacer()
