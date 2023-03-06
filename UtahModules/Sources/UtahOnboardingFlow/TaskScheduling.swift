@@ -7,10 +7,10 @@
 //
 
 import Onboarding
+import Scheduler
 import SwiftUI
 import UtahSchedule
 import UtahSharedContext
-import Scheduler
 
 
 struct TaskScheduling: View {
@@ -39,14 +39,16 @@ struct TaskScheduling: View {
                 OnboardingActionsView(
                     "Continue",
                     action: {
+                        /* DISABLED - not currently working
                         // Schedule the edmonton task starting today
                         // for the next 12 months
 
                         // Get the day from today's date, which is the same day
                         // we want to repeat the task on every month.
-                        let dayOfMonth = Calendar.current.dateComponents([.day], from: Date())
+                        // let dayOfMonth = Calendar.current.dateComponents([.day], from: Date())
 
                         // Create the task to schedule
+
                         let task = Task(
                             title: String(
                                 localized: "RESEARCHKIT_TASK_TITLE",
@@ -66,9 +68,11 @@ struct TaskScheduling: View {
 
                         // Schedule the task using the CardinalKit Scheduler
                         scheduler.schedule(task: task)
+                         */
 
                         // Onboarding is now complete
                         completedOnboardingFlow = true
+
                     }
                 )
             }
