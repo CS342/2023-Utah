@@ -5,7 +5,6 @@
 //
 // SPDX-License-Identifier: MIT
 //
-
 import FHIR
 import Foundation
 import Scheduler
@@ -26,7 +25,7 @@ extension UtahScheduler {
                     description: String(localized: "QUESTIONNAIRE_DESCRIPTION", bundle: .module),
                     schedule: Schedule(
                         start: Calendar.current.startOfDay(for: Date()),
-                        dateComponents: .init(hour: 0, minute: 30), // Every Day at 12:30 AM
+                        dateComponents: .init(hour: 10, minute: 00), // Every Day at 10:00 AM
                         end: .numberOfEvents(356)
                     ),
                     context: UtahTaskContext.questionnaire(Bundle.module.questionnaire(withName: "EdmontonFrailScale"))

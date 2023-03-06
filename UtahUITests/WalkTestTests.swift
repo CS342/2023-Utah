@@ -9,7 +9,7 @@
 import XCTest
 
 
-class GetUpAndGoTests: XCTestCase {
+class WalkTestTests: XCTestCase {
     override func setUpWithError() throws {
         try super.setUpWithError()
         
@@ -20,16 +20,16 @@ class GetUpAndGoTests: XCTestCase {
         app.launch()
     }
     
-    
-    func testGetUpAndGo() throws {
+    func testWalkTest() throws {
         let app = XCUIApplication()
         
-        XCTAssertTrue(app.tabBars["Tab Bar"].buttons["Questions"].waitForExistence(timeout: 0.5))
+        XCTAssertTrue(app.tabBars["Tab Bar"].buttons["Questions"].waitForExistence(timeout: 2))
         app.tabBars["Tab Bar"].buttons["Questions"].tap()
 
-        XCTAssertTrue(app.buttons["Get Up And Go Question"].waitForExistence(timeout: 0.5))
-        app.buttons["Get Up And Go Question"].tap()
-        XCTAssertTrue(app.staticTexts["Do not do this alone. Please have someone by you to help you if necessary."].waitForExistence(timeout: 0.5))
-        XCTAssertTrue(app.buttons["Start"].waitForExistence(timeout: 0.5))
+        XCTAssertTrue(app.buttons["6 Minute Walk Test (active task)"].waitForExistence(timeout: 2))
+        app.buttons["6 Minute Walk Test (active task)"].tap()
+        XCTAssertTrue(app.staticTexts["Fitness"].waitForExistence(timeout: 2))
+        XCTAssertTrue(app.buttons["Next"].waitForExistence(timeout: 2))
+        app.buttons["Next"].tap()
     }
 }

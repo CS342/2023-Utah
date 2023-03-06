@@ -24,16 +24,22 @@ class ProfileTests: XCTestCase {
     func testProfile() throws {
         let app = XCUIApplication()
         
-        XCTAssertTrue(app.tabBars["Tab Bar"].buttons["Profile"].waitForExistence(timeout: 0.5))
+        XCTAssertTrue(app.tabBars["Tab Bar"].buttons["Profile"].waitForExistence(timeout: 2))
         app.tabBars["Tab Bar"].buttons["Profile"].tap()
         
-        XCTAssertTrue(app.staticTexts["Jiahui Chen"].waitForExistence(timeout: 0.5))
-        XCTAssertTrue(app.staticTexts["Patient at University of Utah Hospital"].waitForExistence(timeout: 0.5))
-        XCTAssertTrue(app.staticTexts["Email"].waitForExistence(timeout: 0.5))
-        XCTAssertTrue(app.staticTexts["jchen23@stanford.edu"].waitForExistence(timeout: 0.5))
-        XCTAssertTrue(app.staticTexts["Phone"].waitForExistence(timeout: 0.5))
-        XCTAssertTrue(app.staticTexts["6504208566"].waitForExistence(timeout: 0.5))
-        XCTAssertTrue(app.staticTexts["Address"].waitForExistence(timeout: 0.5))
-        XCTAssertTrue(app.staticTexts["1047 Campus Drive, CA"].waitForExistence(timeout: 0.5))
+        XCTAssertTrue(app.staticTexts["Patient at University of Utah Hospital"].waitForExistence(timeout: 2))
+        XCTAssertTrue(app.staticTexts["EMAIL"].waitForExistence(timeout: 2))
+        XCTAssertTrue(app.staticTexts["CONDITION"].waitForExistence(timeout: 2))
+        
+        app.buttons["Edit"].tap()
+        XCTAssertTrue(app.staticTexts["CONDITION"].waitForExistence(timeout: 2))
+        XCTAssertTrue(app.staticTexts["Change your condition"].waitForExistence(timeout: 2))
+        app.buttons["Save"].tap()
+        
+        XCTAssertTrue(app.buttons["Need help?"].waitForExistence(timeout: 2))
+        app.buttons["Need help?"].tap()
+        XCTAssertTrue(app.staticTexts["REPORT A PROBLEM"].waitForExistence(timeout: 2))
+        XCTAssertTrue(app.staticTexts["SUPPORT"].waitForExistence(timeout: 2))
+        XCTAssertTrue(app.staticTexts["WITHDRAW FROM STUDY"].waitForExistence(timeout: 2))
     }
 }

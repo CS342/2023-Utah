@@ -44,7 +44,7 @@ struct NeedleView: View {
         
         GeometryReader { geometry in
             ZStack {
-                let rectWidth = geometry.size.width / 2
+                let rectWidth = geometry.size.width / 4
                 let rectHeight = geometry.size.width / 20
                 
                 Rectangle()
@@ -125,6 +125,7 @@ public struct TTGaugeView: View {
                     if let valueDescription = valueDescription {
                         Text(valueDescription)
                             .font(.title)
+                            .padding()
                     }
                     if let gaugeDescription = gaugeDescription {
                         Text(gaugeDescription)
