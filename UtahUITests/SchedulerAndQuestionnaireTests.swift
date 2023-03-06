@@ -28,8 +28,8 @@ class SchedulerAndQuestionnaireTests: XCTestCase {
         XCTAssertTrue(app.tabBars["Tab Bar"].buttons["Questions"].waitForExistence(timeout: 2))
         app.tabBars["Tab Bar"].buttons["Questions"].tap()
 
-        XCTAssertTrue(app.staticTexts["Monthly Questionnaire"].waitForExistence(timeout: 2))
-        XCTAssertTrue(app.staticTexts["Please fill out this Questionnaire every month."].waitForExistence(timeout: 2))
+        XCTAssertTrue(app.staticTexts["Edmonton Frail Scale"].waitForExistence(timeout: 2))
+        XCTAssertTrue(app.staticTexts["Please complete this task once a month."].waitForExistence(timeout: 2))
         XCTAssertTrue(app.staticTexts["Start Questionnaire"].waitForExistence(timeout: 2))
         
         app.staticTexts["Start Questionnaire"].tap()
