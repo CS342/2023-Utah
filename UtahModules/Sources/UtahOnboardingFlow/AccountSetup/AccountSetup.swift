@@ -6,16 +6,22 @@
 // SPDX-License-Identifier: MIT
 //
 
+// swiftlint:disable line_length
 import Account
 import class FHIR.FHIR
 import FirebaseAccount
+import FirebaseAuth
+import FirebaseFirestore
 import Onboarding
 import SwiftUI
+import UtahSharedContext
 
 
 struct AccountSetup: View {
     @Binding private var onboardingSteps: [OnboardingFlow.Step]
     @EnvironmentObject var account: Account
+    @EnvironmentObject var firestoreManager: FirestoreManager
+    @State var isSigningUp: Bool
     
     
     var body: some View {
@@ -37,7 +43,22 @@ struct AccountSetup: View {
         )
             .onReceive(account.objectWillChange) {
                 if account.signedIn {
-                    onboardingSteps.append(.healthKitPermissions)
+                    if onboardingSteps.contains(where: { $0 == .signUp }) {
+                         if let user = Auth.auth().currentUser {
+                             let fullName = user.displayName?.components(separatedBy: " ")
+                             let firstName = fullName?[0] ?? ""
+                             let lastName = fullName?[1] ?? ""
+                             let data: [String: Any] = ["firstName": firstName, "lastName": lastName, "email": user.email ?? "", "dateJoined": Timestamp()]
+                             Firestore.firestore().collection("users").document(user.uid).setData(data) { err in
+                                 if let err = err {
+                                     print("Error updating document: \(err)")
+                                 }
+                             }
+                        }
+                    } else {
+                        firestoreManager.fetchData()
+                    }
+                    appendNextOnboardingStep()
                     // Unfortunately, SwiftUI currently animates changes in the navigation path that do not change
                     // the current top view. Therefore we need to do the following async procedure to remove the
                     // `.login` and `.signUp` steps while disabling the animations before and re-enabling them
@@ -91,17 +112,19 @@ struct AccountSetup: View {
             OnboardingActionsView(
                 "ACCOUNT_NEXT".moduleLocalized,
                 action: {
-                    onboardingSteps.append(.healthKitPermissions)
+                    appendNextOnboardingStep()
                 }
             )
         } else {
             OnboardingActionsView(
                 primaryText: "ACCOUNT_SIGN_UP".moduleLocalized,
                 primaryAction: {
+                    isSigningUp = true
                     onboardingSteps.append(.signUp)
                 },
                 secondaryText: "ACCOUNT_LOGIN".moduleLocalized,
                 secondaryAction: {
+                    isSigningUp = false
                     onboardingSteps.append(.login)
                 }
             )
@@ -111,6 +134,20 @@ struct AccountSetup: View {
     
     init(onboardingSteps: Binding<[OnboardingFlow.Step]>) {
         self._onboardingSteps = onboardingSteps
+        self.isSigningUp = false
+    }
+    
+    private func appendNextOnboardingStep() {
+        if isSigningUp {
+            #if targetEnvironment(simulator) && (arch(i386) || arch(x86_64))
+            print("PKCanvas view-related views are currently skipped on Intel-based iOS simulators due to a metal bug on the simulator.")
+            onboardingSteps.append(.conditionQuestion)
+            #else
+            onboardingSteps.append(.consent)
+            #endif
+        } else {
+            onboardingSteps.append(.healthKitPermissions)
+        }
     }
 }
 

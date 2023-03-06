@@ -15,17 +15,19 @@ import UtahSharedContext
 @main
 struct Utah: App {
     @UIApplicationDelegateAdaptor(UtahAppDelegate.self) var appDelegate
-    @AppStorage(StorageKeys.onboardingFlowComplete) var completedOnboardingFlow = false
-    
+    @AppStorage(StorageKeys.onboardingFlowComplete) var completedOnboardingFlow = true
+    @StateObject var firestoreManager = FirestoreManager()
     
     var body: some Scene {
         WindowGroup {
             HomeView()
                 .sheet(isPresented: !$completedOnboardingFlow) {
-                    OnboardingFlow()
+                    OnboardingFlow().environmentObject(firestoreManager)
                 }
+                .setup()
                 .testingSetup()
                 .cardinalKit(appDelegate)
+                .environmentObject(firestoreManager)
         }
     }
 }

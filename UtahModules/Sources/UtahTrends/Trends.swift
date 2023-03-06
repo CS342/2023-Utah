@@ -6,18 +6,22 @@
 // SPDX-License-Identifier: MIT
 //
 
+import FHIR
 import Foundation
 import SwiftUI
+
 
 public struct Trends: View {
     public var body: some View {
         NavigationStack {
-            VStack(alignment: .leading) {
-                DataCard(icon: "shoeprints.fill", title: "Daily Step Count", unit: "steps", color: Color.green)
-                DataCard(icon: "list.clipboard.fill", title: "Survey Score", unit: "points", color: Color.blue)
+            VStack(alignment: .center) {
+                Charts()
+                Spacer()
+                TrendWrapper(code: "55423-8", icon: "shoeprints.fill", title: "Daily Step Count", unit: "steps", color: Color.green)
+                Spacer()
+                DataCard(icon: "list.clipboard.fill", title: "Last EFS Survey Score", unit: "points", color: Color.blue, observations: [])
             }
             .padding()
-            Spacer()
             .navigationTitle("Trends")
         }
     }
@@ -32,6 +36,7 @@ public struct Trends: View {
 struct Trends_Previews: PreviewProvider {
     static var previews: some View {
         Trends()
+            .environmentObject(FHIR())
     }
 }
 

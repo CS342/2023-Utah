@@ -15,34 +15,35 @@ struct Consent: View {
     
     
     private var consentDocument: Data {
-        guard let path = Bundle.module.url(forResource: "ConsentDocument", withExtension: "md"),
+        guard let path = Bundle.module.url(forResource: "ConsentDocument", withExtension: "html"),
               let data = try? Data(contentsOf: path) else {
             return Data("CONSENT_LOADING_ERROR".moduleLocalized.utf8)
         }
         return data
     }
-    
+
     var body: some View {
-        ConsentView(
-            header: {
-                OnboardingTitleView(
-                    title: "CONSENT_TITLE".moduleLocalized,
-                    subtitle: "CONSENT_SUBTITLE".moduleLocalized
-                )
-            },
-            asyncMarkdown: {
-                consentDocument
-            },
-            action: {
-                if !CommandLine.arguments.contains("--disableFirebase") {
-                    onboardingSteps.append(.accountSetup)
-                } else {
-                    onboardingSteps.append(.healthKitPermissions)
+        ScrollViewReader { _ in
+            OnboardingView(
+                contentView: {
+                    HTMLView(
+                        asyncHTML: {
+                            consentDocument
+                        }
+                    )
+                },
+                actionView: {
+                    VStack {
+                        OnboardingActionsView("I accept") {
+                            onboardingSteps.append(.conditionQuestion)
+                        }
+                        Divider()
+                    }
+                    .transition(.opacity)
                 }
-            }
-        )
+            )
+        }
     }
-    
     
     init(onboardingSteps: Binding<[OnboardingFlow.Step]>) {
         self._onboardingSteps = onboardingSteps
