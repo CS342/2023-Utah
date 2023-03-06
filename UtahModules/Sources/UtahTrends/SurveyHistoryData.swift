@@ -7,14 +7,13 @@
 
 import Foundation
 
-var surveyHistories: [SurveyHistory] = load("surveyData.json")
+var surveyHistories: [SurveyHistory] = load("surveyData", withExtension: "json")
 
-func load<T: Decodable>(_ filename: String) -> T {
+func load<T: Decodable>(_ filename: String, withExtension fileExtension: String) -> T {
     let data: Data
-
-    guard let file = Bundle.main.url(forResource: filename, withExtension: nil)
-    else {
-        fatalError("Couldn't find \(filename) in main bundle.")
+    
+    guard let file = Bundle.module.url(forResource: filename, withExtension: fileExtension) else {
+        fatalError("Couldn't find \"\(filename).\(fileExtension)\" in the module bundle.")
     }
 
     do {

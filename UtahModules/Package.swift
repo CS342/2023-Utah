@@ -70,6 +70,9 @@ let package = Package(
             dependencies: [
                 .target(name: "UtahSharedContext"),
                 .product(name: "FHIR", package: "CardinalKit")
+            ],
+            resources: [
+                .process("Resources")
             ]
         )
     ]
