@@ -10,10 +10,21 @@ import SwiftUI
 struct DetailedQuestionnaireView: View {
     var body: some View {
             NavigationStack {
+                Spacer()
                 ScrollView {
-                    Text("1: " + "Clock Test")
-                        .frame(width: 350, height: 500)
-                        .background(Rectangle().fill(Color.accentColor).shadow(radius: 3))
+                    HStack() {
+                        Text("1")
+                            .bold()
+                        Spacer()
+                        Text("Clock Test")
+                            .frame(width: 300, height: 50)
+                            .background(Rectangle().fill(Color.accentColor).shadow(radius: 3)
+                                .cornerRadius(15)
+                            )
+                            .foregroundColor(.white)
+                        
+                        Spacer()
+                    }
                     // add image - will push text up (hopefully
                     Text("2")
                         .foregroundColor(.accentColor)
