@@ -43,7 +43,6 @@ class TrendsTests: XCTestCase {
         let app = XCUIApplication()
         XCTAssertTrue(app.tabBars["Tab Bar"].buttons["Trends"].waitForExistence(timeout: 2))
         app.tabBars["Tab Bar"].buttons["Trends"].tap()
-        
         XCTAssertTrue(app.staticTexts["Daily Step Count"].waitForExistence(timeout: 2))
     }
 }
