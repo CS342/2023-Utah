@@ -14,7 +14,7 @@ struct StyledGauge: View {
     let minScore: Double
     let maxScore: Double
     
-    let gaugeDescription = "Risk Gauge"
+    //let gaugeDescription = "Risk Gauge"
     let gradient = Gradient(colors: [.green, .yellow, .orange, .red])
     
     let angle: Double = 260.0
@@ -30,8 +30,7 @@ struct StyledGauge: View {
             sections: sections,
             userValue: userScore,
             maxValue: maxScore,
-            minValue: minScore,
-            gaugeDescription: gaugeDescription
+            minValue: minScore
         )
         
 //        Gauge(value: userScore, in: minScore...maxScore) {
@@ -56,6 +55,6 @@ struct StyledGauge: View {
 
 struct StyledGauge_Previews: PreviewProvider {
     static var previews: some View {
-        StyledGauge(userScore: 100.0, minScore: 50, maxScore: 160)
+        StyledGauge(userScore: 50.0, minScore: 50, maxScore: 160)
     }
 }

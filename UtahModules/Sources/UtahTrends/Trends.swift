@@ -16,15 +16,15 @@ public struct Trends: View {
         NavigationStack {
             VStack(alignment: .center, spacing: 10) {
                 Charts()
-                    .frame(minHeight: 300)
+                    .frame(minHeight: 250)
                 Spacer()
                 TrendWrapper(code: "55423-8", icon: "shoeprints.fill", title: "Daily Step Count", unit: "steps", color: Color.green)
                 Spacer()
                 DataCard(icon: "list.clipboard.fill", title: "Last EFS Survey Score", unit: "points", color: Color.blue, observations: [])
                 Spacer()
-                StyledGauge(userScore: 100.0, minScore: 50.0, maxScore: 170.0)
+                StyledGauge(userScore: 160.0, minScore: 50.0, maxScore: 170.0)
                     .padding()
-                    .frame(width: 200)
+                    .frame(minWidth: 150)
             }
         }
         .padding()

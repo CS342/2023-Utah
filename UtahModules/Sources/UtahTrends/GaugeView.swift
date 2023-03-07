@@ -17,7 +17,7 @@ struct GaugeElement: View {
     
     var body: some View {
         GeometryReader { geometry in
-            let lineWidth = geometry.size.width / 10
+            let lineWidth = geometry.size.width / 12
             
             section.color
                 .mask(
@@ -44,8 +44,8 @@ struct NeedleView: View {
         
         GeometryReader { geometry in
             ZStack {
-                let rectWidth = geometry.size.width / 4
-                let rectHeight = geometry.size.width / 20
+                let rectWidth = geometry.size.width / 7
+                let rectHeight = geometry.size.width / 23
                 
                 Rectangle()
                     .fill(Color.black.opacity(0.8))
@@ -54,7 +54,7 @@ struct NeedleView: View {
                     .offset(x: rectWidth / 2)
                 
                 Circle()
-                    .frame(width: geometry.size.width / 10)
+                    .frame(width: geometry.size.width / 15)
             }
             .position(x: geometry.size.width / 2, y: geometry.size.height / 2)
         }
