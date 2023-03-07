@@ -10,8 +10,14 @@ import SwiftUI
 
 struct SurveyHistoryList: View {
     var body: some View {
-        List(surveyHistories) { survey in
-            SurveyRow(surveyHistory: survey)
+        NavigationView {
+            List(surveyHistories) { survey in
+                NavigationLink {
+                    DetailedQuestionnaireView()
+                } label: {
+                    SurveyRow(surveyHistory: survey)
+                }
+            }
         }
     }
 }
