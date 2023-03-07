@@ -12,7 +12,7 @@
 "QUESTIONNAIRE_DESCRIPTION" = "Please fill out this Questionnaire every month.";
 "QUESTIONNAIRE_ACTION" = "Start Questionnaire";
 
-"RESEARCHKIT_TASK_TITLE" = "Edmonton Frail Scale";
+"RESEARCHKIT_TASK_TITLE" = "Questionnaire";
 "RESEARCHKIT_TASK_DESCRIPTION" = "Please complete this task once a month.";
 "RESEARCHKIT_TASK_ACTION" = "Start Task";
 
