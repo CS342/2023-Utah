@@ -44,7 +44,6 @@ struct DataCard: View {
                 Spacer()
             }
         }
-        // .frame(width: 380)
         .padding(30)
         .frame(width: 350, height: 110)
         .background {
@@ -57,7 +56,7 @@ struct DataCard: View {
         }
     }
     
-    // sums up all data points from current day
+    // sums up all data points from each day
     func group(_ data: [(date: Date, value: Double)]) -> [(date: Date, value: Double)] {
             let calendar = Calendar.current
             let startOfDay = calendar.startOfDay(for: Date())

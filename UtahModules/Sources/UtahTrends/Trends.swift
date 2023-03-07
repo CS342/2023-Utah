@@ -19,6 +19,7 @@ public struct Trends: View {
                 Spacer()
                 TrendWrapper(code: "55423-8", icon: "shoeprints.fill", title: "Daily Step Count", unit: "steps", color: Color.green)
                 Spacer()
+                // removed survey for now until we pull survey data from firestore
                 // DataCard(icon: "list.clipboard.fill", title: "Last EFS Survey Score", unit: "points", color: Color.blue, observations: [])
             }
             .padding()
