@@ -10,6 +10,12 @@
 import FHIR
 import ModelsR4
 import SwiftUI
+import Account
+import Firebase
+import FirebaseAuth
+import Foundation
+
+
 
 
  public struct TrendWrapper: View {
@@ -19,20 +25,21 @@ import SwiftUI
     let color: Color
     let code: String
     @EnvironmentObject var fhirStandard: FHIR
-    @State var observations: [Observation] = []
+    @State var observations: [(date: Date, value: Double)] = []
     
     
     public var body: some View {
-        DataCard(icon: icon, title: title, unit: unit, color: color, observations: observations)
+        DataCard(icon: icon, title: title, unit: unit, color: color, observations: self.$observations)
             .task {
+                try? await _Concurrency.Task.sleep(for: .seconds(0.1))
                 loadObservations()
             }
-            .onReceive(fhirStandard.objectWillChange.receive(on: RunLoop.main)) {
+            /*.onReceive(fhirStandard.objectWillChange.receive(on: RunLoop.main)) {
                 _Concurrency.Task {
                     try? await _Concurrency.Task.sleep(for: .seconds(0.1))
                     loadObservations()
                 }
-            }
+            }*/
     }
      
      public init (code: String, icon: String, title: String, unit: String, color: Color) {
@@ -46,11 +53,40 @@ import SwiftUI
     
     // filters data based on specified observation code
     func loadObservations() {
-        _Concurrency.Task { @MainActor in
-            let observations = await fhirStandard.resources(resourceType: Observation.self)
+        var observations = [] as [(date: Date, value: Double)]
+        if let user = Auth.auth().currentUser {
+            Firestore.firestore().collection("users/\(user.uid)/Observation").getDocuments {documents, err in
+                if err != nil {
+                    return
+                } else {
+                    for document in documents!.documents{
+                        let data = document.data() as [String: Any]
+                        let codeObject = data["code"] as? [String: Any]
+                        let coding = codeObject?["coding"] as? [Any]
+                        let code = coding?[0] as? [String: Any]
+                        let filterCode = code?["code"] as? String
+                        if filterCode == self.code {
+                            let dateString = data["effectiveDateTime"] as? String
+                            let formatter = ISO8601DateFormatter()
+                            formatter.timeZone = NSTimeZone.local
+                            let date = formatter.date(from: dateString!)
+                            let valueQuantity = data["valueQuantity"] as? [String: Any]
+                            let value = valueQuantity?["value"] as? Double ?? 0.0
+                            observations.append((date: date!, value: value))
+                        }
+                    }
+                    self.observations = observations
+                }
+                
+                
+            }
+       }
+
+        /*_Concurrency.Task { @MainActor in
+            
             self.observations = observations.filter { observation in
                 observation.code.coding?.contains(where: { coding in coding.code?.value?.string == code }) ?? false
             }
-        }
+        }*/
     }
 }
