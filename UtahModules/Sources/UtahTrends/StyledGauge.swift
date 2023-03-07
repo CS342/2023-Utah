@@ -14,7 +14,7 @@ struct StyledGauge: View {
     let minScore: Double
     let maxScore: Double
     
-    //let gaugeDescription = "Risk Gauge"
+    // let gaugeDescription = "Risk Gauge"
     let gradient = Gradient(colors: [.green, .yellow, .orange, .red])
     
     let angle: Double = 260.0
