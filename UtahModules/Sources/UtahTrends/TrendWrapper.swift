@@ -7,15 +7,13 @@
 //
 // loadObservations funcution pulled from CardinalKit FHIRChart module
 
-import FHIR
-import ModelsR4
-import SwiftUI
 import Account
+import FHIR
 import Firebase
 import FirebaseAuth
 import Foundation
-
-
+import ModelsR4
+import SwiftUI
 
 
  public struct TrendWrapper: View {
@@ -59,7 +57,7 @@ import Foundation
                 if err != nil {
                     return
                 } else {
-                    for document in documents!.documents{
+                    for document in documents!.documents {
                         let data = document.data() as [String: Any]
                         let codeObject = data["code"] as? [String: Any]
                         let coding = codeObject?["coding"] as? [Any]
@@ -77,8 +75,6 @@ import Foundation
                     }
                     self.observations = observations
                 }
-                
-                
             }
        }
 
