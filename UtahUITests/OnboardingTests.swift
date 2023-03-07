@@ -118,8 +118,8 @@ extension XCUIApplication {
         XCTAssertTrue(staticTexts["What is your diagnosis?"].waitForExistence(timeout: 2))
         XCTAssertTrue(staticTexts["Choose Diagnosis"].waitForExistence(timeout: 2))
         staticTexts["Choose Diagnosis"].tap()
-        XCTAssertTrue(staticTexts["Arterial Disease"].waitForExistence(timeout: 2))
-        staticTexts["Arterial Disease"].tap()
+        XCTAssertTrue(buttons["Arterial Disease"].waitForExistence(timeout: 2))
+        buttons["Arterial Disease"].tap()
         XCTAssertTrue(buttons["Next"].waitForExistence(timeout: 2))
         buttons["Next"].tap()
     }
