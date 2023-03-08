@@ -7,20 +7,21 @@
 
 import Foundation
 import SwiftUI
+import FHIR
 
 struct SurveyRow: View {
-    var surveyHistory: SurveyHistory
+    var surveyHistory: QuestionnaireResponse
 
     var body: some View {
         HStack {
-            Text(surveyHistory.surveyName)
-            Text(surveyHistory.date)
+            Text(surveyHistory.authored)
+            Text(surveyHistory.questionnaire)
         }
     }
 }
 
-struct SurveyRow_Previews: PreviewProvider {
-    static var previews: some View {
-        SurveyRow(surveyHistory: surveyHistories[0])
-    }
-}
+//struct SurveyRow_Previews: PreviewProvider {
+//    static var previews: some View {
+//        SurveyRow(surveyHistory: surveyHistory[0])
+//    }
+//}

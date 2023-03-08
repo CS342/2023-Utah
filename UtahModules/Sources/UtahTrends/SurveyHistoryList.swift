@@ -7,11 +7,14 @@
 
 import Foundation
 import SwiftUI
+import FHIR
 
 struct SurveyHistoryList: View {
+    @Binding var surveys: [QuestionnaireResponse]
+    
     var body: some View {
         NavigationView {
-            List(surveyHistories) { survey in
+            List(surveys) { survey in
                 NavigationLink {
                     DetailedQuestionnaireView()
                 } label: {
@@ -22,8 +25,8 @@ struct SurveyHistoryList: View {
     }
 }
 
-struct SurveyHistoryList_Previews: PreviewProvider {
-    static var previews: some View {
-        SurveyHistoryList()
-    }
-}
+//struct SurveyHistoryList_Previews: PreviewProvider {
+//    static var previews: some View {
+//        SurveyHistoryList()
+//    }
+//}
