@@ -31,10 +31,10 @@ class OnboardingTests: XCTestCase {
         let app = XCUIApplication()
         try app.navigateOnboardingFlow(assertThatHealthKitConsentIsShown: true)
         
-        /*let tabBar = app.tabBars["Tab Bar"]
+        let tabBar = app.tabBars["Tab Bar"]
         XCTAssertTrue(tabBar.buttons["Questions"].waitForExistence(timeout: 2))
         XCTAssertTrue(tabBar.buttons["Trends"].waitForExistence(timeout: 2))
-        XCTAssertTrue(tabBar.buttons["Profile"].waitForExistence(timeout: 2))*/
+        XCTAssertTrue(tabBar.buttons["Profile"].waitForExistence(timeout: 2))
     }
 }
 
@@ -51,10 +51,9 @@ extension XCUIApplication {
         try navigateOnboardingAccount()
         if staticTexts["Consent Form"].waitForExistence(timeout: 5) {
             try navigateOnboardingFlowConsent()
-            // try navigateOnboardingConditionQuestion()
+            try navigateOnboardingConditionQuestion()
         }
-        // must comment out bc I can't figure out how to test the condition picker
-        // try navigateOnboardingFlowHealthKitAccess(assertThatHealthKitConsentIsShown: assertThatHealthKitConsentIsShown)
+        try navigateOnboardingFlowHealthKitAccess(assertThatHealthKitConsentIsShown: assertThatHealthKitConsentIsShown)
     }
     
     private func navigateOnboardingFlowWelcome() throws {
