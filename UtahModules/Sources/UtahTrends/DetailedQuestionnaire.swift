@@ -9,8 +9,30 @@ import SwiftUI
 
 struct DetailedQuestionnaireView: View {
     var body: some View {
-            NavigationStack {
-                Spacer()
+        NavigationStack {
+            Spacer()
+            DQRowView()
+                .navigationBarTitle("Previous Response")
+                .navigationTitle("[date], [type of survey]")
+            /*TabView(selection: $selectedTab) {
+                ScheduleView()
+                    .tag(Tabs.schedule)
+                    .tabItem {
+                        Label("SCHEDULE_TAB_TITLE", systemImage: "list.clipboard")
+                    }
+                Trends()
+                    .tag(Tabs.trends)
+                    .tabItem {
+                        Label("TRENDS_TAB_TITLE", systemImage: "chart.line.uptrend.xyaxis")
+                    }
+                Profile()
+                    .tag(Tabs.profile)
+                    .tabItem {
+                        Label("PROFILE_TAB_TITLE", systemImage: "person.fill")
+                    }
+            }*/
+        }
+                /*Spacer()
                 ScrollView {
                     HStack() {
                         Text("1")
@@ -49,8 +71,8 @@ struct DetailedQuestionnaireView: View {
                 }
                 .padding(.leading, 20)
                 .padding(.trailing, 20)
-            }
-            .font(.title)
+                 */
+            //.font(.title)
     }
 }
 
