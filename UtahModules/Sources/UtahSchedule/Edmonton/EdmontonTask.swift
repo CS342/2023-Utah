@@ -9,7 +9,7 @@
 import Foundation
 import ResearchKit
 
-// swiftlint:disable function_body_length line_length
+// swiftlint:disable function_body_length line_length object_literal
 enum EdmontonTask {
     static func createEdmontonTask(showSummary: Bool = false) -> ORKOrderedTask {
         var steps = [ORKStep]()
