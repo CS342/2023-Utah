@@ -36,10 +36,10 @@ public struct OnboardingFlow: View {
                         AccountSetup(onboardingSteps: $onboardingSteps)
                     case .login:
                         UtahLogin()
-                    case .consent:
-                        Consent(onboardingSteps: $onboardingSteps)
                     case .signUp:
                         UtahSignUp()
+                    case .consent:
+                        Consent(onboardingSteps: $onboardingSteps)
                     case .conditionQuestion:
                         ConditionQuestion(onboardingSteps: $onboardingSteps)
                     case .healthKitPermissions:

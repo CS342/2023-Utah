@@ -100,7 +100,7 @@ extension XCUIApplication {
         
         sleep(3)
         
-        // try navigateOnboardingConditionQuestion()
+        try navigateOnboardingConditionQuestion()
     }
     
     private func navigateOnboardingFlowConsent() throws {

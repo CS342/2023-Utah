@@ -20,22 +20,13 @@ struct Consent: View {
         }
         return data
     }
-    
-    private var logoImage: Image {
-        guard let imagePath = Bundle.module.path(forResource: "UtahLogo", ofType: "jpeg"),
-           let image = UIImage(contentsOfFile: imagePath) else {
-            return Image(systemName: "building.columns.fill")
-        }
-
-        return Image(uiImage: image)
-    }
 
     var body: some View {
         ScrollViewReader { _ in
             OnboardingView(
                 contentView: {
                     VStack {
-                        logoImage
+                        utahLogo
                             .resizable()
                             .scaledToFill()
                             .accessibilityLabel(Text("University of Utah logo"))

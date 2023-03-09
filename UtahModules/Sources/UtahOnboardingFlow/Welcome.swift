@@ -14,17 +14,8 @@ import UtahSharedContext
 struct Welcome: View {
     @Binding private var onboardingSteps: [OnboardingFlow.Step]
     
-    private var logoImage: Image {
-        guard let imagePath = Bundle.module.path(forResource: "UtahLogo", ofType: "jpeg"),
-           let image = UIImage(contentsOfFile: imagePath) else {
-            return Image(systemName: "building.columns.fill")
-        }
-
-        return Image(uiImage: image)
-    }
-    
     var body: some View {
-        logoImage
+        utahLogo
             .resizable()
             .scaledToFill()
             .accessibilityLabel(Text("University of Utah logo"))
@@ -45,7 +36,7 @@ struct Welcome: View {
                     description: "Record your daily activity levels".moduleLocalized
                 ),
                 .init(
-                    icon: Image(systemName: "server.rack"),
+                    icon: Image(systemName: "chart.line.uptrend.xyaxis"),
                     title: "Monitor your progress".moduleLocalized,
                     description: "View your progression over time\n".moduleLocalized
                 )
