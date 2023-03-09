@@ -11,15 +11,17 @@
 import Charts
 import FHIR
 import SwiftUI
+import FirebaseFirestore
+import UtahSharedContext
 
 
 struct DataCard: View {
+    @EnvironmentObject var firestoreManager: FirestoreManager
+    
     let icon: String
     let title: String
     let unit: String
     let color: Color
-    
-    @Binding var observations: [(date: Date, value: Double)]
     @State private var chartData: [(date: Date, value: Double)] = []
     @State private var maxValue: Double = 0.0
 
@@ -52,7 +54,8 @@ struct DataCard: View {
                 .shadow(radius: 5)
         }
         .task {
-            recalculateChartData(basedon: observations)
+            await firestoreManager.loadObservations(metricCode: "55423-8")
+            recalculateChartData(basedon: firestoreManager.observations)
         }
     }
     
@@ -95,9 +98,9 @@ struct DataCard: View {
     
     // recalculates data when new observation is added
     func recalculateChartData(basedon newObservations: [(date: Date, value: Double)]) {
-        chartData = group(observations)
+        chartData = group(firestoreManager.observations)
         maxValue = chartData.map { $0.value }.reduce(0, +) / 7
-        }
+    }
 }
 
 /*struct DataCard_Previews: PreviewProvider {
