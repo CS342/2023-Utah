@@ -14,8 +14,22 @@ import UtahSharedContext
 struct Welcome: View {
     @Binding private var onboardingSteps: [OnboardingFlow.Step]
     
+    private var logoImage: Image {
+        guard let imagePath = Bundle.module.path(forResource: "UtahLogo", ofType: "jpeg"),
+           let image = UIImage(contentsOfFile: imagePath) else {
+            return Image(systemName: "building.columns.fill")
+        }
+
+        return Image(uiImage: image)
+    }
     
     var body: some View {
+        logoImage
+            .resizable()
+            .scaledToFill()
+            .accessibilityLabel(Text("University of Utah logo"))
+            .frame(width: 166, height: 44)
+            .padding(.top, 40)
         OnboardingView(
             title: "Welcome to U-STEP".moduleLocalized,
             subtitle: "A collaboration between University of Utah & Stanford University".moduleLocalized,
@@ -44,7 +58,7 @@ struct Welcome: View {
                     onboardingSteps.append(.consent)
                 }
             }
-        )
+        ).padding(.top, -20)
     }
     
     

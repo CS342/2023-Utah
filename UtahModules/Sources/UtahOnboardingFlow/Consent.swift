@@ -9,7 +9,6 @@
 import Onboarding
 import SwiftUI
 
-
 struct Consent: View {
     @Binding private var onboardingSteps: [OnboardingFlow.Step]
     
@@ -21,21 +20,38 @@ struct Consent: View {
         }
         return data
     }
+    
+    private var logoImage: Image {
+        guard let imagePath = Bundle.module.path(forResource: "UtahLogo", ofType: "jpeg"),
+           let image = UIImage(contentsOfFile: imagePath) else {
+            return Image(systemName: "building.columns.fill")
+        }
+
+        return Image(uiImage: image)
+    }
 
     var body: some View {
         ScrollViewReader { _ in
             OnboardingView(
                 contentView: {
-                    HTMLView(
-                        asyncHTML: {
-                            consentDocument
-                        }
-                    )
+                    VStack {
+                        logoImage
+                            .resizable()
+                            .scaledToFill()
+                            .accessibilityLabel(Text("University of Utah logo"))
+                            .frame(width: 166, height: 44)
+                            .padding(.bottom, 20)
+                        HTMLView(
+                            asyncHTML: {
+                                consentDocument
+                            }
+                        )
+                    }
                 },
                 actionView: {
                     VStack {
                         OnboardingActionsView("I accept") {
-                            onboardingSteps.append(.conditionQuestion)
+                            onboardingSteps.append(.signUp)
                         }
                         Divider()
                     }
