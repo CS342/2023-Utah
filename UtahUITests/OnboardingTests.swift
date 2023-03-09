@@ -53,10 +53,9 @@ extension XCUIApplication {
     func navigateOnboardingFlow(assertThatHealthKitConsentIsShown: Bool = true) throws {
         try navigateOnboardingFlowWelcome()
         try navigateOnboardingAccount()
-//        if staticTexts["Consent Form"].waitForExistence(timeout: 5) {
-//            try navigateOnboardingFlowConsent()
-//            try navigateOnboardingConditionQuestion()
-//        }
+        if staticTexts["What is your diagnosis?"].waitForExistence(timeout: 5) {
+            try navigateOnboardingConditionQuestion()
+        }
         try navigateOnboardingFlowHealthKitAccess(assertThatHealthKitConsentIsShown: assertThatHealthKitConsentIsShown)
         try navigateScheduling()
     }
@@ -140,7 +139,7 @@ extension XCUIApplication {
         try handleHealthKitAuthorization()
     }
     
-    private func navigateScheduling() {
+    private func navigateScheduling() throws {
         XCTAssertTrue(images["heart.text.square.fill"].waitForExistence(timeout: 2))
         XCTAssertTrue(buttons["Continue"].waitForExistence(timeout: 2))
         buttons["Continue"].tap()

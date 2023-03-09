@@ -1,11 +1,13 @@
 //
-//  SwiftUIView.swift
-//  
+// This source file is part of the CS342 2023 Utah Team Application project
 //
-//  Created by Brooke Krajancich on 3/8/23.
+// SPDX-FileCopyrightText: 2023 Stanford University
+//
+// SPDX-License-Identifier: MIT
 //
 
 // swiftlint:disable accessibility_label_for_image
+// swiftlint:disable missing_docs
 
 import SwiftUI
 
