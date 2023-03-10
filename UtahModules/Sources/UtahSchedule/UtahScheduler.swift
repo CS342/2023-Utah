@@ -27,16 +27,6 @@ extension UtahScheduler {
                         dateComponents: .init(hour: 10, minute: 00), // Every Day at 10:00 AM
                         end: .numberOfEvents(356)
                     ),
-                    context: UtahTaskContext.researchKitTask(.edmonton)
-                ),
-                Task(
-                    title: String(localized: "RESEARCHKIT_TASK_TITLE", bundle: .module),
-                    description: String(localized: "RESEARCHKIT_TASK_DESCRIPTION", bundle: .module),
-                    schedule: Schedule(
-                        start: Calendar.current.startOfDay(for: Date()),
-                        dateComponents: .init(hour: 10, minute: 00), // Every Day at 10:00 AM
-                        end: .numberOfEvents(356)
-                    ),
                     context: UtahTaskContext.researchKitTask(.edmontonVEINES)
                 )
             ]
