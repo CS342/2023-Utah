@@ -10,6 +10,9 @@
 // swiftlint:disable line_length
 // swiftlint:disable function_body_length
 // swiftlint:disable cyclomatic_complexity
+// swiftlint:disable file_length
+// swiftlint:disable type_body_length
+// swiftlint:disable object_literal
 
 import Firebase
 import FirebaseAuth
@@ -21,6 +24,294 @@ import SwiftUI
 import UtahSharedContext
 
 enum QuestionnaireUtil {
+    static func addWIQSteps(steps: inout [ORKStep]) {
+        let wiqChoices = [
+            ORKTextChoice(text: "No Difficulty", value: "0" as NSSecureCoding & NSCopying & NSObjectProtocol),
+            ORKTextChoice(text: "Slight Difficulty", value: "1" as NSSecureCoding & NSCopying & NSObjectProtocol),
+            ORKTextChoice(text: "Some Difficulty", value: "2" as NSSecureCoding & NSCopying & NSObjectProtocol),
+            ORKTextChoice(text: "Much Difficulty", value: "3" as NSSecureCoding & NSCopying & NSObjectProtocol),
+            ORKTextChoice(text: "Unable to Do", value: "4" as NSSecureCoding & NSCopying & NSObjectProtocol)
+        ]
+
+        let wiqAnswerFormat = ORKAnswerFormat.choiceAnswerFormat(with: .singleChoice, textChoices: wiqChoices)
+
+        let questionsWIQ = [
+            "Walk indoors, such as around your home?",
+            "Walk 50 feet?",
+            "Walk 150 feet? (1/2 block)",
+            "Walk 300 feet? 1 block?",
+            "Walk 600 feet? 2 blocks?",
+            "Walk 900 feet? 3 blocks?",
+            "Walk 1500 feet? 5 blocks?"
+        ]
+        for (idx, question) in questionsWIQ.enumerated() {
+            let wiq = ORKQuestionStep(
+                identifier: String(format: "WIQ %d", idx + 1),
+                title: "How difficult was it for you to:",
+                question: question,
+                answer: wiqAnswerFormat
+            )
+            wiq.isOptional = false
+            steps += [wiq]
+        }
+    }
+    
+    static func addVEINESSteps(steps: inout [ORKStep]) {
+        // Question 1
+        let q1Choices = [
+            ORKTextChoice(text: "Every day", value: "1" as NSSecureCoding & NSCopying & NSObjectProtocol),
+            ORKTextChoice(text: "Several times a week", value: "2" as NSSecureCoding & NSCopying & NSObjectProtocol),
+            ORKTextChoice(text: "About once a week", value: "3" as NSSecureCoding & NSCopying & NSObjectProtocol),
+            ORKTextChoice(text: "Less than once a week", value: "4" as NSSecureCoding & NSCopying & NSObjectProtocol),
+            ORKTextChoice(text: "Never", value: "5" as NSSecureCoding & NSCopying & NSObjectProtocol)
+        ]
+
+        let q1AnswerFormat = ORKAnswerFormat.choiceAnswerFormat(with: .singleChoice, textChoices: q1Choices)
+        let q1a = ORKFormItem(identifier: "VEINES 1a", text: "Heavy legs", answerFormat: q1AnswerFormat)
+        let q1b = ORKFormItem(identifier: "VEINES 1b", text: "Aching legs", answerFormat: q1AnswerFormat)
+        let q1c = ORKFormItem(identifier: "VEINES 1c", text: "Swelling", answerFormat: q1AnswerFormat)
+        let q1d = ORKFormItem(identifier: "VEINES 1d", text: "Night cramps", answerFormat: q1AnswerFormat)
+        let q1e = ORKFormItem(identifier: "VEINES 1e", text: "Heat or burning sensation", answerFormat: q1AnswerFormat)
+        let q1f = ORKFormItem(identifier: "VEINES 1f", text: "Restless legs", answerFormat: q1AnswerFormat)
+        let q1g = ORKFormItem(identifier: "VEINES 1g", text: "Throbbing", answerFormat: q1AnswerFormat)
+        let q1h = ORKFormItem(identifier: "VEINES 1h", text: "Itching", answerFormat: q1AnswerFormat)
+        let q1i = ORKFormItem(identifier: "VEINES 1i", text: "Tingling sensation (e.g.pins and needles)", answerFormat: q1AnswerFormat)
+
+        let q1Step = ORKFormStep(
+            identifier: "VEINES 1",
+            title: "",
+            text:
+                        """
+                        During the past 4 weeks, how often have you had any of the following leg problems?
+                        """
+        )
+        q1Step.formItems = [q1a, q1b, q1c, q1d, q1e, q1f, q1g, q1h, q1i]
+        q1Step.isOptional = false
+        steps += [q1Step]
+
+        // Question 2
+        let q2ChoicesV = [
+            ORKTextChoice(text: "On walking", value: "1" as NSSecureCoding & NSCopying & NSObjectProtocol),
+            ORKTextChoice(text: "At mid-day", value: "2" as NSSecureCoding & NSCopying & NSObjectProtocol),
+            ORKTextChoice(text: "At the end of the day", value: "3" as NSSecureCoding & NSCopying & NSObjectProtocol),
+            ORKTextChoice(text: "During the night", value: "4" as NSSecureCoding & NSCopying & NSObjectProtocol),
+            ORKTextChoice(text: "At any time of the day", value: "5" as NSSecureCoding & NSCopying & NSObjectProtocol),
+            ORKTextChoice(text: "Never", value: "6" as NSSecureCoding & NSCopying & NSObjectProtocol)
+        ]
+
+        let q2AnswerFormat = ORKAnswerFormat.choiceAnswerFormat(with: .singleChoice, textChoices: q2ChoicesV)
+        let q2StepV = ORKQuestionStep(
+            identifier: "VEINES 2",
+            title: "",
+            question: """
+                        At what time of the day is your leg problem most instense?
+                        """,
+            answer: q2AnswerFormat
+        )
+        q2StepV.isOptional = false
+
+        steps += [q2StepV]
+
+        // Question 3
+        let q3ChoicesV = [
+            ORKTextChoice(text: "Much better now than one year ago", value: "1" as NSSecureCoding & NSCopying & NSObjectProtocol),
+            ORKTextChoice(text: "Somewhat better now than one year ago", value: "2" as NSSecureCoding & NSCopying & NSObjectProtocol),
+            ORKTextChoice(text: "About the same now as one year ago", value: "3" as NSSecureCoding & NSCopying & NSObjectProtocol),
+            ORKTextChoice(text: "Somewhat worse now than one year ago", value: "4" as NSSecureCoding & NSCopying & NSObjectProtocol),
+            ORKTextChoice(text: "Much worse now than one year ago", value: "5" as NSSecureCoding & NSCopying & NSObjectProtocol),
+            ORKTextChoice(text: "I did not have any leg problems last year", value: "6" as NSSecureCoding & NSCopying & NSObjectProtocol)
+        ]
+
+        let q3AnswerFormat = ORKAnswerFormat.choiceAnswerFormat(with: .singleChoice, textChoices: q3ChoicesV)
+        let q3StepV = ORKQuestionStep(
+            identifier: "VEINES 3",
+            title: "",
+            question: """
+                        Compared to one year ago, how would you rate your leg problem in general now?
+                        """,
+            answer: q3AnswerFormat
+        )
+        q3StepV.isOptional = false
+
+        steps += [q3StepV]
+
+        // Question 4
+        let q4ChoicesV = [
+            ORKTextChoice(text: "N/A", value: "0" as NSSecureCoding & NSCopying & NSObjectProtocol),
+            ORKTextChoice(text: "YES, limited a lot", value: "1" as NSSecureCoding & NSCopying & NSObjectProtocol),
+            ORKTextChoice(text: "YES, limited a little", value: "2" as NSSecureCoding & NSCopying & NSObjectProtocol),
+            ORKTextChoice(text: "NO, not limited at all", value: "3" as NSSecureCoding & NSCopying & NSObjectProtocol)
+        ]
+
+        let q4AnswerFormat = ORKAnswerFormat.choiceAnswerFormat(with: .singleChoice, textChoices: q4ChoicesV)
+        let q4a = ORKFormItem(
+            identifier: "VEINES 4a",
+            text: "Daily activities at work",
+            answerFormat: q4AnswerFormat
+        )
+        let q4b = ORKFormItem(
+            identifier: "VEINES 4b",
+            text: "Daily activities at home (e.g. housework, ironing, doing odd jobs repairs around the house, gardening, etc...)",
+            answerFormat: q4AnswerFormat
+        )
+        let q4c = ORKFormItem(
+            identifier: "VEINES 4c",
+            text: "Social or leisure activities in which you are standing for long periods (e.g. parties, weddings, taking public transportation, shopping, etc...)",
+            answerFormat: q4AnswerFormat
+        )
+        let q4d = ORKFormItem(
+            identifier: "VEINES 4d",
+            text: "Social or leisure activities in which you are sitting for long periods (e.g. going to the cinema or the theater, travelling, etc...)",
+            answerFormat: q4AnswerFormat
+        )
+        let q4StepV = ORKFormStep(
+            identifier: "VEINES 4",
+            title: "",
+            text:
+                        """
+                        The following items are about activities that you might do in a typical day. Does your leg problem now limit you
+                        in these activities? If so, how much ?
+                        """
+        )
+        q4StepV.formItems = [q4a, q4b, q4c, q4d]
+        q4StepV.isOptional = false
+        steps += [q4StepV]
+
+        // Question 5
+        let q5ChoicesV = [
+            ORKTextChoice(text: "YES", value: "1" as NSSecureCoding & NSCopying & NSObjectProtocol),
+            ORKTextChoice(text: "NO", value: "2" as NSSecureCoding & NSCopying & NSObjectProtocol)
+        ]
+
+        let q5AnswerFormat = ORKAnswerFormat.choiceAnswerFormat(with: .singleChoice, textChoices: q5ChoicesV)
+        let q5a = ORKFormItem(
+            identifier: "VEINES 5a",
+            text: "Cut down the amount of time you spent on work or other activities",
+            answerFormat: q5AnswerFormat
+        )
+        let q5b = ORKFormItem(
+            identifier: "VEINES 5b",
+            text: "Accomplished less than you would like",
+            answerFormat: q5AnswerFormat
+        )
+        let q5c = ORKFormItem(
+            identifier: "VEINES 5c",
+            text: "Were limited in the kind of work or other activities",
+            answerFormat: q5AnswerFormat
+        )
+        let q5d = ORKFormItem(
+            identifier: "VEINES 5d",
+            text: "Had difficulty performing the work or other activities (for example, it took extra effort)",
+            answerFormat: q5AnswerFormat
+        )
+        let q5StepV = ORKFormStep(
+            identifier: "VEINES 5",
+            title: "",
+            text:
+                        """
+                        During the past 4 weeks, have you had any of the following probloems with your work or other
+                        regular daily activities as a result of your leg problem?
+                        """
+        )
+        q5StepV.formItems = [q5a, q5b, q5c, q5d]
+        q5StepV.isOptional = false
+        steps += [q5StepV]
+
+        // Question 6
+        let q6ChoicesV = [
+            ORKTextChoice(text: "Not at all", value: "1" as NSSecureCoding & NSCopying & NSObjectProtocol),
+            ORKTextChoice(text: "Slightly", value: "2" as NSSecureCoding & NSCopying & NSObjectProtocol),
+            ORKTextChoice(text: "Moderately", value: "3" as NSSecureCoding & NSCopying & NSObjectProtocol),
+            ORKTextChoice(text: "Quite a bit", value: "4" as NSSecureCoding & NSCopying & NSObjectProtocol),
+            ORKTextChoice(text: "Extremely", value: "5" as NSSecureCoding & NSCopying & NSObjectProtocol)
+        ]
+
+        let q6AnswerFormat = ORKAnswerFormat.choiceAnswerFormat(with: .singleChoice, textChoices: q6ChoicesV)
+        let q6StepV = ORKQuestionStep(
+            identifier: "VEINES 6",
+            title: "",
+            question: """
+                        During the past 4 weeks, to what extent has your leg problem interfered with your normal social activities
+                        with family, friends, neighbors or groups?
+                        """,
+            answer: q6AnswerFormat
+        )
+        q6StepV.isOptional = false
+
+        steps += [q6StepV]
+
+        // Question 7
+        let q7Choices = [
+            ORKTextChoice(text: "None", value: "1" as NSSecureCoding & NSCopying & NSObjectProtocol),
+            ORKTextChoice(text: "Very mild", value: "2" as NSSecureCoding & NSCopying & NSObjectProtocol),
+            ORKTextChoice(text: "Mild", value: "3" as NSSecureCoding & NSCopying & NSObjectProtocol),
+            ORKTextChoice(text: "Moderate", value: "4" as NSSecureCoding & NSCopying & NSObjectProtocol),
+            ORKTextChoice(text: "Severe", value: "5" as NSSecureCoding & NSCopying & NSObjectProtocol),
+            ORKTextChoice(text: "Very severe", value: "6" as NSSecureCoding & NSCopying & NSObjectProtocol)
+        ]
+
+        let q7AnswerFormat = ORKAnswerFormat.choiceAnswerFormat(with: .singleChoice, textChoices: q7Choices)
+        let q7Step = ORKQuestionStep(
+            identifier: "VEINES 7",
+            title: "",
+            question: """
+                        How much leg pain have your had during the past 4 weeks?
+                        """,
+            answer: q7AnswerFormat
+        )
+        q7Step.isOptional = false
+
+        steps += [q7Step]
+
+        // Question 8
+        let q8Choices = [
+            ORKTextChoice(text: "All of the time", value: "1" as NSSecureCoding & NSCopying & NSObjectProtocol),
+            ORKTextChoice(text: "Most of the time", value: "2" as NSSecureCoding & NSCopying & NSObjectProtocol),
+            ORKTextChoice(text: "A good bit of the time", value: "3" as NSSecureCoding & NSCopying & NSObjectProtocol),
+            ORKTextChoice(text: "Some of the time", value: "4" as NSSecureCoding & NSCopying & NSObjectProtocol),
+            ORKTextChoice(text: "A little of the time", value: "5" as NSSecureCoding & NSCopying & NSObjectProtocol),
+            ORKTextChoice(text: "None of the time", value: "6" as NSSecureCoding & NSCopying & NSObjectProtocol)
+        ]
+
+        let q8AnswerFormat = ORKAnswerFormat.choiceAnswerFormat(with: .singleChoice, textChoices: q8Choices)
+        let q8a = ORKFormItem(
+            identifier: "VEINES 8a",
+            text: "Have you felt concerned about the appearance of your leg(s)?",
+            answerFormat: q8AnswerFormat
+        )
+        let q8b = ORKFormItem(
+            identifier: "VEINES 8b",
+            text: "Have you felt ittitable?",
+            answerFormat: q8AnswerFormat
+        )
+        let q8c = ORKFormItem(
+            identifier: "VEINES 8c",
+            text: "Have you felt a burden to your family or friends?",
+            answerFormat: q8AnswerFormat
+        )
+        let q8d = ORKFormItem(
+            identifier: "VEINES 8d",
+            text: "Have you been worried about bumping into things?",
+            answerFormat: q8AnswerFormat
+        )
+        let q8e = ORKFormItem(
+            identifier: "VEINES 8e",
+            text: "Has the appearance of your leg(s) influenced your choice of clothing?",
+            answerFormat: q8AnswerFormat
+        )
+        let q8Step = ORKFormStep(
+            identifier: "VEINES 8",
+            title: "",
+            text:
+                        """
+                        How much of the time during the past 4 weeks:
+                        """
+        )
+        q8Step.formItems = [q8a, q8b, q8c, q8d, q8e]
+        q8Step.isOptional = false
+        steps += [q8Step]
+    }
+    
     static func addEdmontonSteps(steps: inout [ORKStep]) {
         // Instruction step
         let instructionStep = ORKInstructionStep(identifier: "IntroStep")

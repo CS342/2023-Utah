@@ -118,6 +118,8 @@ public struct ScheduleView: View {
                     EdmontonViewController()
                 } else if researchKitTaskContext == .edmontonVEINES {
                     EdmontonVEINESViewController()
+                } else if researchKitTaskContext == .edmontonWIQ {
+                    EdmontonWIQViewController()
                 }
             }
         }

@@ -38,7 +38,7 @@ class EdmontonWIQViewCoordinator: NSObject, ORKTaskViewControllerDelegate {
             // Separate the Surveys for storage/scoring
             
             // Edmonton Upload
-            edmontonResponse.item?.removeLast(26)
+            edmontonResponse.item?.removeLast(7)
             let getUpGoResult = taskViewController.result.stepResult(forStepIdentifier: "Edmonton 11")
             let getUpResult: TimedWalkStepResult = getUpGoResult?.results?[0] as! TimedWalkStepResult
             
