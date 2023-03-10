@@ -92,4 +92,3 @@ extension XCUIApplication {
         buttons["Done"].tap()
     }
 }
-
