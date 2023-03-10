@@ -18,7 +18,7 @@ class TrendsTests: XCTestCase {
         continueAfterFailure = false
         
         let app = XCUIApplication()
-        app.launchArguments = ["--skipOnboarding"]
+        app.launchArguments = ["--showOnboarding"]
         app.deleteAndLaunch(withSpringboardAppName: "U-STEP")
     }
     
@@ -26,6 +26,7 @@ class TrendsTests: XCTestCase {
     func testTrends() throws {
         let app = XCUIApplication()
         try app.conductOnboardingIfNeeded()
+        
         try navigateToTrends()
         let prevValue = Double(app.staticTexts["steps_val"].label)
         try exitAppAndOpenHealth(.steps)
