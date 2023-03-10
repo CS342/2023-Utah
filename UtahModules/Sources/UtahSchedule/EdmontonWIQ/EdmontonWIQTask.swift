@@ -10,10 +10,13 @@ import Foundation
 import ResearchKit
 
 // swiftlint:disable function_body_length line_length object_literal
-enum EdmontonTask {
-    static func createEdmontonTask(showSummary: Bool = false) -> ORKOrderedTask {
+// swiftlint:disable type_body_length
+enum EdmontonWIQTask {
+    static func createEdmontonWIQTask(showSummary: Bool = false) -> ORKOrderedTask {
         var steps = [ORKStep]()
 
+        // EDMONTON
+        
         // Instruction step
         let instructionStep = ORKInstructionStep(identifier: "IntroStep")
         instructionStep.title = "Patient Questionnaire"
@@ -168,15 +171,45 @@ enum EdmontonTask {
 
         steps += [q11Step]
 
-        
-        if showSummary {
-            let summaryStep = ORKCompletionStep(identifier: "SummaryStep")
-            summaryStep.title = "Thank you."
-            summaryStep.text = "You can view your progress in the trends tab."
+        // WIQ
+        let wiqChoices = [
+            ORKTextChoice(text: "No Difficulty", value: "0" as NSSecureCoding & NSCopying & NSObjectProtocol),
+            ORKTextChoice(text: "Slight Difficulty", value: "1" as NSSecureCoding & NSCopying & NSObjectProtocol),
+            ORKTextChoice(text: "Some Difficulty", value: "2" as NSSecureCoding & NSCopying & NSObjectProtocol),
+            ORKTextChoice(text: "Much Difficulty", value: "3" as NSSecureCoding & NSCopying & NSObjectProtocol),
+            ORKTextChoice(text: "Unable to Do", value: "4" as NSSecureCoding & NSCopying & NSObjectProtocol)
+        ]
 
-            steps += [summaryStep]
+        let wiqAnswerFormat = ORKAnswerFormat.choiceAnswerFormat(with: .singleChoice, textChoices: wiqChoices)
+
+        let questionsWIQ = [
+            "Walk indoors, such as around your home?",
+            "Walk 50 feet?",
+            "Walk 150 feet? (1/2 block)",
+            "Walk 300 feet? 1 block?",
+            "Walk 600 feet? 2 blocks?",
+            "Walk 900 feet? 3 blocks?",
+            "Walk 1500 feet? 5 blocks?"
+        ]
+        for (idx, question) in questionsWIQ.enumerated() {
+            let wiq = ORKQuestionStep(
+                identifier: String(format: "WIQ %d", idx + 1),
+                title: "How difficult was it for you to:",
+                question: question,
+                answer: wiqAnswerFormat
+            )
+            wiq.isOptional = false
+            steps += [wiq]
         }
+ 
+        // summary
+        let summaryStep = ORKCompletionStep(identifier: "SummaryStep")
+        summaryStep.title = "Thank you."
+        summaryStep.text = "You can view your progress in the trends tab."
 
-        return ORKOrderedTask(identifier: "edmonton", steps: steps)
+        steps += [summaryStep]
+
+
+        return ORKOrderedTask(identifier: "edmontonWiq", steps: steps)
     }
 }

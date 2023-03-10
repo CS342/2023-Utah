@@ -6,14 +6,22 @@
 // SPDX-License-Identifier: MIT
 //
 
+// swiftlint:disable force_unwrapping
+// swiftlint:disable line_length
+// swiftlint:disable function_body_length
+// swiftlint:disable cyclomatic_complexity
+
+import Firebase
+import FirebaseAuth
+import FirebaseStorage
 import Foundation
+import ModelsR4
 import ResearchKit
+import SwiftUI
+import UtahSharedContext
 
-// swiftlint:disable function_body_length line_length object_literal
-enum EdmontonTask {
-    static func createEdmontonTask(showSummary: Bool = false) -> ORKOrderedTask {
-        var steps = [ORKStep]()
-
+enum QuestionnaireUtil {
+    static func addEdmontonSteps(steps: inout [ORKStep]) {
         // Instruction step
         let instructionStep = ORKInstructionStep(identifier: "IntroStep")
         instructionStep.title = "Patient Questionnaire"
@@ -167,16 +175,112 @@ enum EdmontonTask {
         q11Step.isOptional = false
 
         steps += [q11Step]
-
-        
-        if showSummary {
-            let summaryStep = ORKCompletionStep(identifier: "SummaryStep")
-            summaryStep.title = "Thank you."
-            summaryStep.text = "You can view your progress in the trends tab."
-
-            steps += [summaryStep]
+    }
+    
+    static func uploadQuestionnaire(
+        fhirResponse: QuestionnaireResponse,
+        firebaseCollection: String,
+        surveyType: String
+    ) {
+        var score = 0
+        // calculating score
+        if let responseItems = fhirResponse.item {
+            for item in responseItems {
+                if let stringscor = item.answer?[0] {
+                    do {
+                        let encod = JSONEncoder()
+                        let ifh = try encod.encode(stringscor)
+                        
+                        let json = String(decoding: ifh, as: UTF8.self)
+                        if json.contains("valueString") {
+                            score += json[json.index(json.startIndex, offsetBy: 16)].wholeNumberValue!
+                        }
+                    } catch {
+                        print(error.localizedDescription, " Error when calculating score.")
+                    }
+                }
+            }
         }
 
-        return ORKOrderedTask(identifier: "edmonton", steps: steps)
+        let user = Auth.auth().currentUser
+        // Add a patient identifier to the response so we know who did this survey
+        fhirResponse.subject = Reference(reference: FHIRPrimitive(FHIRString("Patient/" + (user?.uid ?? "PATIENT_ID"))))
+        fhirResponse.questionnaire = surveyType.asFHIRCanonicalPrimitive()
+
+        do {
+            // Parse the FHIR object into JSON
+            let encoder = JSONEncoder()
+            encoder.outputFormatting = .prettyPrinted
+            let data = try encoder.encode(fhirResponse)
+
+            // Print out the JSON for debugging
+            let json = String(decoding: data, as: UTF8.self)
+            print(json)
+
+            // Convert the FHIR object to a dictionary and upload to Firebase
+            let jsonDict = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any]
+            let identifier = fhirResponse.id?.value?.string ?? UUID().uuidString
+
+            guard let jsonDict else {
+                return
+            }
+
+            let database = Firestore.firestore()
+            database.collection(firebaseCollection).document(identifier).setData(jsonDict) { err in
+                if let err {
+                    print("Error writing document: \(err)")
+                } else {
+                    print("Document successfully written.")
+                }
+            }
+
+
+            // Upload Score + Data to user collection
+            let userQuestionnaireData = ["score": score, "type": surveyType, "surveyId": identifier, "dateCompleted": Timestamp()] as [String: Any]
+            let userUID = user?.uid
+            if userUID != nil {
+                database.collection("users").document(userUID!).collection("QuestionnaireResponse").document(identifier).setData(userQuestionnaireData) { err in
+                    if let err {
+                        print("Error writing document: \(err)")
+                    } else {
+                        print("Document successfully written.")
+                    }
+                }
+            }
+            
+            // only survey with storage necessary
+            if surveyType == "edmonton" {
+                // Upload any files that are attached to the FHIR object to Firebase
+                if let responseItems = fhirResponse.item {
+                    for item in responseItems {
+                        if case let .attachment(value) = item.answer?.first?.value {
+                            guard let fileURL = value.url?.value?.url else {
+                                continue
+                            }
+                            
+                            // Get a reference to the Cloud Storage service
+                            let storageRef = Storage.storage().reference()
+                            
+                            // Create a reference for the new file
+                            // and put it in the "edmonton" file on Cloud Storage
+                            let fileName = fileURL.lastPathComponent
+                            let fileRef = storageRef.child("edmonton/" + fileName)
+                            
+                            // Upload the file to Cloud Storage using the reference
+                            fileRef.putFile(from: fileURL, metadata: nil) { _, error in
+                                if let error {
+                                    print("An error occurred: \(error)")
+                                } else {
+                                    print("\(fileName) was uploaded successfully!")
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        } catch {
+            // Something didn't work!
+            print(error.localizedDescription)
+        }
     }
 }
