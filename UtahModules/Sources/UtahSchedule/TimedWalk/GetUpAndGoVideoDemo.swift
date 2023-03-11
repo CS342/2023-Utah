@@ -19,8 +19,8 @@ struct GetUpAndGoVideoDemo: View {
         Text("Tap on it to play")
             .padding(.vertical, 20)
         VideoPlayer(
-            // player: AVPlayer(url:  URL(string: "https://bit.ly/swswift")!)
-            player: AVPlayer(url: Bundle.main.url(forResource: "video", withExtension: "mp4")!)
+            player: AVPlayer(url:  URL(string: "https://bit.ly/swswift")!)
+            // player: AVPlayer(url: Bundle.main.url(forResource: "video", withExtension: "mp4")!)
         )
         .frame(height: 300)
     }
