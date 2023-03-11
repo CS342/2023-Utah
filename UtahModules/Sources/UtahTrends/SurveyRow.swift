@@ -14,8 +14,8 @@ struct SurveyRow: View {
 
     var body: some View {
         HStack {
-            Text(surveyHistory.authored)
-            Text(surveyHistory.questionnaire)
+            Text((surveyHistory.authored!))
+            Text(surveyHistory.questionnaire!)
         }
     }
 }

@@ -11,7 +11,17 @@ struct DQRowView: View {
     // questions and answers in same array
     
     // turn this into dictionary: q1:"Drawing Clock Test"
-    var questionList = ["q1":"Drawing Clock Test", "q2":"Times admitted to a hospital the past year", "q3":"Description of overall health"]
+    var questionList = ["q1":"Drawing Clock Test",
+                        "q2":"Times admitted to a hospital the past year",
+                        "q3":"Description of overall health",
+                        "q4":"Description of overall health",
+                        "q5":"Description of overall health",
+                        "q6":"Description of overall health",
+                        "q7":"Description of overall health",
+                        "q8":"Description of overall health",
+                        "q9":"Description of overall health",
+                        "q10":"Description of overall health",
+                        "q11":"Description of overall health"]
     @State var answerList = [QuestionList]()
     var body: some View {
         ScrollView {

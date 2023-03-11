@@ -27,7 +27,8 @@ public struct SurveyHistoryWrapper: View {
     @State var surveys: [QuestionnaireResponse] = []
     
     public var body: some View {
-        SurveyHistoryList(surveys: self.$surveys)
+        //SurveyHistoryList(surveys: self.$surveys)
+        Text("hi")
             .task {
                 try? await _Concurrency.Task.sleep(for: .seconds(0.1))
                 loadSurveys()
@@ -42,6 +43,7 @@ public struct SurveyHistoryWrapper: View {
                 } else {
                     for document in documents!.documents {
                         let data = document.data() as [String: Any]
+                        print(data)
                         let score = data["score"] as? String
                         let surveyId = data["surveyId"] as? String
                         let type = data["type"] as? String
@@ -66,6 +68,7 @@ public struct SurveyHistoryWrapper: View {
         docRef.getDocument(as: QuestionnaireResponse.self) { result in
             switch result {
             case .success(let response):
+                print(response)
                 surveys.append(response)
             case .failure(let error):
                 print(error)
