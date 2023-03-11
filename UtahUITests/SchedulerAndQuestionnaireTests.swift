@@ -106,6 +106,18 @@ extension XCUIApplication {
     }
     
     private func testVEINESSurvey() throws {
-        //
+        let numSubQuestions = [9, 1, 1, 4, 4, 1, 1, 5]
+        
+        for _ in numSubQuestions {
+            XCTAssertTrue(tables.element(boundBy: 0).waitForExistence(timeout: 2))
+            XCTAssertTrue(tables.element(boundBy: 0).cells.element(boundBy: 0).waitForExistence(timeout: 2))
+            tables.element(boundBy: 0).cells.element(boundBy: 0).tap()
+            XCTAssertTrue(buttons["Next"].waitForExistence(timeout: 2))
+            buttons["Next"].tap()
+        }
+
+        XCTAssertTrue(staticTexts["Thank you."].waitForExistence(timeout: 2))
+        XCTAssertTrue(buttons["Done"].waitForExistence(timeout: 2))
+        buttons["Done"].tap()
     }
 }
