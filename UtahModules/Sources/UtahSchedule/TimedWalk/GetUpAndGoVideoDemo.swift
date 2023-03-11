@@ -6,6 +6,8 @@
 // SPDX-License-Identifier: MIT
 //
 
+// swiftlint:disable force_unwrapping
+
 import AVKit
 import SwiftUI
 
@@ -18,7 +20,7 @@ struct GetUpAndGoVideoDemo: View {
             .padding(.vertical, 20)
         VideoPlayer(
             // player: AVPlayer(url:  URL(string: "https://bit.ly/swswift")!)
-            player: AVPlayer(url : Bundle.main.url(forResource: "video", withExtension: "mp4")!)
+            player: AVPlayer(url: Bundle.main.url(forResource: "video", withExtension: "mp4")!)
         )
         .frame(height: 300)
     }
@@ -29,4 +31,3 @@ struct GetUpAndGoVideoDemo_Previews: PreviewProvider {
         GetUpAndGoVideoDemo()
     }
 }
-

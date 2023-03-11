@@ -50,7 +50,6 @@ class SchedulerAndQuestionnaireTests: XCTestCase {
 }
 
 extension XCUIApplication {
-    
     func testSurveyLogic() throws {
         try testEdmontonSurvey()
         if staticTexts["Walking Impairement Questionnaire"].waitForExistence(timeout: 5) {
