@@ -94,7 +94,6 @@ public struct ScheduleView: View {
                 .sheet(item: $presentedContext) { presentedContext in
                     destination(withContext: presentedContext)
                 }
-                temporyButtons
             }
         }
     }
