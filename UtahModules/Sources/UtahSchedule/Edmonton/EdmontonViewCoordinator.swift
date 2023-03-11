@@ -47,11 +47,11 @@ class EdmontonViewCoordinator: NSObject, ORKTaskViewControllerDelegate {
         default:
             break
         }
-
+        taskViewController.dismiss(animated: true, completion: nil)
         // We're done with the Edmonton survey, now we will launch
         // a second survey depending on which type of disease the user
         // reported having during onboarding.
-
+        /*
         let defaults = UserDefaults.standard
         if let disease = defaults.string(forKey: "disease") {
             var nextSurveyViewController: UIViewController?
@@ -81,5 +81,6 @@ class EdmontonViewCoordinator: NSObject, ORKTaskViewControllerDelegate {
             // If the disease lookup fails, end the survey
             taskViewController.dismiss(animated: true, completion: nil)
         }
+         */
     }
 }
