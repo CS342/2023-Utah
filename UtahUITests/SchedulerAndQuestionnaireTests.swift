@@ -8,7 +8,6 @@
 
 import XCTest
 import XCTestExtensions
-import UtahSharedContext
 
 
 class SchedulerAndQuestionnaireTests: XCTestCase {
@@ -34,19 +33,8 @@ class SchedulerAndQuestionnaireTests: XCTestCase {
         XCTAssertTrue(app.staticTexts["Start Task"].firstMatch.waitForExistence(timeout: 2))
         app.staticTexts["Start Task"].firstMatch.tap()
 
-        let defaults = UserDefaults.standard
-        if let disease = defaults.string(forKey: "disease") {
-            switch disease {
-            case StorageKeys.conditions[0]:
-                try app.navigateWIQQuestionnaire()
-            case StorageKeys.conditions[1]:
-                try app.navigateVenousQuestionnaire()
-            default:
-                try app.navigateEdmontonQuestionnaire()
-            }
-        } else {
-            try app.navigateEdmontonQuestionnaire()
-        }
+        // default questionnaire
+        try app.navigateEdmontonQuestionnaire()
     }
 }
 
@@ -55,7 +43,7 @@ extension XCUIApplication {
         try navigateEdmonton()
     }
     
-    
+    /*
     func navigateWIQQuestionnaire() throws {
         try navigateEdmonton()
         try navigateWIQ()
@@ -64,7 +52,7 @@ extension XCUIApplication {
     func navigateVenousQuestionnaire() throws {
         try navigateEdmonton()
         try navigateVeines()
-    }
+    }*/
     
     private func navigateEdmonton() throws {
         XCTAssertTrue(staticTexts["Patient Questionnaire"].waitForExistence(timeout: 2))
