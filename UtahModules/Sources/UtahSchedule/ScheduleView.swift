@@ -6,6 +6,7 @@
 // SPDX-License-Identifier: MIT
 //
 // swiftlint:disable closure_body_length
+
 import Questionnaires
 import Scheduler
 import SwiftUI
@@ -14,48 +15,15 @@ public struct ScheduleView: View {
     @EnvironmentObject var scheduler: UtahScheduler
     @State var eventContextsByDate: [Date: [EventContext]] = [:]
     @State var presentedContext: EventContext?
-    @State private var showingEdmontonSurvey = false
-    @State private var showingWIQSurvey = false
-    @State private var showingVEINESSurvey = false
+    @State private var showingVideoDemo = false
     @State private var showingWalkTest = false
-    
+
     var startOfDays: [Date] {
         Array(eventContextsByDate.keys)
     }
     
     private var temporyButtons: some View {
         VStack {
-            Button("Edmonton Frail Scale") {
-                showingEdmontonSurvey.toggle()
-            }
-            .foregroundColor(Color.white)
-            .padding()
-            .background(.red)
-            .cornerRadius(10)
-            .sheet(isPresented: $showingEdmontonSurvey) {
-                EdmontonViewController()
-            }
-            .padding(.top, 130)
-            Button("Walking Impairement Questionnaire") {
-                showingWIQSurvey.toggle()
-            }
-            .foregroundColor(Color.white)
-            .padding()
-            .background(.blue)
-            .cornerRadius(10)
-            .sheet(isPresented: $showingWIQSurvey) {
-                WIQViewController()
-            }
-            Button("VEINES-QOL/Sym Questionnaire") {
-                showingVEINESSurvey.toggle()
-            }
-            .foregroundColor(Color.white)
-            .padding()
-            .background(.green)
-            .cornerRadius(10)
-            .sheet(isPresented: $showingVEINESSurvey) {
-                VEINESViewController()
-            }
             Button("6 Minute Walk Test (active task)") {
                 showingWalkTest.toggle()
             }
@@ -65,6 +33,16 @@ public struct ScheduleView: View {
             .cornerRadius(10)
             .sheet(isPresented: $showingWalkTest) {
                 TimedWalkViewController()
+            }
+            Button("Video Demo") {
+                showingVideoDemo.toggle()
+            }
+            .foregroundColor(Color.white)
+            .padding()
+            .background(.green)
+            .cornerRadius(10)
+            .sheet(isPresented: $showingVideoDemo) {
+                GetUpAndGoVideoDemo()
             }
             .navigationTitle(String(localized: "QUESTIONNAIRE_LIST_TITLE", bundle: .module))
         }

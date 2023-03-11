@@ -32,28 +32,80 @@ class SchedulerAndQuestionnaireTests: XCTestCase {
         XCTAssertTrue(app.staticTexts["Please complete this task once a month."].waitForExistence(timeout: 2))
         XCTAssertTrue(app.staticTexts["Start Task"].waitForExistence(timeout: 2))
         app.staticTexts["Start Task"].tap()
-
-        XCTAssertTrue(app.staticTexts["Patient Questionnaire"].waitForExistence(timeout: 2))
-        XCTAssertTrue(app.buttons["Next"].waitForExistence(timeout: 2))
-        app.buttons["Next"].tap()
-        XCTAssertTrue(app.staticTexts["Draw a clock"].waitForExistence(timeout: 2))
-        XCTAssertTrue(app.buttons["Get Started"].waitForExistence(timeout: 2))
-        app.buttons["Get Started"].tap()
         
-        XCTAssertTrue(app.buttons["Skip"].waitForExistence(timeout: 2))
-        app.buttons["Skip"].tap()
+        try app.testSurveyLogic()
+    }
+    
+    func testVideoDemo() throws {
+        let app = XCUIApplication()
+        
+        XCTAssertTrue(app.tabBars["Tab Bar"].buttons["Questions"].waitForExistence(timeout: 2))
+        app.tabBars["Tab Bar"].buttons["Questions"].tap()
+
+        XCTAssertTrue(app.buttons["Video Demo"].waitForExistence(timeout: 2))
+        app.buttons["Video Demo"].tap()
+        
+        XCTAssertTrue(app.staticTexts["Demonstration Below"].waitForExistence(timeout: 2))
+    }
+}
+
+extension XCUIApplication {
+    
+    func testSurveyLogic() throws {
+        try testEdmontonSurvey()
+        if staticTexts["Walking Impairement Questionnaire"].waitForExistence(timeout: 5) {
+            try testWIQSurvey()
+        }
+        if staticTexts["VEINES-QOL/Sym Questionnaire"].waitForExistence(timeout: 5) {
+            try testVEINESSurvey()
+        }
+    }
+    
+    private func testEdmontonSurvey() throws {
+        XCTAssertTrue(staticTexts["Patient Questionnaire"].waitForExistence(timeout: 2))
+        XCTAssertTrue(buttons["Next"].waitForExistence(timeout: 2))
+        buttons["Next"].tap()
+        XCTAssertTrue(staticTexts["Draw a clock"].waitForExistence(timeout: 2))
+        XCTAssertTrue(buttons["Get Started"].waitForExistence(timeout: 2))
+        buttons["Get Started"].tap()
+        
+        XCTAssertTrue(buttons["Skip"].waitForExistence(timeout: 2))
+        buttons["Skip"].tap()
         
         // Go through each question
         let answers = ["0", "Good", "5-8", "Sometimes", "Yes", "No", "Yes", "No", "No"]
         for answer in answers {
-            XCTAssertTrue(app.tables.staticTexts[answer].waitForExistence(timeout: 2))
-            app.tables.staticTexts[answer].tap()
-            XCTAssertTrue(app.tables.buttons["Next"].waitForExistence(timeout: 2))
-            app.tables.buttons["Next"].tap()
+            XCTAssertTrue(tables.staticTexts[answer].waitForExistence(timeout: 2))
+            tables.staticTexts[answer].tap()
+            XCTAssertTrue(tables.buttons["Next"].waitForExistence(timeout: 2))
+            tables.buttons["Next"].tap()
         }
+        
+        XCTAssertTrue(staticTexts["Get Up and Go"].waitForExistence(timeout: 2))
+        XCTAssertTrue(buttons["Next"].waitForExistence(timeout: 2))
+        buttons["Next"].tap()
+    }
     
-        XCTAssertTrue(app.staticTexts["Get Up and Go"].waitForExistence(timeout: 2))
-        XCTAssertTrue(app.buttons["Next"].waitForExistence(timeout: 2))
-        app.buttons["Next"].tap()
+    private func testWIQSurvey() throws {
+        // Go through each question
+        let answers = [
+            "No Difficulty",
+            "Slight Difficulty",
+            "Some Difficulty",
+            "Much Difficulty",
+            "Unable to Do",
+            "Slight Difficulty",
+            "No Difficulty"
+        ]
+        for answer in answers {
+            XCTAssertTrue(tables.staticTexts[answer].waitForExistence(timeout: 2))
+            tables.staticTexts[answer].tap()
+            XCTAssertTrue(tables.buttons["Next"].waitForExistence(timeout: 2))
+            tables.buttons["Next"].tap()
+        }
+    }
+    
+    private func testVEINESSurvey() throws {
+        //
     }
 }

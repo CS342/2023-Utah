@@ -27,7 +27,7 @@ struct TimedWalkViewController: UIViewControllerRepresentable {
                 intendedUseDescription: "6 minute walk test",
                 walkDuration: 360,
                 restDuration: 30,
-                options: .excludeConclusion
+                options: ORKPredefinedTaskOption()
             )
 //            ORKOrderedTask.timedWalk(
 //                withIdentifier: "Get up and Go Task",
