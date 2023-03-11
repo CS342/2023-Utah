@@ -86,7 +86,7 @@
 		653A258928339462005D4D48 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		93CD054929A9634D00CC9DFB /* UtahDebug.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = UtahDebug.entitlements; sourceTree = "<group>"; };
 		93DEF14829BBF46C00BE7FAA /* video.mp4.license */ = {isa = PBXFileReference; lastKnownFileType = text; path = video.mp4.license; sourceTree = "<group>"; };
-		93DEF14929BBFBB000BE7FAA /* video.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; name = video.mp4; path = ../../../../../Desktop/video.mp4; sourceTree = "<group>"; };
+		93DEF14929BBFBB000BE7FAA /* video.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; name = video.mp4; path = "/Users/bkrajancich/Documents/CS342/2023-Utah/UtahModules/Sources/UtahSchedule/video.mp4"; sourceTree = "<absolute>"; };
 		93E00348298DFA8200D6E494 /* ProfileTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileTests.swift; sourceTree = "<group>"; };
 		93E0034A298DFAF200D6E494 /* TrendsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrendsTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
