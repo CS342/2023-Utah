@@ -9,8 +9,8 @@
 import FirebaseAuth
 import FirebaseFirestore
 import SwiftUI
-import UtahSharedContext
 import UtahSchedule
+import UtahSharedContext
 
 struct FormView: View {
     @Binding var disease: String
