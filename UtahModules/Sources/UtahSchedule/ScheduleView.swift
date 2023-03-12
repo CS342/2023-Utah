@@ -20,22 +20,6 @@ public struct ScheduleView: View {
         Array(eventContextsByDate.keys)
     }
     
-    private var temporyButtons: some View {
-        VStack {
-            Button("Video Demo") {
-                showingVideoDemo.toggle()
-            }
-            .foregroundColor(Color.white)
-            .padding()
-            .background(.red)
-            .cornerRadius(10)
-            .sheet(isPresented: $showingVideoDemo) {
-                GetUpAndGoVideoDemo()
-            }
-            .padding(.top, 130)
-        }
-    }
-    
     public var body: some View {
         NavigationStack {
             ZStack {
@@ -60,7 +44,6 @@ public struct ScheduleView: View {
                 .sheet(item: $presentedContext) { presentedContext in
                     destination(withContext: presentedContext)
                 }
-                temporyButtons
             }
         }
     }
