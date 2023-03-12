@@ -15,7 +15,7 @@ import UtahSharedContext
 
 struct HealthKitPermissions: View {
     @EnvironmentObject var healthKitDataSource: HealthKit<FHIR>
-    @AppStorage(StorageKeys.onboardingFlowComplete) var completedOnboardingFlow = false
+    @Binding private var onboardingSteps: [OnboardingFlow.Step]
     
     
     var body: some View {
@@ -23,14 +23,14 @@ struct HealthKitPermissions: View {
             contentView: {
                 VStack {
                     OnboardingTitleView(
-                        title: "HEALTHKIT_PERMISSIONS_TITLE".moduleLocalized,
-                        subtitle: "HEALTHKIT_PERMISSIONS_SUBTITLE".moduleLocalized
+                        title: "HealthKit".moduleLocalized,
+                        subtitle: "U-STEP is asking for read and write access to your Apple HealthKit".moduleLocalized
                     )
                     Spacer()
                     Image(systemName: "heart.text.square.fill")
                         .font(.system(size: 150))
                         .foregroundColor(.accentColor)
-                    Text("HEALTHKIT_PERMISSIONS_DESCRIPTION", bundle: .module)
+                    Text("We will ensure your privacy to the highest standard.", bundle: .module)
                         .multilineTextAlignment(.center)
                         .padding(.vertical, 16)
                     Spacer()
@@ -44,17 +44,24 @@ struct HealthKitPermissions: View {
                         } catch {
                             print("Could not request HealthKit permissions.")
                         }
-                        completedOnboardingFlow = true
+                        onboardingSteps.append(.taskScheduling)
                     }
                 )
             }
         )
     }
+
+    init(onboardingSteps: Binding<[OnboardingFlow.Step]>) {
+        self._onboardingSteps = onboardingSteps
+    }
 }
 
 
 struct HealthKitPermissions_Previews: PreviewProvider {
+    @State private static var path: [OnboardingFlow.Step] = []
+
+    
     static var previews: some View {
-        HealthKitPermissions()
+        HealthKitPermissions(onboardingSteps: $path)
     }
 }

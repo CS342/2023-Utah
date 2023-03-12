@@ -18,7 +18,6 @@ let package = Package(
         .iOS(.v16)
     ],
     products: [
-        .library(name: "UtahMockDataStorageProvider", targets: ["UtahMockDataStorageProvider"]),
         .library(name: "UtahOnboardingFlow", targets: ["UtahOnboardingFlow"]),
         .library(name: "UtahProfile", targets: ["UtahProfile"]),
         .library(name: "UtahSchedule", targets: ["UtahSchedule"]),
@@ -26,24 +25,15 @@ let package = Package(
         .library(name: "UtahTrends", targets: ["UtahTrends"])
     ],
     dependencies: [
-        .package(url: "https://github.com/StanfordBDHG/CardinalKit.git", .upToNextMinor(from: "0.3.1"))
+        .package(url: "https://github.com/StanfordBDHG/CardinalKit.git", .upToNextMinor(from: "0.3.3")),
+        .package(url: "https://github.com/firebase/firebase-ios-sdk", from: "10.5.0")
     ],
     targets: [
-        .target(
-            name: "UtahMockDataStorageProvider",
-            dependencies: [
-                .target(name: "UtahSharedContext"),
-                .product(name: "CardinalKit", package: "CardinalKit"),
-                .product(name: "FHIR", package: "CardinalKit")
-            ],
-            resources: [
-                .process("Resources")
-            ]
-        ),
         .target(
             name: "UtahOnboardingFlow",
             dependencies: [
                 .target(name: "UtahSharedContext"),
+                .target(name: "UtahSchedule"),
                 .product(name: "Account", package: "CardinalKit"),
                 .product(name: "FHIR", package: "CardinalKit"),
                 .product(name: "FirebaseAccount", package: "CardinalKit"),
@@ -58,7 +48,11 @@ let package = Package(
         .target(
             name: "UtahProfile",
             dependencies: [
-                .target(name: "UtahSharedContext")
+                .target(name: "UtahSharedContext"),
+                .target(name: "UtahOnboardingFlow"),
+                .product(name: "FirebaseFirestore", package: "firebase-ios-sdk"),
+                .product(name: "FirebaseStorage", package: "firebase-ios-sdk"),
+                .product(name: "FirebaseAuth", package: "firebase-ios-sdk")
             ]
         ),
         .target(
@@ -67,16 +61,28 @@ let package = Package(
                 .target(name: "UtahSharedContext"),
                 .product(name: "FHIR", package: "CardinalKit"),
                 .product(name: "Questionnaires", package: "CardinalKit"),
-                .product(name: "Scheduler", package: "CardinalKit")
+                .product(name: "Scheduler", package: "CardinalKit"),
+                .product(name: "FirebaseFirestore", package: "firebase-ios-sdk"),
+                .product(name: "FirebaseStorage", package: "firebase-ios-sdk"),
+                .product(name: "FirebaseAuth", package: "firebase-ios-sdk")
             ]
         ),
         .target(
-            name: "UtahSharedContext"
+            name: "UtahSharedContext",
+            dependencies: [
+                .product(name: "FirebaseAuth", package: "firebase-ios-sdk"),
+                .product(name: "FirebaseFirestore", package: "firebase-ios-sdk"),
+                .product(name: "Account", package: "CardinalKit")
+            ]
         ),
         .target(
             name: "UtahTrends",
             dependencies: [
-                .target(name: "UtahSharedContext")
+                .target(name: "UtahSharedContext"),
+                .product(name: "FHIR", package: "CardinalKit"),
+                .product(name: "FirebaseFirestore", package: "firebase-ios-sdk"),
+                .product(name: "FirebaseStorage", package: "firebase-ios-sdk"),
+                .product(name: "FirebaseAuth", package: "firebase-ios-sdk")
             ]
         )
     ]
