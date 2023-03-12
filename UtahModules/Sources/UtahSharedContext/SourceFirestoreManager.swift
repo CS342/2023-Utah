@@ -14,13 +14,19 @@
 import Account
 import Firebase
 import FirebaseAuth
+import FHIR
 import Foundation
+import FirebaseCore
+import FirebaseFirestore
+import SwiftUI
+import FirebaseFirestoreSwift
 
 public class FirestoreManager: ObservableObject {
     private var db = Firestore.firestore()
     let user = Auth.auth().currentUser
     @Published public var disease: String = ""
     @Published public var observations: [(date: Date, value: Double)] = []
+    @Published public var surveys: [QuestionnaireResponse] = []
     var refresh = false
 
     public func update() {
@@ -44,6 +50,48 @@ public class FirestoreManager: ObservableObject {
        }
     }
     
+    public func loadSurveys() {
+        if let user = Auth.auth().currentUser {
+            Firestore.firestore().collection("users/\(user.uid)/QuestionnaireResponse").getDocuments{ documents, err in
+                if err != nil {
+                    return
+                } else {
+                    for document in documents!.documents {
+                        let data = document.data() as [String: Any]
+                        print(data)
+                        let score = data["score"] as? String
+                        let surveyId = data["surveyId"] as? String
+                        let type = data["type"] as? String
+                        self.querySurveys(type: type!, surveyId: surveyId!)
+                    }
+                }
+            }
+        }
+    }
+    
+    func querySurveys(type: String, surveyId: String) {
+            FirebaseApp.configure()
+            let db = Firestore.firestore()
+            
+            var surveyName = "veinesssurveys"
+            if type == "edmonton" {
+                surveyName = "edmontonsurveys"
+            } else if type == "wiq" {
+                surveyName = "wiqsurveys"
+            }
+            let docRef = db.collection(surveyName).document(surveyId)
+            docRef.getDocument(as: QuestionnaireResponse.self) { result in
+                switch result {
+                case .success(let response):
+                    print(response)
+                    self.surveys.append(response)
+                case .failure(let error):
+                    print(error)
+                }
+            }
+        }
+    
+        
     public func loadObservations(metricCode: String) async {
         await withCheckedContinuation { continuation in
             var observations = [] as [(date: Date, value: Double)]
@@ -92,6 +140,7 @@ public class FirestoreManager: ObservableObject {
     public init() {
         fetchData()
         Task {
+            loadSurveys()
             await loadObservations(metricCode: "55423-8")
         }
     }

@@ -36,6 +36,7 @@ import UtahSharedContext
                 StyledGauge(userScore: 50.0, minScore: 50.0, maxScore: 170.0)
                     .padding()
                     .frame(minWidth: 150)
+                SurveyHistoryList()
             }
         }
         .padding()
