@@ -87,7 +87,7 @@ extension XCUIApplication {
         buttons["11-20 Seconds"].tap()
     }
     
-    private func navigateVeines() throws {
+    /*private func navigateVeines() throws {
         let numSubQuestions = [9, 1, 1, 4, 4, 1, 1, 5]
         
         for _ in numSubQuestions {
@@ -122,5 +122,5 @@ extension XCUIApplication {
         XCTAssertTrue(staticTexts["Thank you."].waitForExistence(timeout: 2))
         XCTAssertTrue(buttons["Done"].waitForExistence(timeout: 2))
         buttons["Done"].tap()
-    }
+    }*/
 }
