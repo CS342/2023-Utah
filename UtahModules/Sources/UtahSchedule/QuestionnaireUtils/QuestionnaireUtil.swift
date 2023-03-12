@@ -13,6 +13,7 @@
 // swiftlint:disable file_length
 // swiftlint:disable type_body_length
 // swiftlint:disable object_literal
+// swiftlint:disable missing_docs
 
 import Firebase
 import FirebaseAuth

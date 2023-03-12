@@ -6,10 +6,10 @@
 // SPDX-License-Identifier: MIT
 //
 
-@testable import Utah
-import XCTest
 import ResearchKit
+@testable import Utah
 import UtahSchedule
+import XCTest
 
 
 class UtahTests: XCTestCase {
