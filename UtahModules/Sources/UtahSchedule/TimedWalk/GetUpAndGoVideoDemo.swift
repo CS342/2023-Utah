@@ -17,7 +17,7 @@ struct GetUpAndGoVideoDemo: View {
         Text("Tap on it to play")
             .padding(.vertical, 20)
         VideoPlayer(
-            player: AVPlayer(url:  URL(string: "https://bit.ly/swswift")!)
+            player: AVPlayer(url: URL(string: "https://firebasestorage.googleapis.com/v0/b/cs342-2023-utah.appspot.com/o/video.mp4?alt=media&token=121045b0-f9d2-49eb-86c2-bf0425141d7e")!)
             // player: AVPlayer(url: Bundle.main.url(forResource: "video", withExtension: "mp4")!)
         )
         .frame(height: 300)
