@@ -67,6 +67,10 @@ extension XCUIApplication {
         XCTAssertTrue(buttons["Next"].waitForExistence(timeout: 2))
         buttons["Next"].tap()
         
+        XCTAssertTrue(staticTexts["Demonstration Above"].waitForExistence(timeout: 2))
+        XCTAssertTrue(buttons["Next"].waitForExistence(timeout: 2))
+        buttons["Next"].tap()
+        
         XCTAssertTrue(buttons["STOP"].waitForExistence(timeout: 2))
         XCTAssertTrue(buttons["STOP"].waitForExistence(timeout: 2))
         buttons["STOP"].tap()
