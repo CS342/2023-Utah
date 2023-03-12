@@ -23,8 +23,8 @@ import ResearchKit
 import SwiftUI
 import UtahSharedContext
 
-enum QuestionnaireUtil {
-    static func addWIQSteps(steps: inout [ORKStep]) {
+public enum QuestionnaireUtil {
+    public static func addWIQSteps(steps: inout [ORKStep]) {
         let wiqChoices = [
             ORKTextChoice(text: "No Difficulty", value: "0" as NSSecureCoding & NSCopying & NSObjectProtocol),
             ORKTextChoice(text: "Slight Difficulty", value: "1" as NSSecureCoding & NSCopying & NSObjectProtocol),
@@ -56,7 +56,7 @@ enum QuestionnaireUtil {
         }
     }
     
-    static func addVEINESSteps(steps: inout [ORKStep]) {
+    public static func addVEINESSteps(steps: inout [ORKStep]) {
         // Question 1
         let q1Choices = [
             ORKTextChoice(text: "Every day", value: "1" as NSSecureCoding & NSCopying & NSObjectProtocol),
@@ -312,7 +312,7 @@ enum QuestionnaireUtil {
         steps += [q8Step]
     }
     
-    static func addEdmontonSteps(steps: inout [ORKStep]) {
+    public static func addEdmontonSteps(steps: inout [ORKStep]) {
         // Instruction step
         let instructionStep = ORKInstructionStep(identifier: "IntroStep")
         instructionStep.title = "Patient Questionnaire"

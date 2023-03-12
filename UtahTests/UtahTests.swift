@@ -8,10 +8,30 @@
 
 @testable import Utah
 import XCTest
+import ResearchKit
+import UtahSchedule
 
 
 class UtahTests: XCTestCase {
     func testExample() throws {
         XCTAssertTrue(true)
+    }
+
+    func testEdmontonUtil() throws {
+        var steps = [ORKStep]()
+        QuestionnaireUtil.addEdmontonSteps(steps: &steps)
+        XCTAssertFalse(steps.isEmpty)
+    }
+    
+    func testWIQUtil() throws {
+        var steps = [ORKStep]()
+        QuestionnaireUtil.addWIQSteps(steps: &steps)
+        XCTAssertFalse(steps.isEmpty)
+    }
+    
+    func testVEINESUtil() throws {
+        var steps = [ORKStep]()
+        QuestionnaireUtil.addVEINESSteps(steps: &steps)
+        XCTAssertFalse(steps.isEmpty)
     }
 }
