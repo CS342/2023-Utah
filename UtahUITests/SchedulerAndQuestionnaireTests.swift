@@ -123,4 +123,16 @@ extension XCUIApplication {
         XCTAssertTrue(buttons["Done"].waitForExistence(timeout: 2))
         buttons["Done"].tap()
     }
+    
+    func testVideoDemo() throws {
+        let app = XCUIApplication()
+
+        XCTAssertTrue(app.tabBars["Tab Bar"].buttons["Questions"].waitForExistence(timeout: 2))
+        app.tabBars["Tab Bar"].buttons["Questions"].tap()
+
+        XCTAssertTrue(app.buttons["Video Demo"].waitForExistence(timeout: 2))
+        app.buttons["Video Demo"].tap()
+
+        XCTAssertTrue(app.staticTexts["Demonstration Below"].waitForExistence(timeout: 2))
+    }
 }

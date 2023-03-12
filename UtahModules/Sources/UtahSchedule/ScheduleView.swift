@@ -14,10 +14,7 @@ public struct ScheduleView: View {
     @EnvironmentObject var scheduler: UtahScheduler
     @State var eventContextsByDate: [Date: [EventContext]] = [:]
     @State var presentedContext: EventContext?
-    @State private var showingEdmontonSurvey = false
-    @State private var showingWIQSurvey = false
-    @State private var showingVEINESSurvey = false
-    @State private var showingWalkTest = false
+    @State private var showingVideoDemo = false
     
     var startOfDays: [Date] {
         Array(eventContextsByDate.keys)
@@ -25,48 +22,17 @@ public struct ScheduleView: View {
     
     private var temporyButtons: some View {
         VStack {
-            Button("Edmonton Frail Scale") {
-                showingEdmontonSurvey.toggle()
+            Button("Video Demo") {
+                showingVideoDemo.toggle()
             }
             .foregroundColor(Color.white)
             .padding()
             .background(.red)
             .cornerRadius(10)
-            .sheet(isPresented: $showingEdmontonSurvey) {
-                EdmontonViewController()
+            .sheet(isPresented: $showingVideoDemo) {
+                GetUpAndGoVideoDemo()
             }
             .padding(.top, 130)
-            Button("Walking Impairement Questionnaire") {
-                showingWIQSurvey.toggle()
-            }
-            .foregroundColor(Color.white)
-            .padding()
-            .background(.blue)
-            .cornerRadius(10)
-            .sheet(isPresented: $showingWIQSurvey) {
-                WIQViewController()
-            }
-            Button("VEINES-QOL/Sym Questionnaire") {
-                showingVEINESSurvey.toggle()
-            }
-            .foregroundColor(Color.white)
-            .padding()
-            .background(.green)
-            .cornerRadius(10)
-            .sheet(isPresented: $showingVEINESSurvey) {
-                VEINESViewController()
-            }
-            Button("6 Minute Walk Test (active task)") {
-                showingWalkTest.toggle()
-            }
-            .foregroundColor(Color.white)
-            .padding()
-            .background(.pink)
-            .cornerRadius(10)
-            .sheet(isPresented: $showingWalkTest) {
-                TimedWalkViewController()
-            }
-            .navigationTitle(String(localized: "QUESTIONNAIRE_LIST_TITLE", bundle: .module))
         }
     }
     
@@ -94,6 +60,7 @@ public struct ScheduleView: View {
                 .sheet(item: $presentedContext) { presentedContext in
                     destination(withContext: presentedContext)
                 }
+                temporyButtons
             }
         }
     }
