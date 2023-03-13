@@ -37,6 +37,7 @@ struct DataCard: View {
             .padding(.bottom, 2)
             // data
             HStack(alignment: .firstTextBaseline) {
+                Spacer()
                 Text(round(maxValue).description)
                     .font(.largeTitle)
                     .fontWeight(.bold)

@@ -20,8 +20,8 @@ import UtahSharedContext
     @State private var showEdmonton = false
      
     public var body: some View {
-        NavigationView {
-            VStack(spacing: 20) {
+        NavigationStack {
+            VStack(spacing: 30) {
                 DataCard(
                     icon: "figure.run",
                     title: "Edmonton Frail Scale",
@@ -50,7 +50,8 @@ import UtahSharedContext
                 // removed survey for now until we pull survey data from firestore
                 // DataCard(icon: "list.clipboard.fill", title: "Last EFS Survey Score", unit: "points", color: Color.blue, observations: [])
             }
-            .padding()
+            // temporary fix
+            .padding(.top, -270)
             .navigationBarTitle("Trends")
         }
     }
