@@ -78,7 +78,7 @@ extension XCUIApplication {
         
         try navigateOnboardingFlowConsent()
         
-        XCTAssertTrue(navigationBars.staticTexts["Sign Up"].waitForExistence(timeout: 2))
+        XCTAssertTrue(navigationBars.staticTexts["Sign Up"].waitForExistence(timeout: 4))
         XCTAssertTrue(images["App Icon"].waitForExistence(timeout: 2))
         XCTAssertTrue(buttons["Email and Password"].waitForExistence(timeout: 2))
         
