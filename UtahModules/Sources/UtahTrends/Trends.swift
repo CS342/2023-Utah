@@ -16,26 +16,43 @@ import UtahSharedContext
 
  public struct Trends: View {
     @EnvironmentObject var firestoreManager: FirestoreManager
+    @State private var showStepCount = false
+    @State private var showEdmonton = false
      
     public var body: some View {
-        NavigationStack {
-            VStack(alignment: .center, spacing: 10) {
-                Charts()
-                    .frame(minHeight: 250)
-                Spacer()
+        NavigationView {
+            VStack(spacing: 20) {
+                DataCard(
+                    icon: "figure.run",
+                    title: "Edmonton Frail Scale",
+                    unit: "points",
+                    color: Color.blue
+                )
+                .onTapGesture {
+                    self.showEdmonton.toggle()
+                }
+                .sheet(isPresented: $showEdmonton) {
+                    EdmontonChart()
+                }
+                
                 DataCard(
                     icon: "shoeprints.fill",
                     title: "Daily Step Count",
                     unit: "steps",
                     color: Color.green
                 )
-                Spacer()
+                .onTapGesture {
+                    self.showStepCount.toggle()
+                }
+                .sheet(isPresented: $showStepCount) {
+                    StepCountChart()
+                }
                 // removed survey for now until we pull survey data from firestore
                 // DataCard(icon: "list.clipboard.fill", title: "Last EFS Survey Score", unit: "points", color: Color.blue, observations: [])
             }
+            .padding()
+            .navigationBarTitle("Trends")
         }
-        .padding()
-        .navigationTitle("Trends")
     }
     public init() {
     }
