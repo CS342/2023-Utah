@@ -76,7 +76,9 @@ extension XCUIApplication {
         XCTAssertTrue(buttons["Sign Up"].waitForExistence(timeout: 2))
         buttons["Sign Up"].tap()
         
-        XCTAssertTrue(navigationBars.staticTexts["Sign Up"].waitForExistence(timeout: 2))
+        try navigateOnboardingFlowConsent()
+        
+        XCTAssertTrue(navigationBars.staticTexts["Sign Up"].waitForExistence(timeout: 4))
         XCTAssertTrue(images["App Icon"].waitForExistence(timeout: 2))
         XCTAssertTrue(buttons["Email and Password"].waitForExistence(timeout: 2))
         
@@ -106,7 +108,7 @@ extension XCUIApplication {
     }
     
     private func navigateOnboardingFlowConsent() throws {
-        XCTAssertTrue(staticTexts["Consent Form"].waitForExistence(timeout: 2))
+        XCTAssertTrue(staticTexts["Consent Form"].waitForExistence(timeout: 4))
         
         swipeUp(velocity: .fast)
         swipeUp(velocity: .fast)
