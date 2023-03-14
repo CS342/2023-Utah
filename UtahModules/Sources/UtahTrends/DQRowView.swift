@@ -29,11 +29,11 @@ struct DQRowView: View {
     var answerList: [QuestionListItem] {
         switch surveyType {
         case "veinesssurveys":
-            return veinesQList()
+            return wiqVeinesQList()
         case "edmonton":
             return edmontonQList()
         case "wiq":
-            return wiqQList()
+            return wiqVeinesQList()
         default:
             return []
         }
@@ -71,11 +71,9 @@ struct DQRowView: View {
         return edmontonList
     }
     
-    func wiqQList() -> [QuestionListItem] {
-        []
-    }
-    
-    func veinesQList() -> [QuestionListItem] {
-        []
+    func wiqVeinesQList() -> [QuestionListItem] {
+        var score: Int
+        var status: String
+        answer 
     }
 }
