@@ -5,6 +5,8 @@
 //
 // SPDX-License-Identifier: MIT
 //
+//
+// swiftlint:disable multiline_literal_brackets
 import Account
 import FHIR
 import Firebase
