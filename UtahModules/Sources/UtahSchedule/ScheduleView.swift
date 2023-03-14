@@ -5,23 +5,20 @@
 //
 // SPDX-License-Identifier: MIT
 //
-
-
+// swiftlint:disable closure_body_length
 import Questionnaires
 import Scheduler
 import SwiftUI
-
 
 public struct ScheduleView: View {
     @EnvironmentObject var scheduler: UtahScheduler
     @State var eventContextsByDate: [Date: [EventContext]] = [:]
     @State var presentedContext: EventContext?
-    
+    @State private var showingVideoDemo = false
     
     var startOfDays: [Date] {
         Array(eventContextsByDate.keys)
     }
-    
     
     public var body: some View {
         NavigationStack {
@@ -47,17 +44,6 @@ public struct ScheduleView: View {
                 .sheet(item: $presentedContext) { presentedContext in
                     destination(withContext: presentedContext)
                 }
-                NavigationLink(destination: GetUpAndGo()) {
-                                    Text("Get Up And Go Question")
-                }.frame(alignment: .topLeading)
-                    .padding(.all, 10)
-                    .overlay(
-                        RoundedRectangle(cornerRadius: 25)
-                        .stroke(Color.white, lineWidth: 2)
-                )
-                    .background(Color(.white))
-                    .cornerRadius(25)
-                .navigationTitle(String(localized: "QUESTIONNAIRE_LIST_TITLE", bundle: .module))
             }
         }
     }
@@ -75,6 +61,10 @@ public struct ScheduleView: View {
                     _Concurrency.Task {
                         await eventContext.event.complete(true)
                     }
+                }
+            case let .researchKitTask(researchKitTaskContext):
+                if researchKitTaskContext == .edmonton {
+                    EdmontonViewController()
                 }
             }
         }

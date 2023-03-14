@@ -8,38 +8,53 @@
 
 import Onboarding
 import SwiftUI
+import UtahSharedContext
 
 
 struct Welcome: View {
     @Binding private var onboardingSteps: [OnboardingFlow.Step]
     
-    
     var body: some View {
+        utahLogo
+            .resizable()
+            .scaledToFill()
+            .accessibilityLabel(Text("University of Utah logo"))
+            .frame(width: 166, height: 44)
+            .padding(.top, 40)
         OnboardingView(
-            title: "WELCOME_TITLE".moduleLocalized,
-            subtitle: "WELCOME_SUBTITLE".moduleLocalized,
+            title: "Welcome to U-STEP".moduleLocalized,
+            subtitle: "A collaboration between University of Utah & Stanford University".moduleLocalized,
             areas: [
                 .init(
-                    icon: Image(systemName: "apps.iphone"),
-                    title: "WELCOME_AREA1_TITLE".moduleLocalized,
-                    description: "WELCOME_AREA1_DESCRIPTION".moduleLocalized
+                    icon: Image(systemName: "list.clipboard"),
+                    title: "Report your health outcomes".moduleLocalized,
+                    description: "Fill out surveys about your health".moduleLocalized
                 ),
                 .init(
-                    icon: Image(systemName: "shippingbox.fill"),
-                    title: "WELCOME_AREA2_TITLE".moduleLocalized,
-                    description: "WELCOME_AREA2_DESCRIPTION".moduleLocalized
+                    icon: Image(systemName: "figure.walk"),
+                    title: "Track your health".moduleLocalized,
+                    description: "Record your daily activity levels".moduleLocalized
                 ),
                 .init(
-                    icon: Image(systemName: "list.bullet.clipboard.fill"),
-                    title: "WELCOME_AREA3_TITLE".moduleLocalized,
-                    description: "WELCOME_AREA3_DESCRIPTION".moduleLocalized
+                    icon: Image(systemName: "chart.line.uptrend.xyaxis"),
+                    title: "Monitor your progress".moduleLocalized,
+                    description: "View your progression over time\n".moduleLocalized
                 )
             ],
-            actionText: "WELCOME_BUTTON".moduleLocalized,
+            actionText: "Next".moduleLocalized,
             action: {
-                onboardingSteps.append(.interestingModules)
+                if !FeatureFlags.disableFirebase {
+                    onboardingSteps.append(.accountSetup)
+                } else {
+                    #if targetEnvironment(simulator) && (arch(i386) || arch(x86_64))
+                    print("PKCanvas view-related views are currently skipped on Intel-based iOS simulators due to a metal bug on the simulator.")
+                    onboardingSteps.append(.accountSetup)
+                    #else
+                     onboardingSteps.append(.consent)
+                    #endif
+                }
             }
-        )
+        ).padding(.top, -20)
     }
     
     

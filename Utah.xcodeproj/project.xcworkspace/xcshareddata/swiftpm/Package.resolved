@@ -23,8 +23,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/StanfordBDHG/CardinalKit",
       "state" : {
-        "revision" : "9519bbbe8d74719c8315a23cc96e0d5f0355b835",
-        "version" : "0.3.1"
+        "revision" : "6162a67a0b821c2be9358bec798d5d3e94cc5783",
+        "version" : "0.3.5"
       }
     },
     {
@@ -41,8 +41,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/firebase/firebase-ios-sdk",
       "state" : {
-        "revision" : "0df86ea17d5d281415be74f2290df8431644f156",
-        "version" : "10.4.0"
+        "revision" : "f567ed9a2b30e29159df258049a9c662c517688e",
+        "version" : "10.5.0"
       }
     },
     {
@@ -140,8 +140,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/StanfordBDHG/ResearchKitOnFHIR",
       "state" : {
-        "revision" : "efb23f31a79a0b914af6a4a3c90ef2608c95bfeb",
-        "version" : "0.1.5"
+        "revision" : "1bc7a15760916ade4c5058fa798a871e80c2955c",
+        "version" : "0.1.6"
       }
     },
     {
@@ -167,8 +167,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/StanfordBDHG/XCTHealthKit",
       "state" : {
-        "revision" : "70b79e67339da1174e6f7dcd58d6c041388ded96",
-        "version" : "0.3.1"
+        "revision" : "19395bbd14a2554e4c9d3fe5cf38aa626c807269",
+        "version" : "0.3.3"
       }
     }
   ],

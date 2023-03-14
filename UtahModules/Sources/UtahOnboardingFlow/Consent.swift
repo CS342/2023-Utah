@@ -9,40 +9,48 @@
 import Onboarding
 import SwiftUI
 
-
 struct Consent: View {
     @Binding private var onboardingSteps: [OnboardingFlow.Step]
     
     
     private var consentDocument: Data {
-        guard let path = Bundle.module.url(forResource: "ConsentDocument", withExtension: "md"),
+        guard let path = Bundle.module.url(forResource: "ConsentDocument", withExtension: "html"),
               let data = try? Data(contentsOf: path) else {
             return Data("CONSENT_LOADING_ERROR".moduleLocalized.utf8)
         }
         return data
     }
-    
+
     var body: some View {
-        ConsentView(
-            header: {
-                OnboardingTitleView(
-                    title: "CONSENT_TITLE".moduleLocalized,
-                    subtitle: "CONSENT_SUBTITLE".moduleLocalized
-                )
-            },
-            asyncMarkdown: {
-                consentDocument
-            },
-            action: {
-                if !CommandLine.arguments.contains("--disableFirebase") {
-                    onboardingSteps.append(.accountSetup)
-                } else {
-                    onboardingSteps.append(.healthKitPermissions)
+        ScrollViewReader { _ in
+            OnboardingView(
+                contentView: {
+                    VStack {
+                        utahLogo
+                            .resizable()
+                            .scaledToFill()
+                            .accessibilityLabel(Text("University of Utah logo"))
+                            .frame(width: 166, height: 44)
+                            .padding(.bottom, 20)
+                        HTMLView(
+                            asyncHTML: {
+                                consentDocument
+                            }
+                        )
+                    }
+                },
+                actionView: {
+                    VStack {
+                        OnboardingActionsView("I accept") {
+                            onboardingSteps.append(.signUp)
+                        }
+                        Divider()
+                    }
+                    .transition(.opacity)
                 }
-            }
-        )
+            )
+        }
     }
-    
     
     init(onboardingSteps: Binding<[OnboardingFlow.Step]>) {
         self._onboardingSteps = onboardingSteps
