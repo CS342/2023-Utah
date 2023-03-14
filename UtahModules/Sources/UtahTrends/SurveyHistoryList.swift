@@ -32,7 +32,7 @@ struct SurveyHistoryList: View {
     func createSurveySection(surveySection: String) -> some View {
         ForEach(firestoreManager.surveys[surveySection] ?? [], id: \.surveyId) { survey in
             NavigationLink {
-                DetailedQuestionnaireView(surveyId: survey.surveyId, type: surveySection, score: survey.score)
+                DetailedQuestionnaireView(surveyId: survey.surveyId, type: surveySection, score: survey.score, date: survey.dateCompleted)
             } label: {
                 SurveyRow(dateCompleted: survey.dateCompleted)
             }

@@ -21,9 +21,9 @@ struct DQRowView: View {
     
     // turn this into dictionary: q1:"Drawing Clock Test"
     @EnvironmentObject var firestoreManager: FirestoreManager
-    var questionList = ["q1": "Drawing Clock Test",
-                        "q2": "Times admitted to a hospital the past year",
-                        "q3": "Description of overall health"]
+    //var questionList = ["q1": "Drawing Clock Test",
+//                        "q2": "Times admitted to a hospital the past year",
+//                        "q3": "Description of overall health"]
     let surveyType: String
     let score: Int
     var answerList: [QuestionListItem] {
@@ -41,20 +41,23 @@ struct DQRowView: View {
     let questionnaireResponse: QuestionnaireResponse
     var body: some View {
         ScrollView {
-            ForEach(answerList, id: \.self) { item in
-                Text(item.questionDescription)
-                    .padding(.all, 10)
-                    .background(Rectangle()
-                        .fill(Color.accentColor)
-                        .shadow(radius: 3)
-                        .cornerRadius(15)
-                    )
-                    .foregroundColor(.white)
-                
-                Spacer()
-                Text(item.answer)
+            VStack {
+                Text(surveyType)
+                    .font(.title)
+                ForEach(answerList, id: \.self) { item in
+                    Text(item.questionDescription)
+                        .padding(.all, 10)
+                        .background(Rectangle()
+                            .fill(Color.accentColor)
+                            .shadow(radius: 3)
+                            .cornerRadius(15)
+                        )
+                        .foregroundColor(.white)
+                    
+                    Spacer()
+                    Text(item.answer)
+                }
             }
-            .font(.title)
             // call fn that returns this answer list - calls out to firebase, grabs all answers and returns tis list
         }
     }
@@ -72,8 +75,12 @@ struct DQRowView: View {
     }
     
     func wiqVeinesQList() -> [QuestionListItem] {
+        var wiqVeinesQList: [QuestionListItem] = []
         var score: Int
-        var status: String
-        answer 
+        var status = questionnaireResponse.status
+        let scoreDisplay = QuestionListItem(questionDescription: "Score", answer: String(self.score))
+        wiqVeinesQList.append(scoreDisplay)
+        return wiqVeinesQList
     }
+    
 }
