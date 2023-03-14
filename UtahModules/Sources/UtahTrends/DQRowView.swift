@@ -49,7 +49,8 @@ struct DQRowView: View {
             ForEach(answerList, id: \.self) { item in
                 Text(item.questionDescription)
                     .padding(.all, 10)
-                    .background(Rectangle()
+                    .background(
+                        Rectangle()
                         .fill(Color.accentColor)
                         .shadow(radius: 3)
                         .cornerRadius(15)
