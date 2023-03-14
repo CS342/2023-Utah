@@ -10,23 +10,24 @@
 // swiftlint:disable type_contents_order
 // swiftlint:disable legacy_objc_type
 // swiftlint:disable force_unwrapping
+// swiftlint:disable large_tuple
 
 import Account
 import Firebase
 import FirebaseAuth
-import Foundation
 import FirebaseCore
 import FirebaseFirestore
-import SwiftUI
 import FirebaseFirestoreSwift
+import Foundation
+import SwiftUI
 
 public class FirestoreManager: ObservableObject {
     private var db = Firestore.firestore()
     let user = Auth.auth().currentUser
     @Published public var disease: String = ""
     @Published public var observations: [(date: Date, value: Double)] = []
-    @Published public var surveys = [:] as [String : [(dateCompleted: Date, score: Int, surveyId: String)]]
-    //@Published public var surveys: [QuestionnaireResponse] = []
+    @Published public var surveys = [:] as [String: [(dateCompleted: Date, score: Int, surveyId: String)]]
+    // @Published public var surveys: [QuestionnaireResponse] = []
     
     var refresh = false
 
@@ -54,7 +55,7 @@ public class FirestoreManager: ObservableObject {
     public func loadSurveys() async {
         await withCheckedContinuation { continuation in
             if let user = Auth.auth().currentUser {
-                Firestore.firestore().collection("users/\(user.uid)/QuestionnaireResponse").getDocuments{ documents, err in
+                Firestore.firestore().collection("users/\(user.uid)/QuestionnaireResponse").getDocuments { documents, err in
                     if err != nil {
                         return
                     } else {

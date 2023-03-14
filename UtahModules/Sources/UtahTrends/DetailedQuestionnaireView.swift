@@ -6,14 +6,14 @@
 // SPDX-License-Identifier: MIT
 //
 import Account
+import FHIR
 import Firebase
 import FirebaseAuth
-import FHIR
-import Foundation
 import FirebaseCore
 import FirebaseFirestore
-import SwiftUI
 import FirebaseFirestoreSwift
+import Foundation
+import SwiftUI
 import UtahSharedContext
 
 struct DetailedQuestionnaireView: View {
@@ -30,8 +30,7 @@ struct DetailedQuestionnaireView: View {
                 DQRowView(surveyType: type, score: score, questionnaireResponse: survey)
                     .navigationBarTitle("Previous Response")
                     .navigationTitle("[date], [type of survey]")
-            }
-            else {
+            } else {
                 ProgressView()
             }
         }
@@ -41,7 +40,7 @@ struct DetailedQuestionnaireView: View {
     }
         
     
-        public func querySurveys(type: String, surveyId: String) async -> QuestionnaireResponse? {
+        func querySurveys(type: String, surveyId: String) async -> QuestionnaireResponse? {
             await withCheckedContinuation { continuation in
                 let db = Firestore.firestore()
                 var surveyName = "veinesssurveys"

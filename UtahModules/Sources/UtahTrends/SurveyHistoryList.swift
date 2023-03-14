@@ -5,9 +5,9 @@
 //
 // SPDX-License-Identifier: MIT
 //
+import FHIR
 import Foundation
 import SwiftUI
-import FHIR
 import UtahSharedContext
 
 struct SurveyHistoryList: View {
@@ -18,7 +18,7 @@ struct SurveyHistoryList: View {
     var body: some View {
         NavigationView {
             List {
-                ForEach (Array(firestoreManager.surveys.keys), id:\.self) { surveySection in
+                ForEach(Array(firestoreManager.surveys.keys), id: \.self) { surveySection in
                     Section(surveySection, content: {
                         createSurveySection(surveySection: surveySection)
                     })
@@ -30,7 +30,7 @@ struct SurveyHistoryList: View {
         }
     }
     func createSurveySection(surveySection: String) -> some View {
-        ForEach (firestoreManager.surveys[surveySection] ?? [], id:\.surveyId) { survey in
+        ForEach(firestoreManager.surveys[surveySection] ?? [], id: \.surveyId) { survey in
             NavigationLink {
                 DetailedQuestionnaireView(surveyId: survey.surveyId, type: surveySection, score: survey.score)
             } label: {
@@ -39,4 +39,3 @@ struct SurveyHistoryList: View {
         }
     }
 }
-

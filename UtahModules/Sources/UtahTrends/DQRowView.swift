@@ -6,14 +6,14 @@
 // SPDX-License-Identifier: MIT
 //
 import Account
+import FHIR
 import Firebase
 import FirebaseAuth
-import FHIR
-import Foundation
 import FirebaseCore
 import FirebaseFirestore
-import SwiftUI
 import FirebaseFirestoreSwift
+import Foundation
+import SwiftUI
 import UtahSharedContext
 
 struct DQRowView: View {
@@ -21,12 +21,12 @@ struct DQRowView: View {
     
     // turn this into dictionary: q1:"Drawing Clock Test"
     @EnvironmentObject var firestoreManager: FirestoreManager
-    var questionList = ["q1":"Drawing Clock Test",
-                        "q2":"Times admitted to a hospital the past year",
-                        "q3":"Description of overall health"]
-    let surveyType : String
-    let score : Int
-    var answerList : [QuestionListItem] {
+    var questionList = ["q1": "Drawing Clock Test",
+                        "q2": "Times admitted to a hospital the past year",
+                        "q3": "Description of overall health"]
+    let surveyType: String
+    let score: Int
+    var answerList: [QuestionListItem] {
         switch surveyType {
         case "veinesssurveys":
             return veinesQList()
@@ -38,13 +38,15 @@ struct DQRowView: View {
             return []
         }
     }
-    let questionnaireResponse : QuestionnaireResponse
+    let questionnaireResponse: QuestionnaireResponse
     var body: some View {
         ScrollView {
-            ForEach(answerList, id:\.self) { item in
+            ForEach(answerList, id: \.self) { item in
                 Text(item.questionDescription)
                     .padding(.all, 10)
-                    .background(Rectangle().fill(Color.accentColor).shadow(radius: 3)
+                    .background(Rectangle()
+                        .fill(Color.accentColor)
+                        .shadow(radius: 3)
                         .cornerRadius(15)
                     )
                     .foregroundColor(.white)
@@ -56,13 +58,12 @@ struct DQRowView: View {
             // call fn that returns this answer list - calls out to firebase, grabs all answers and returns tis list
         }
     }
-    func edmontonQList() -> [QuestionListItem]{
-        var edmontonList : [QuestionListItem] = []
-        var answer : String
+    func edmontonQList() -> [QuestionListItem] {
+        var edmontonList: [QuestionListItem] = []
+        var answer: String
         if questionnaireResponse.item?[0].answer?.rawValue == nil {
             answer = "Not uploaded"
-        }
-        else {
+        } else {
             answer = "Uploaded successfully"
         }
         let firstQuestion = QuestionListItem(questionDescription: "Clock Test", answer: answer)
@@ -70,11 +71,11 @@ struct DQRowView: View {
         return edmontonList
     }
     
-    func wiqQList() -> [QuestionListItem]{
-        return []
+    func wiqQList() -> [QuestionListItem] {
+        []
     }
     
-    func veinesQList() -> [QuestionListItem]{
-        return []
+    func veinesQList() -> [QuestionListItem] {
+        []
     }
 }

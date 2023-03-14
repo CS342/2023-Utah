@@ -5,9 +5,9 @@
 //
 // SPDX-License-Identifier: MIT
 //
+import FHIR
 import Foundation
 import SwiftUI
-import FHIR
 
 struct SurveyRow: View {
     var dateCompleted: Date
@@ -18,8 +18,8 @@ struct SurveyRow: View {
     }
 }
 
-//struct SurveyRow_Previews: PreviewProvider {
+// struct SurveyRow_Previews: PreviewProvider {
 //    static var previews: some View {
 //        SurveyRow(surveyHistory: surveyHistory[0])
 //    }
-//}
+// }
