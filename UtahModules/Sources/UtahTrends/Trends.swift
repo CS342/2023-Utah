@@ -6,6 +6,9 @@
 // SPDX-License-Identifier: MIT
 //
 
+// swiftlint:disable identifier_name
+// swiftlint:disable closure_body_length
+
 import Account
 import SwiftUI
 import class FHIR.FHIR
@@ -14,44 +17,57 @@ import FirebaseFirestore
 import UtahSharedContext
 
 
- public struct Trends: View {
+public struct Trends: View {
     @EnvironmentObject var firestoreManager: FirestoreManager
     @State private var showStepCount = false
     @State private var showEdmonton = false
-     
+    // we will check whether we have these surveys in the db
+    @State private var edmonton_db = false
+    @State private var veins_db = false
+    @State private var wiq_db = false
+    
     public var body: some View {
         NavigationStack {
-            VStack(spacing: 30) {
-                DataCard(
-                    icon: "figure.run",
-                    title: "Edmonton Frail Scale",
-                    unit: "points",
-                    color: Color.blue
-                )
-                .onTapGesture {
-                    self.showEdmonton.toggle()
+            VStack() {
+                ForEach(Array(firestoreManager.surveys.keys), id: \.self) { survey in
+                    if survey == "wiq" {
+                        Text("No WIQ for now")
+                            .padding(.vertical, 10)
+                    } else if survey == "edmonton"{
+                        DataCard(
+                            icon: "figure.run",
+                            title: "Edmonton Frail Scale",
+                            unit: "points",
+                            color: Color.blue
+                        )
+                        .padding(.vertical, 10)
+                        .onTapGesture {
+                            self.showEdmonton.toggle()
+                        }
+                        .sheet(isPresented: $showEdmonton) {
+                            EdmontonChart()
+                        }
+                    } else if survey == "veines" {
+                        DataCard(icon: "list.clipboard.fill", title: "Veines Survey Score", unit: "points", color: Color.purple)
+                            .padding(.vertical, 10)
+                    }
                 }
-                .sheet(isPresented: $showEdmonton) {
-                    EdmontonChart()
-                }
-                
                 DataCard(
                     icon: "shoeprints.fill",
                     title: "Daily Step Count",
                     unit: "steps",
                     color: Color.green
                 )
+                .padding(.vertical, 20)
                 .onTapGesture {
                     self.showStepCount.toggle()
                 }
                 .sheet(isPresented: $showStepCount) {
                     StepCountChart()
                 }
-                // removed survey for now until we pull survey data from firestore
-                // DataCard(icon: "list.clipboard.fill", title: "Last EFS Survey Score", unit: "points", color: Color.blue, observations: [])
             }
             // temporary fix
-            .padding(.top, -270)
+            .padding(.top, -200)
             .navigationBarTitle("Trends")
         }
     }
