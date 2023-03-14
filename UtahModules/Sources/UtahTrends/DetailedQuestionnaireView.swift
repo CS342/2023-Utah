@@ -16,6 +16,8 @@ import Foundation
 import SwiftUI
 import UtahSharedContext
 
+
+//swiftlint:disable identifier_name
 struct DetailedQuestionnaireView: View {
     @EnvironmentObject var firestoreManager: FirestoreManager
     @State var survey: QuestionnaireResponse?
