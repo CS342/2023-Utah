@@ -1,8 +1,9 @@
 //
-//  File.swift
+// This source file is part of the CS342 2023 Utah Team Application project
 //
+// SPDX-FileCopyrightText: 2023 Stanford University
 //
-//  Created by Audrey Lin on 3/7/23.
+// SPDX-License-Identifier: MIT
 //
 import Foundation
 
