@@ -1,0 +1,70 @@
+//
+//  SwiftUIView.swift
+//
+//
+//  Created by Audrey Lin on 3/5/23.
+//
+import Account
+import Firebase
+import FirebaseAuth
+import FHIR
+import Foundation
+import FirebaseCore
+import FirebaseFirestore
+import SwiftUI
+import FirebaseFirestoreSwift
+import UtahSharedContext
+
+struct DetailedQuestionnaireView: View {
+    @EnvironmentObject var firestoreManager: FirestoreManager
+    @State var survey: QuestionnaireResponse?
+    var surveyId: String
+    var type: String
+    
+    var body: some View {
+        NavigationStack {
+            Spacer()
+            if let survey {
+                DQRowView(surveyType: type, questionnaireResponse: survey)
+                    .navigationBarTitle("Previous Response")
+                    .navigationTitle("[date], [type of survey]")
+            }
+            else {
+                ProgressView()
+            }
+        }
+        .task {
+            survey = await querySurveys(type: type, surveyId: surveyId)
+        }
+    }
+        
+    
+        public func querySurveys(type: String, surveyId: String) async -> QuestionnaireResponse? {
+            await withCheckedContinuation { continuation in
+                let db = Firestore.firestore()
+                var surveyName = "veinesssurveys"
+                if type == "edmonton" {
+                    surveyName = "edmontonsurveys"
+                } else if type == "wiq" {
+                    surveyName = "wiqsurveys"
+                }
+                let docRef = db.collection(surveyName).document(surveyId)
+                docRef.getDocument(as: QuestionnaireResponse.self) { result in
+                    switch result {
+                    case .success(let response):
+                        print(response)
+                        continuation.resume(with: .success(response))
+                    case .failure(let error):
+                        print(error)
+                        continuation.resume(with: .success(nil))
+                    }
+                }
+            }
+        }
+}
+
+struct DetailedQuestionnaireView_Previews: PreviewProvider {
+    static var previews: some View {
+        DetailedQuestionnaireView(surveyId: "", type: "")
+    }
+}
