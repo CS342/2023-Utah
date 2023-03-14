@@ -24,8 +24,20 @@ struct DQRowView: View {
     var questionList = ["q1":"Drawing Clock Test",
                         "q2":"Times admitted to a hospital the past year",
                         "q3":"Description of overall health"]
-    var surveyType : String
-    @State var answerList = [QuestionList]()
+    let surveyType : String
+    let score : Int
+    var answerList : [QuestionListItem] {
+        switch surveyType {
+        case "veinesssurveys":
+            return veinesQList()
+        case "edmonton":
+            return edmontonQList()
+        case "wiq":
+            return wiqQList()
+        default:
+            return []
+        }
+    }
     let questionnaireResponse : QuestionnaireResponse
     var body: some View {
         ScrollView {
@@ -42,6 +54,27 @@ struct DQRowView: View {
             }
             .font(.title)
             // call fn that returns this answer list - calls out to firebase, grabs all answers and returns tis list
-        }.onAppear(perform: {answerList = [QuestionList(questionID: "q1", questionDescription: questionList["q1"] ?? "", answer: "yes"), QuestionList(questionID: "q2", questionDescription: questionList["q2"] ?? "", answer: "yes"), QuestionList(questionID: "q3", questionDescription: questionList["q3"] ?? "", answer: "yes")]})
+        }
+    }
+    func edmontonQList() -> [QuestionListItem]{
+        var edmontonList : [QuestionListItem] = []
+        var answer : String
+        if questionnaireResponse.item?[0].answer?.rawValue == nil {
+            answer = "Not uploaded"
+        }
+        else {
+            answer = "Uploaded successfully"
+        }
+        let firstQuestion = QuestionListItem(questionDescription: "Clock Test", answer: answer)
+        edmontonList.append(firstQuestion)
+        return edmontonList
+    }
+    
+    func wiqQList() -> [QuestionListItem]{
+        return []
+    }
+    
+    func veinesQList() -> [QuestionListItem]{
+        return []
     }
 }

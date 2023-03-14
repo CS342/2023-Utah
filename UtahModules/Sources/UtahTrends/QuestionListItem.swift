@@ -7,8 +7,7 @@
 //
 import Foundation
 
-struct QuestionList: Hashable, Codable {
-    var questionID: String
+struct QuestionListItem: Hashable, Codable {
     var questionDescription: String
     var answer: String
 }

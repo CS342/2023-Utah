@@ -21,12 +21,13 @@ struct DetailedQuestionnaireView: View {
     @State var survey: QuestionnaireResponse?
     var surveyId: String
     var type: String
+    var score: Int
     
     var body: some View {
         NavigationStack {
             Spacer()
             if let survey {
-                DQRowView(surveyType: type, questionnaireResponse: survey)
+                DQRowView(surveyType: type, score: score, questionnaireResponse: survey)
                     .navigationBarTitle("Previous Response")
                     .navigationTitle("[date], [type of survey]")
             }
@@ -66,6 +67,6 @@ struct DetailedQuestionnaireView: View {
 
 struct DetailedQuestionnaireView_Previews: PreviewProvider {
     static var previews: some View {
-        DetailedQuestionnaireView(surveyId: "", type: "")
+        DetailedQuestionnaireView(surveyId: "", type: "", score: 0)
     }
 }
