@@ -28,7 +28,7 @@ public struct Trends: View {
     
     public var body: some View {
         NavigationStack {
-            VStack() {
+            VStack {
                 ForEach(Array(firestoreManager.surveys.keys), id: \.self) { survey in
                     if survey == "wiq" {
                         Text("No WIQ for now")
