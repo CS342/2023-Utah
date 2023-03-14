@@ -38,6 +38,7 @@ class TrendsTests: XCTestCase {
         app.tabBars["Tab Bar"].buttons["Questions"].tap()
         try navigateToTrends()
         XCTAssert(app.staticTexts[String(newVal)].waitForExistence(timeout: 2))
+        XCTAssert(app.staticTexts[String(6.0)].waitForExistence(timeout: 2))
     }
     
     func navigateToTrends() throws {
@@ -45,5 +46,6 @@ class TrendsTests: XCTestCase {
         XCTAssertTrue(app.tabBars["Tab Bar"].buttons["Trends"].waitForExistence(timeout: 2))
         app.tabBars["Tab Bar"].buttons["Trends"].tap()
         XCTAssertTrue(app.staticTexts["Daily Step Count"].waitForExistence(timeout: 2))
+        XCTAssertTrue(app.staticTexts["Edmonton Frail Scale"].waitForExistence(timeout: 2))
     }
 }
