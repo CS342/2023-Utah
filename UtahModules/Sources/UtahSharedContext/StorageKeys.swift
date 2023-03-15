@@ -22,4 +22,10 @@ public enum StorageKeys {
     // MARK: - Condition
     /// The conditions the patients can choose from
     public static var conditions = ["Arterial Disease", "Venous Disease", "I Don't Know"]
+    
+    public static var surveyResult = [
+        "Healthy": "You are doing well and do not have many health concerns.",
+        "Vulnerable": "You have some health concerns and may benefit from extra support and care.",
+        "Frail": "You have significant health concerns and may need help with daily tasks and activities."
+    ]
 }
