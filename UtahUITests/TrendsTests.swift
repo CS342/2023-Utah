@@ -39,11 +39,11 @@ class TrendsTests: XCTestCase {
         try navigateToTrends()
         XCTAssert(app.staticTexts[String(newVal)].waitForExistence(timeout: 2))
         XCTAssert(app.staticTexts[String(6.0)].waitForExistence(timeout: 2))
-        app.staticTexts[String(6.0)].tap()
-        XCTAssert(app.staticTexts["Edmonton Frail Scale"].waitForExistence(timeout: 2))
-        app.swipeDown(velocity: XCUIGestureVelocity.fast)
-        app.staticTexts[String(newVal)].tap()
+        app.staticTexts["Daily Step Count"].tap()
         XCTAssert(app.staticTexts["Step Count"].waitForExistence(timeout: 2))
+        app.swipeDown(velocity: XCUIGestureVelocity.fast)
+        app.staticTexts["Edmonton Frail Scale"].tap()
+        XCTAssert(app.staticTexts["Edmonton Frail Scale"].waitForExistence(timeout: 2))
     }
     
     func navigateToTrends() throws {
