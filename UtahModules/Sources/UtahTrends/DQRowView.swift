@@ -28,7 +28,7 @@ struct DQRowView: View {
     let score: Int
     var answerList: [QuestionListItem] {
         switch surveyType {
-        case "veinesssurveys":
+        case "veines":
             return wiqVeinesQList()
         case "edmonton":
             return edmontonQList()
@@ -42,7 +42,7 @@ struct DQRowView: View {
     var body: some View {
         ScrollView {
             VStack {
-                Text(surveyType)
+                Text(surveyType.uppercased())
                     .font(.title)
                 ForEach(answerList, id: \.self) { item in
                     Text(item.questionDescription)
@@ -53,12 +53,16 @@ struct DQRowView: View {
                             .cornerRadius(15)
                         )
                         .foregroundColor(.white)
+                        .font(.title2)
                     
                     Spacer()
                     Text(item.answer)
+                        .font(.title3)
+                    Spacer()
+                        .padding(20)
                 }
             }
-            // call fn that returns this answer list - calls out to firebase, grabs all answers and returns tis list
+            // call fn that returns this answer list - calls out to firebase, grabs all answers and returns tis lis
         }
     }
     func edmontonQList() -> [QuestionListItem] {

@@ -30,7 +30,6 @@ struct DetailedQuestionnaireView: View {
             if let survey {
                 DQRowView(surveyType: type, score: score, questionnaireResponse: survey)
                     .navigationBarTitle(Text(date, format: .dateTime))
-                    .navigationTitle("[date], [type of survey]")
             } else {
                 ProgressView()
             }
