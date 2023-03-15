@@ -17,13 +17,8 @@ import SwiftUI
 import UtahSharedContext
 
 struct DQRowView: View {
-    // questions and answers in same array
     
-    // turn this into dictionary: q1:"Drawing Clock Test"
     @EnvironmentObject var firestoreManager: FirestoreManager
-    //var questionList = ["q1": "Drawing Clock Test",
-//                        "q2": "Times admitted to a hospital the past year",
-//                        "q3": "Description of overall health"]
     let surveyType: String
     let score: Int
     var answerList: [QuestionListItem] {
@@ -54,15 +49,12 @@ struct DQRowView: View {
                         )
                         .foregroundColor(.white)
                         .font(.title2)
-                    
-                    Spacer()
                     Text(item.answer)
                         .font(.title3)
                     Spacer()
                         .padding(20)
                 }
             }
-            // call fn that returns this answer list - calls out to firebase, grabs all answers and returns tis lis
         }
     }
     func edmontonQList() -> [QuestionListItem] {
