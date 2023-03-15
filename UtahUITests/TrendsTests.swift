@@ -8,7 +8,6 @@
 
 import XCTest
 
-
 class TrendsTests: XCTestCase {
     override func setUpWithError() throws {
         try super.setUpWithError()
