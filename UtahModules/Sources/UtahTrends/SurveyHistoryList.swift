@@ -28,6 +28,7 @@ struct SurveyHistoryList: View {
                 await firestoreManager.loadSurveys()
             }
         }
+        .background(ignoresSafeAreaEdges: .all)
     }
     func createSurveySection(surveySection: String) -> some View {
         ForEach(firestoreManager.surveys[surveySection] ?? [], id: \.surveyId) { survey in

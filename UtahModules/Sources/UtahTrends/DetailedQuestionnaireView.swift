@@ -66,6 +66,6 @@ struct DetailedQuestionnaireView: View {
 
 //struct DetailedQuestionnaireView_Previews: PreviewProvider {
 //    static var previews: some View {
-//        DetailedQuestionnaireView(surveyId: "", type: "", score: 0, d)
+//        DetailedQuestionnaireView(firestoreManager: firestoreManager, surveyId: "TEST", type: "type1", score: 0, date: Date())
 //    }
 //}
