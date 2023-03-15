@@ -29,14 +29,11 @@ public struct Trends: View {
     public var body: some View {
         NavigationStack {
             VStack {
-                ForEach(Array(firestoreManager.surveys.keys), id: \.self) { survey in
-                    if survey == "wiq" {
-                        Text("No WIQ for now")
-                            .padding(.vertical, 10)
-                    } else if survey == "edmonton"{
+                ForEach(getKeys(), id: \.self) { survey in
+                    if survey == "edmonton"{
                         DataCard(
                             icon: "figure.run",
-                            title: "Edmonton Frail Scale",
+                            title: "Latest EFS Score",
                             unit: "points",
                             color: Color.blue
                         )
@@ -54,7 +51,7 @@ public struct Trends: View {
                 }
                 DataCard(
                     icon: "shoeprints.fill",
-                    title: "Daily Step Count",
+                    title: "Average Step Count",
                     unit: "steps",
                     color: Color.green
                 )
@@ -70,6 +67,11 @@ public struct Trends: View {
             .padding(.top, -200)
             .navigationBarTitle("Trends")
         }
+    }
+    func getKeys() -> [String] {
+        let sortedDict = firestoreManager.surveys.sorted(by: { $0.0 < $1.0 })
+        let keys = sortedDict.map { $0.0 }
+        return keys
     }
     public init() {
     }

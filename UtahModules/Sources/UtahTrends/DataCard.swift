@@ -59,10 +59,10 @@ struct DataCard: View {
                 .shadow(radius: 5)
         }
         .task {
-            if title == "Daily Step Count" {
+            if title == "Average Step Count" {
                 await firestoreManager.loadObservations(metricCode: "55423-8")
                 recalculateChartData(basedon: firestoreManager.observations)
-            } else if title == "Edmonton Frail Scale" {
+            } else if title == "Latest EFS Score" {
                 await firestoreManager.loadSurveys()
                 getSurveyData(surveyType: "edmonton")
             } else if title == "Veines Survey Score" {
