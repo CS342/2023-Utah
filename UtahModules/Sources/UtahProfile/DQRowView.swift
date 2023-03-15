@@ -5,9 +5,6 @@
 //
 // SPDX-License-Identifier: MIT
 //
-
-// swiftlint:disable multiline_literal_brackets
-
 import Account
 import FHIR
 import Firebase
@@ -20,26 +17,18 @@ import SwiftUI
 import UtahSharedContext
 
 struct DQRowView: View {
-    // questions and answers in same array
     
-    // turn this into dictionary: q1:"Drawing Clock Test"
     @EnvironmentObject var firestoreManager: FirestoreManager
-    var questionList =
-    [
-        "q1": "Drawing Clock Test",
-        "q2": "Times admitted to a hospital the past year",
-        "q3": "Description of overall health"
-    ]
     let surveyType: String
     let score: Int
     var answerList: [QuestionListItem] {
         switch surveyType {
-        case "veinesssurveys":
-            return veinesQList()
+        case "veines":
+            return wiqVeinesQList()
         case "edmonton":
             return edmontonQList()
         case "wiq":
-            return wiqQList()
+            return wiqVeinesQList()
         default:
             return []
         }
@@ -47,22 +36,27 @@ struct DQRowView: View {
     let questionnaireResponse: QuestionnaireResponse
     var body: some View {
         ScrollView {
-            ForEach(answerList, id: \.self) { item in
-                Text(item.questionDescription)
+            VStack {
+                Text(surveyType.uppercased())
+                    .font(.title)
                     .padding(.all, 10)
-                    .background(
-                        Rectangle()
+                    .background(Rectangle()
                         .fill(Color.accentColor)
                         .shadow(radius: 3)
                         .cornerRadius(15)
                     )
                     .foregroundColor(.white)
-                
-                Spacer()
-                Text(item.answer)
+                ForEach(answerList, id: \.self) { item in
+                    Text(item.questionDescription)
+                        .font(.title2)
+                        .foregroundColor(Color.accentColor)
+                    Spacer()
+                    Text(item.answer)
+                        .font(.title3)
+                    Spacer()
+                        .padding(20)
+                }
             }
-            .font(.title)
-            // call fn that returns this answer list - calls out to firebase, grabs all answers and returns tis list
         }
     }
     func edmontonQList() -> [QuestionListItem] {
@@ -75,14 +69,16 @@ struct DQRowView: View {
         }
         let firstQuestion = QuestionListItem(questionDescription: "Clock Test", answer: answer)
         edmontonList.append(firstQuestion)
+        let secondQuestion = QuestionListItem(questionDescription: "Score", answer: String(self.score))
+        edmontonList.append(secondQuestion)
         return edmontonList
     }
     
-    func wiqQList() -> [QuestionListItem] {
-        []
+    func wiqVeinesQList() -> [QuestionListItem] {
+        var wiqVeinesQList: [QuestionListItem] = []
+        let scoreDisplay = QuestionListItem(questionDescription: "Score", answer: String(self.score))
+        wiqVeinesQList.append(scoreDisplay)
+        return wiqVeinesQList
     }
     
-    func veinesQList() -> [QuestionListItem] {
-        []
-    }
 }
