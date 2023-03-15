@@ -33,8 +33,6 @@ import UtahSharedContext
                     Spacer()
                     // removed survey for now until we pull survey data from firestore
                     // DataCard(icon: "list.clipboard.fill", title: "Last EFS Survey Score", unit: "points", color: Color.blue, observations: [])
-                    Spacer()
-                    SurveyHistoryList()
                 }
             }
         }

@@ -27,6 +27,11 @@ struct UserInformationView: View {
             InfoRow(field: "EMAIL", value: user?.email ?? "")
             InfoRow(field: "DIAGNOSIS", value: firestoreManager.disease)
             Spacer()
+            MenuButton(eventBool: $needHelp, buttonLabel: "Survey History", foregroundColor: Color.accentColor, backgroundColor: Color(.white))
+                .sheet(isPresented: $needHelp) {
+                    SurveyHistoryList()
+                }
+                .padding(.bottom, -15)
             MenuButton(eventBool: $needHelp, buttonLabel: "Need help?", foregroundColor: Color.accentColor, backgroundColor: Color(.white))
                 .sheet(isPresented: $needHelp) {
                     HelpPage()
