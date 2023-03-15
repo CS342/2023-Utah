@@ -44,7 +44,7 @@ struct DetailedQuestionnaireView: View {
         func querySurveys(type: String, surveyId: String) async -> QuestionnaireResponse? {
             await withCheckedContinuation { continuation in
                 let db = Firestore.firestore()
-                var surveyName = "veinesssurveys"
+                var surveyName = "veinessurveys"
                 if type == "edmonton" {
                     surveyName = "edmontonsurveys"
                 } else if type == "wiq" {

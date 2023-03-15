@@ -71,12 +71,13 @@ struct DQRowView: View {
         }
         let firstQuestion = QuestionListItem(questionDescription: "Clock Test", answer: answer)
         edmontonList.append(firstQuestion)
+        let secondQuestion = QuestionListItem(questionDescription: "Score", answer: String(self.score))
+        edmontonList.append(secondQuestion)
         return edmontonList
     }
     
     func wiqVeinesQList() -> [QuestionListItem] {
         var wiqVeinesQList: [QuestionListItem] = []
-        var status = questionnaireResponse.status
         let scoreDisplay = QuestionListItem(questionDescription: "Score", answer: String(self.score))
         wiqVeinesQList.append(scoreDisplay)
         return wiqVeinesQList
