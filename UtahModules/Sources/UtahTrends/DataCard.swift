@@ -48,6 +48,7 @@ struct DataCard: View {
                     .accessibility(identifier: "\(unit)_val")
                 Text(unit)
                 Spacer()
+                Image(systemName: "chevron.up")
             }
         }
         .padding(30)

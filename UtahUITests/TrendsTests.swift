@@ -49,7 +49,7 @@ class TrendsTests: XCTestCase {
         let app = XCUIApplication()
         XCTAssertTrue(app.tabBars["Tab Bar"].buttons["Trends"].waitForExistence(timeout: 2))
         app.tabBars["Tab Bar"].buttons["Trends"].tap()
-        XCTAssertTrue(app.staticTexts["Daily Step Count"].waitForExistence(timeout: 2))
-        XCTAssertTrue(app.staticTexts["Edmonton Frail Scale"].waitForExistence(timeout: 2))
+        XCTAssertTrue(app.staticTexts["Average Step Count"].waitForExistence(timeout: 2))
+        XCTAssertTrue(app.staticTexts["Latest EFS Score"].waitForExistence(timeout: 2))
     }
 }

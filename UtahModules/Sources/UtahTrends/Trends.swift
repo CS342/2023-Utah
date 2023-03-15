@@ -30,13 +30,10 @@ public struct Trends: View {
         NavigationStack {
             VStack {
                 ForEach(Array(firestoreManager.surveys.keys), id: \.self) { survey in
-                    if survey == "wiq" {
-                        Text("No WIQ for now")
-                            .padding(.vertical, 10)
-                    } else if survey == "edmonton"{
+                 if survey == "edmonton"{
                         DataCard(
                             icon: "figure.run",
-                            title: "Edmonton Frail Scale",
+                            title: "Latest EFS Score",
                             unit: "points",
                             color: Color.blue
                         )
@@ -54,7 +51,7 @@ public struct Trends: View {
                 }
                 DataCard(
                     icon: "shoeprints.fill",
-                    title: "Daily Step Count",
+                    title: "Average Step Count",
                     unit: "steps",
                     color: Color.green
                 )
