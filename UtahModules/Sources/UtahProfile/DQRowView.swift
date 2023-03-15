@@ -5,6 +5,9 @@
 //
 // SPDX-License-Identifier: MIT
 //
+// swiftlint:disable vertical_whitespace_closing_braces
+// swiftlint:disable multiline_arguments_brackets
+
 import Account
 import FHIR
 import Firebase
@@ -16,8 +19,8 @@ import Foundation
 import SwiftUI
 import UtahSharedContext
 
+
 struct DQRowView: View {
-    
     @EnvironmentObject var firestoreManager: FirestoreManager
     let surveyType: String
     let score: Int
@@ -80,5 +83,4 @@ struct DQRowView: View {
         wiqVeinesQList.append(scoreDisplay)
         return wiqVeinesQList
     }
-    
 }

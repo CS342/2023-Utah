@@ -5,6 +5,9 @@
 //
 // SPDX-License-Identifier: MIT
 //
+// swiftlint:disable identifier_name
+
+
 import Account
 import FHIR
 import Firebase
@@ -15,6 +18,7 @@ import FirebaseFirestoreSwift
 import Foundation
 import SwiftUI
 import UtahSharedContext
+
 
 struct DetailedQuestionnaireView: View {
     @EnvironmentObject var firestoreManager: FirestoreManager
@@ -29,7 +33,7 @@ struct DetailedQuestionnaireView: View {
             Spacer()
             if let survey {
                 DQRowView(surveyType: type, score: score, questionnaireResponse: survey)
-                    .navigationBarTitle(Text(date, format: .dateTime))
+                    .navigationBarTitle(Text(date, format: .dateTime), displayMode: .inline)
             } else {
                 ProgressView()
             }
@@ -64,8 +68,8 @@ struct DetailedQuestionnaireView: View {
         }
 }
 
-//struct DetailedQuestionnaireView_Previews: PreviewProvider {
+// struct DetailedQuestionnaireView_Previews: PreviewProvider {
 //    static var previews: some View {
 //        DetailedQuestionnaireView(firestoreManager: firestoreManager, surveyId: "TEST", type: "type1", score: 0, date: Date())
 //    }
-//}
+// }

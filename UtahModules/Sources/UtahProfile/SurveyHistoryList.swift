@@ -16,7 +16,7 @@ struct SurveyHistoryList: View {
     
     
     var body: some View {
-        NavigationView {
+        NavigationStack {
             List {
                 ForEach(Array(firestoreManager.surveys.keys), id: \.self) { surveySection in
                     Section(surveySection, content: {
@@ -24,6 +24,7 @@ struct SurveyHistoryList: View {
                     })
                 }
             }
+            .navigationTitle("Survey History")
             .task {
                 await firestoreManager.loadSurveys()
             }
