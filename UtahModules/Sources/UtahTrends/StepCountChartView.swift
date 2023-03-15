@@ -13,8 +13,6 @@ import FirebaseFirestore
 import SwiftUI
 import UtahSharedContext
 
-
-// Step count
 struct StepCount: Identifiable {
     let date: String
     let count: Int
@@ -44,6 +42,7 @@ var stepDummyData: [StepCount] = [
 struct StepCountChart: View {
     @EnvironmentObject var firestoreManager: FirestoreManager
     @State var chartData: [StepCount] = []
+
     var body: some View {
         VStack(alignment: .leading) {
             VStack(alignment: .center) {
@@ -102,12 +101,9 @@ struct StepCountChart: View {
                     stop = true
                 }
             }
-        self.chartData = filteredData.map{.init(date: date_formatter(date: $0.0), count: Int($0.1))} as [StepCount]
-
+        self.chartData = filteredData.map { .init(date: date_formatter(date: $0.0), count: Int($0.1)) } as [StepCount]
         }
-
 }
-
 
 
 struct StepCountChart_Previews: PreviewProvider {
