@@ -76,7 +76,6 @@ struct DQRowView: View {
     
     func wiqVeinesQList() -> [QuestionListItem] {
         var wiqVeinesQList: [QuestionListItem] = []
-        var score: Int
         var status = questionnaireResponse.status
         let scoreDisplay = QuestionListItem(questionDescription: "Score", answer: String(self.score))
         wiqVeinesQList.append(scoreDisplay)
