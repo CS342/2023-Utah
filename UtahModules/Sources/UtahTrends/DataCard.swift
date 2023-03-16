@@ -41,7 +41,7 @@ struct DataCard: View {
             // data
             HStack(alignment: .firstTextBaseline) {
                 Spacer()
-                Text(round(maxValue).description)
+                Text(Int(maxValue).description)
                     .font(.largeTitle)
                     .fontWeight(.bold)
                     .foregroundColor(color)
