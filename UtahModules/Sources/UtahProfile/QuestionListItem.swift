@@ -5,6 +5,7 @@
 //
 // SPDX-License-Identifier: MIT
 //
+
 import Foundation
 
 public struct QuestionListItem: Hashable, Codable {
