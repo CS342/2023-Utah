@@ -51,7 +51,7 @@ struct DQRowView: View {
                     .foregroundColor(.white)
                     .padding(.bottom, 20)
                 Spacer()
-                VStack{
+                VStack {
                     Color.gray.frame(height: 1 / UIScreen.main.scale)
                 }
                 ForEach(answerList, id: \.self) { item in
@@ -85,9 +85,9 @@ struct DQRowView: View {
         edmontonList.append(secondQuestion)
         let scoreDescription = QuestionListItem(questionDescription: "What your score means", answer: "0-6: Healthy - few health concerns.")
         edmontonList.append(scoreDescription)
-        let scoreDescription2 = QuestionListItem(questionDescription: nil, answer:"\n6-11: Vulnerable - some health concerns; need extra support and care.")
+        let scoreDescription2 = QuestionListItem(questionDescription: nil, answer: "\n6-11: Vulnerable - some health concerns; extra support & care.")
         edmontonList.append(scoreDescription2)
-        let scoreDescription3 = QuestionListItem(questionDescription: nil, answer:"\n12-17: Frail - significant health concerns; get help with daily tasks and activities.")
+        let scoreDescription3 = QuestionListItem(questionDescription: nil, answer: "\n12-17: Frail - significant health concerns; daily task and activity help")
         edmontonList.append(scoreDescription3)
         return edmontonList
     }
