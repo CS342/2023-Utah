@@ -14,11 +14,6 @@ struct SurveyHistoryList: View {
     @EnvironmentObject var firestoreManager: FirestoreManager
     @State var surveys: [QuestionnaireResponse] = []
     
-    //init() {
-            //let navBarAppearance = UINavigationBarAppearance()
-            //navBarAppearance.backgroundColor = UIColor.white
-       // }
-    
     var body: some View {
         NavigationStack {
             List {
