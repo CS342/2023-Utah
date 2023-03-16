@@ -9,9 +9,9 @@
 // swiftlint:disable large_tuple
 // swiftlint:disable identifier_name
 
-import Foundation
 import Combine
 import FirebaseFirestore
+import Foundation
 import UtahSharedContext
 
 
@@ -26,7 +26,7 @@ class EdmontonChartData: ObservableObject {
         var result: [MonthScore] = []
 
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM"
+        dateFormatter.dateFormat = "M/yy"
 
         let calendar = Calendar.current
 
@@ -43,14 +43,11 @@ class EdmontonChartData: ObservableObject {
                 currentDate = calendar.date(byAdding: .month, value: -1, to: currentDate) ?? currentDate
             }
             let currentMonth = dateFormatter.string(from: currentDate)
-            print("currentMonth", currentMonth)
 
             // Find surveys for the current month
             let surveysForCurrentMonth = surveys.values
                 .flatMap { $0 }
                 .filter { dateFormatter.string(from: $0.dateCompleted) == currentMonth }
-
-            print("surveysForCurrentMonth", surveysForCurrentMonth)
             
             if let mostRecentSurvey = surveysForCurrentMonth.max(by: { $0.dateCompleted < $1.dateCompleted }) {
                 result.append(MonthScore(month: currentMonth, score: mostRecentSurvey.score))

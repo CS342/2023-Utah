@@ -7,12 +7,12 @@
 ////
 //
 //// swiftlint:disable line_length
-//import Charts
-//import SwiftUI
-//import FirebaseFirestore
-//import UtahSharedContext
+// import Charts
+// import SwiftUI
+// import FirebaseFirestore
+// import UtahSharedContext
 //
-//struct EdmontonChart: View {
+// struct EdmontonChart: View {
 //    @StateObject var edmontonChartData = EdmontonChartData()
 //    @EnvironmentObject var firestoreManager: FirestoreManager
 //
@@ -39,4 +39,4 @@
 //                .shadow(radius: 5)
 //        }
 //    }
-//}
+// }

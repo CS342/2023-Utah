@@ -9,8 +9,8 @@
 // swiftlint:disable line_length
 
 import Charts
-import SwiftUI
 import FirebaseFirestore
+import SwiftUI
 import UtahSharedContext
 
 struct SurveyChart: View {
@@ -42,4 +42,3 @@ struct SurveyChart: View {
         }
     }
 }
-
