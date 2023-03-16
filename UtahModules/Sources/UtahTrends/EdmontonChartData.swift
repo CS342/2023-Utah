@@ -21,6 +21,7 @@ struct MonthScore: Identifiable {
     let score: Int
 }
 
+// gets most recent measurement per month
 class EdmontonChartData: ObservableObject {
     func firstDataForEachMonth(inMonths range: Int, from surveys: [String: [(dateCompleted: Date, score: Int, surveyId: String)]]) -> [MonthScore] {
         var result: [MonthScore] = []
