@@ -6,40 +6,57 @@
 // SPDX-License-Identifier: MIT
 //
 
+// swiftlint:disable large_tuple
+// swiftlint:disable identifier_name
+
 import Foundation
 import Combine
 import FirebaseFirestore
 import UtahSharedContext
 
 
+struct MonthScore: Identifiable {
+    let id = UUID()
+    let month: String
+    let score: Int
+}
+
 class EdmontonChartData: ObservableObject {
-    func firstDataForEachMonth(inMonths range: Int, from surveys: [String: [(dateCompleted: Date, score: Int, surveyId: String)]]) -> [(month: String, score: Int)] {
-        let calendar = Calendar.current
+    func firstDataForEachMonth(inMonths range: Int, from surveys: [String: [(dateCompleted: Date, score: Int, surveyId: String)]]) -> [MonthScore] {
+        var result: [MonthScore] = []
+
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM"
-        let mostRecentDate = surveys
+
+        let calendar = Calendar.current
+
+        // Find the most recent survey date
+        let mostRecentDate = surveys.values
             .flatMap { $0 }
             .map { $0.dateCompleted }
             .max() ?? Date()
-        
-        let sixMonthsAgo = calendar.date(byAdding: .month, value: -range, to: mostRecentDate)!
-        
-        var monthScorePairs: [(month: String, score: Int)] = []
-        
-        for surveyData in surveys {
-            for survey in surveyData {
-                let dateCompleted = survey.dateCompleted
-                
-                if dateCompleted >= sixMonthsAgo && dateCompleted <= mostRecentDate {
-                    let month = dateFormatter.string(from: dateCompleted)
-                    
-                    if !monthScorePairs.contains(where: { $0.month == month }) {
-                        monthScorePairs.append((month: month, score: survey.score))
-                    }
-                }
+
+        var currentDate = mostRecentDate
+
+        for i in 0..<range {
+            if i > 0 {
+                currentDate = calendar.date(byAdding: .month, value: -1, to: currentDate) ?? currentDate
+            }
+            let currentMonth = dateFormatter.string(from: currentDate)
+            print("currentMonth", currentMonth)
+
+            // Find surveys for the current month
+            let surveysForCurrentMonth = surveys.values
+                .flatMap { $0 }
+                .filter { dateFormatter.string(from: $0.dateCompleted) == currentMonth }
+
+            print("surveysForCurrentMonth", surveysForCurrentMonth)
+            
+            if let mostRecentSurvey = surveysForCurrentMonth.max(by: { $0.dateCompleted < $1.dateCompleted }) {
+                result.append(MonthScore(month: currentMonth, score: mostRecentSurvey.score))
             }
         }
-        return monthScorePairs.sorted { $0.month < $1.month }
+
+        return result
     }
 }
-

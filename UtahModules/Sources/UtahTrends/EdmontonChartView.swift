@@ -6,7 +6,7 @@
 // SPDX-License-Identifier: MIT
 //
 
-
+// swiftlint:disable line_length
 import Charts
 import SwiftUI
 import FirebaseFirestore
@@ -29,11 +29,6 @@ import UtahSharedContext
 //    .init(date: "May", score: 9)
 //]
 
-struct MonthScorePair: Identifiable {
-    let id = UUID()
-    let month: String
-    let score: Int
-}
 
 struct EdmontonChart: View {
     @StateObject var edmontonChartData = EdmontonChartData()
@@ -46,7 +41,7 @@ struct EdmontonChart: View {
                     .font(.headline)
                     .padding(.top)
                 Chart {
-                    ForEach(edmontonChartData.firstDataForEachMonth(inMonths: 6, from: firestoreManager.surveys["edmonton"])) { datum in
+                    ForEach(edmontonChartData.firstDataForEachMonth(inMonths: 6, from: ["edmonton": firestoreManager.surveys["edmonton"] ?? []])) { datum in
                         BarMark(
                             x: .value("Date", datum.month),
                             y: .value("Edmonton Frail Scale Score", datum.score)
