@@ -58,7 +58,7 @@ public struct Trends: View {
                                 SurveyChart(title: "Veines Survey", surveyType: "veines")
                             }
                     } else if survey == "wiq" {
-                        DataCard(icon: "list.clipboard.fill", title: "WIQ Survey Score", unit: "points", color: Color.purple)
+                        DataCard(icon: "figure.walk", title: "WIQ Survey Score", unit: "points", color: Color.red)
                             .padding(.vertical, 10)
                             .onTapGesture {
                                 self.showWIQ.toggle()

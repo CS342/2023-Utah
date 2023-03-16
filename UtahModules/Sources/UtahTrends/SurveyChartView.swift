@@ -32,6 +32,10 @@ struct SurveyChart: View {
                         )
                     }
                 }
+                .chartYAxisLabel(position: .leading) {
+                    Text("Survey Score")
+                        .font(.subheadline)
+                }
             }
         }
         .padding(30)

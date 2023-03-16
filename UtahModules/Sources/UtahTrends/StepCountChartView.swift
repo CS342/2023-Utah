@@ -56,6 +56,10 @@ struct StepCountChart: View {
                         )
                     }
                 }
+                .chartYAxisLabel(position: .leading) {
+                    Text("Total Daily Step Count")
+                        .font(.subheadline)
+                }
             }
         }
         .padding(30)
