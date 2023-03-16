@@ -18,12 +18,18 @@ struct SurveyChart: View {
     @EnvironmentObject var firestoreManager: FirestoreManager
     let title: String
     let surveyType: String
+    
     var body: some View {
         VStack(alignment: .leading) {
             VStack(alignment: .center) {
                 Text(title)
                     .font(.headline)
                     .padding(.top)
+                if surveyType == "edmonton" {
+                    Text("Lower Score is Better!")
+                        .font(.subheadline)
+                        .italic()
+                }
                 Chart {
                     ForEach(edmontonChartData.firstDataForEachMonth(inMonths: 6, from: [surveyType: firestoreManager.surveys[surveyType] ?? []])) { datum in
                         BarMark(
