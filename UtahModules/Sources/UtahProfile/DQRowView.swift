@@ -57,7 +57,7 @@ struct DQRowView: View {
                 ForEach(answerList, id: \.self) { item in
                     VStack {
                         Spacer()
-                        Text(item.questionDescription)
+                        Text(item.questionDescription ?? "")
                             .font(.title2)
                             .foregroundColor(Color.accentColor)
                         
@@ -83,8 +83,12 @@ struct DQRowView: View {
         edmontonList.append(firstQuestion)
         let secondQuestion = QuestionListItem(questionDescription: "Score", answer: String(self.score))
         edmontonList.append(secondQuestion)
-        let scoreDescription = QuestionListItem(questionDescription: "What your score means", answer: "0-6: Healthy - You are doing well and do not have many health concerns.\n\n6-11: Vulnerable - You have some health concerns and may benefit from extra support and care.\n\n12-17: Frail - You have significant health concerns and may need help with daily tasks and activities.")
+        let scoreDescription = QuestionListItem(questionDescription: "What your score means", answer: "0-6: Healthy - few health concerns.")
         edmontonList.append(scoreDescription)
+        let scoreDescription2 = QuestionListItem(questionDescription: nil, answer:"\n6-11: Vulnerable - some health concerns; need extra support and care.")
+        edmontonList.append(scoreDescription2)
+        let scoreDescription3 = QuestionListItem(questionDescription: nil, answer:"\n12-17: Frail - significant health concerns; get help with daily tasks and activities.")
+        edmontonList.append(scoreDescription3)
         return edmontonList
     }
     
