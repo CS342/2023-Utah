@@ -73,9 +73,6 @@ public struct Trends: View {
         let keys = sortedDict.map { $0.0 }
         return keys
     }
-    
-    public init() {
-    }
 }
 
 // This just removes this section from being counted in our % "test coverage"
