@@ -81,7 +81,6 @@ struct DataCard: View {
         let mostRecentSurvey: (dateCompleted: Date, score: Int, surveyId: String)? = data?.sorted(by: { $0.dateCompleted > $1.dateCompleted }).first
         let score = mostRecentSurvey?.score ?? 0
         self.maxValue = Double(score)
-        print("my print statement:", self.maxValue)
     }
     
     // sums up all data points from each day
