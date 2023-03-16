@@ -7,7 +7,7 @@
 //
 import Foundation
 
-struct QuestionListItem: Hashable, Codable {
+public struct QuestionListItem: Hashable, Codable {
     var questionDescription: String?
     var answer: String
 }
