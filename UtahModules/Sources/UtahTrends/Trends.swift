@@ -8,6 +8,8 @@
 
 // swiftlint:disable identifier_name
 // swiftlint:disable closure_body_length
+// swiftlint:disable large_tuple
+
 
 import Account
 import SwiftUI
@@ -29,7 +31,7 @@ public struct Trends: View {
     public var body: some View {
         NavigationStack {
             VStack {
-                ForEach(getKeys(), id: \.self) { survey in
+                ForEach(getKeys(dict: firestoreManager.surveys), id: \.self) { survey in
                     if survey == "edmonton"{
                         DataCard(
                             icon: "figure.run",
@@ -68,13 +70,17 @@ public struct Trends: View {
             .navigationBarTitle("Trends")
         }
     }
-    func getKeys() -> [String] {
-        let sortedDict = firestoreManager.surveys.sorted(by: { $0.0 < $1.0 })
-        let keys = sortedDict.map { $0.0 }
-        return keys
+
+    
+    public init() {
     }
 }
 
+func getKeys(dict: [String: [(dateCompleted: Date, score: Int, surveyId: String)]]) -> [String] {
+    let sortedDict = dict.sorted(by: { $0.0 < $1.0 })
+    let keys = sortedDict.map { $0.0 }
+    return keys
+}
 // This just removes this section from being counted in our % "test coverage"
 #if !TESTING
 
