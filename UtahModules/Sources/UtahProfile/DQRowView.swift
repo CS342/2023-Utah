@@ -87,7 +87,7 @@ struct DQRowView: View {
         edmontonList.append(scoreDescription)
         let scoreDescription2 = QuestionListItem(questionDescription: nil, answer: "\n6-11: Vulnerable - some health concerns; extra support & care.")
         edmontonList.append(scoreDescription2)
-        let scoreDescription3 = QuestionListItem(questionDescription: nil, answer: "\n12-17: Frail - significant health concerns; get help with daily tasks")
+        let scoreDescription3 = QuestionListItem(questionDescription: nil, answer: "\n12-17: Frail - significant health concerns; help for daily tasks")
         edmontonList.append(scoreDescription3)
         return edmontonList
     }
