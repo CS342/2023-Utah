@@ -6,29 +6,18 @@
 // SPDX-License-Identifier: MIT
 //
 
+// swiftlint:disable line_length
 
 import Charts
 import SwiftUI
-
-// Edmonton frail scale
-struct EFS: Identifiable {
-    let date: String
-    let score: Int
-    var id = UUID()
-}
-
-
-// dummy data
-let efsDummyData: [EFS] = [
-    .init(date: "January", score: 15),
-    .init(date: "February", score: 17),
-    .init(date: "March", score: 3),
-    .init(date: "April", score: 8),
-    .init(date: "May", score: 9)
-]
+import FirebaseFirestore
+import UtahSharedContext
 
 struct SurveyChart: View {
+    @StateObject var edmontonChartData = EdmontonChartData()
+    @EnvironmentObject var firestoreManager: FirestoreManager
     let title: String
+    let surveyType: String
     var body: some View {
         VStack(alignment: .leading) {
             VStack(alignment: .center) {
@@ -36,9 +25,9 @@ struct SurveyChart: View {
                     .font(.headline)
                     .padding(.top)
                 Chart {
-                    ForEach(efsDummyData) { datum in
+                    ForEach(edmontonChartData.firstDataForEachMonth(inMonths: 6, from: [surveyType: firestoreManager.surveys[surveyType] ?? []])) { datum in
                         BarMark(
-                            x: .value("Date", datum.date),
+                            x: .value("Date", datum.month),
                             y: .value("\(title) Score", datum.score)
                         )
                     }
@@ -54,8 +43,3 @@ struct SurveyChart: View {
     }
 }
 
-struct EdmontonChart_Previews: PreviewProvider {
-    static var previews: some View {
-        SurveyChart(title: "Edmonton Frail Scale")
-    }
-}
