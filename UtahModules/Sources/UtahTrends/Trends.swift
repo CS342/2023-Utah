@@ -62,9 +62,9 @@ public struct Trends: View {
                 .sheet(isPresented: $showStepCount) {
                     StepCountChart()
                 }
+                Spacer()
             }
             // temporary fix
-            .padding(.top, -200)
             .navigationBarTitle("Trends")
         }
     }
