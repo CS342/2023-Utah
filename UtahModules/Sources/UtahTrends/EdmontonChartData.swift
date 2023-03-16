@@ -27,7 +27,7 @@ class EdmontonChartData: ObservableObject {
         var result: [MonthScore] = []
 
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "M/yy"
+        dateFormatter.dateFormat = "MM/yy"
 
         let calendar = Calendar.current
 
@@ -55,6 +55,8 @@ class EdmontonChartData: ObservableObject {
             }
         }
 
-        return result
+        return result.sorted { monthScore1, monthScore2 in
+            monthScore1.month < monthScore2.month
+        }
     }
 }
