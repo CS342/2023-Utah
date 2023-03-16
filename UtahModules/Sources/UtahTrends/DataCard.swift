@@ -68,6 +68,8 @@ struct DataCard: View {
             } else if title == "Veines Survey Score" {
                 await firestoreManager.loadSurveys()
                 getSurveyData(surveyType: "veines")
+            } else if title == "WIQ Survey Score" {
+                getSurveyData(surveyType: "wiq")
             }
         }
     }
