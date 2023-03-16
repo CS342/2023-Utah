@@ -55,7 +55,7 @@ public struct Trends: View {
                     unit: "steps",
                     color: Color.green
                 )
-                .padding(.vertical, 20)
+                .padding(.vertical, 10)
                 .onTapGesture {
                     self.showStepCount.toggle()
                 }
