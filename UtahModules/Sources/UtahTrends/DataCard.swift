@@ -13,7 +13,6 @@
 
 import Charts
 import FirebaseFirestore
-import SpeziFHIR
 import SwiftUI
 import UtahSharedContext
 
