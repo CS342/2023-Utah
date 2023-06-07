@@ -25,7 +25,7 @@ let package = Package(
         .library(name: "UtahTrends", targets: ["UtahTrends"])
     ],
     dependencies: [
-        .package(url: "https://github.com/firebase/firebase-ios-sdk", from: "10.5.0")
+        .package(url: "https://github.com/firebase/firebase-ios-sdk", from: "10.10.0")
     ],
     targets: [
         .target(
@@ -61,7 +61,8 @@ let package = Package(
             name: "UtahSharedContext",
             dependencies: [
                 .product(name: "FirebaseAuth", package: "firebase-ios-sdk"),
-                .product(name: "FirebaseFirestore", package: "firebase-ios-sdk")
+                .product(name: "FirebaseFirestore", package: "firebase-ios-sdk"),
+                .product(name: "FirebaseFirestoreSwift", package: "firebase-ios-sdk")
             ]
         ),
         .target(
