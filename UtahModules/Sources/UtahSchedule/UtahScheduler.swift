@@ -29,7 +29,6 @@ extension UtahScheduler {
                         repetition: .matching(.init(hour: 10, minute: 0)), // Every day at 10:00AM
                         end: .numberOfEvents(356)
                     ),
-                    notifications: true,
                     context: UtahTaskContext.researchKitTask(ResearchKitTaskContext.edmonton)
                 )
             ]
