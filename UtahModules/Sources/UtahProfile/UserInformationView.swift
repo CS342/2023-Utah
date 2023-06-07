@@ -6,12 +6,12 @@
 // SPDX-License-Identifier: MIT
 //
 
-import SpeziAccount
-import SwiftUI
-import SpeziFirebaseAccount
 import FirebaseAuth
 import FirebaseFirestore
+import SpeziAccount
+import SpeziFirebaseAccount
 import SpeziOnboarding
+import SwiftUI
 import UtahSharedContext
 
 struct UserInformationView: View {

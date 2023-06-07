@@ -6,23 +6,23 @@
 // SPDX-License-Identifier: MIT
 //
 
+import FirebaseAuth
+import HealthKit
 import Spezi
 import SpeziFHIR
 import SpeziFHIRToFirestoreAdapter
 import SpeziFirebaseAccount
-import class FirebaseFirestore.FirestoreSettings
-import class FirebaseFirestore.MemoryCacheSettings
 import SpeziFirestore
 import SpeziFirestorePrefixUserIdAdapter
-import HealthKit
 import SpeziHealthKit
 import SpeziHealthKitToFHIRAdapter
 import SpeziQuestionnaire
 import SpeziScheduler
-import FirebaseAuth
 import SwiftUI
 import UtahSchedule
 import UtahSharedContext
+import class FirebaseFirestore.FirestoreSettings
+import class FirebaseFirestore.MemoryCacheSettings
 
 
 class UtahAppDelegate: SpeziAppDelegate {

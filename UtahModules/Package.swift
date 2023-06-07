@@ -30,7 +30,7 @@ let package = Package(
         .package(url: "https://github.com/StanfordSpezi/SpeziAccount.git", from: "0.3.0"),
         .package(url: "https://github.com/StanfordSpezi/SpeziFHIR.git", from: "0.3.0"),
         .package(url: "https://github.com/StanfordSpezi/SpeziFirebase.git", from: "0.3.0"),
-        .package(url: "https://github.com/StanfordSpezi/SpeziHealthKit.git",  from: "0.2.1"),
+        .package(url: "https://github.com/StanfordSpezi/SpeziHealthKit.git", from: "0.2.1"),
         .package(url: "https://github.com/StanfordSpezi/SpeziOnboarding.git", from: "0.3.0"),
         .package(url: "https://github.com/StanfordSpezi/SpeziViews.git", from: "0.3.0"),
         .package(url: "https://github.com/StanfordSpezi/SpeziQuestionnaire.git", from: "0.3.0"),
@@ -72,7 +72,7 @@ let package = Package(
             name: "UtahSharedContext",
             dependencies: [
                 .product(name: "FirebaseAuth", package: "firebase-ios-sdk"),
-                .product(name: "FirebaseFirestore", package: "firebase-ios-sdk"),
+                .product(name: "FirebaseFirestore", package: "firebase-ios-sdk")
             ]
         ),
         .target(

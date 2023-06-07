@@ -6,9 +6,9 @@
 // SPDX-License-Identifier: MIT
 //
 
-import SpeziFHIR
 import FirebaseAuth
 import FirebaseFirestore
+import SpeziFHIR
 import SpeziHealthKit
 import SpeziOnboarding
 import SwiftUI

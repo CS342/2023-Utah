@@ -5,8 +5,9 @@
 //
 // SPDX-License-Identifier: MIT
 //
-import SpeziFHIR
+
 import Foundation
+import SpeziFHIR
 
 
 extension Foundation.Bundle {

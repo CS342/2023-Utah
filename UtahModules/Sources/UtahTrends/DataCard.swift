@@ -12,8 +12,8 @@
 // swiftlint:disable sorted_first_last
 
 import Charts
-import SpeziFHIR
 import FirebaseFirestore
+import SpeziFHIR
 import SwiftUI
 import UtahSharedContext
 

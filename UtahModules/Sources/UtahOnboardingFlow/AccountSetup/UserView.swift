@@ -7,10 +7,10 @@
 //
 
 import SpeziAccount
-import class SpeziFHIR.FHIR
 import SpeziFirebaseAccount
-import SwiftUI
 import SpeziViews
+import class SpeziFHIR.FHIR
+import SwiftUI
 
 
 struct UserView: View {

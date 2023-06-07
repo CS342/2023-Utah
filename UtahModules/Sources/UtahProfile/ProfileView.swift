@@ -7,9 +7,9 @@
 //
 
 
-import SpeziFirebaseAccount
 import FirebaseAuth
 import FirebaseFirestore
+import SpeziFirebaseAccount
 import SwiftUI
 import UtahSharedContext
 

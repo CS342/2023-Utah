@@ -7,9 +7,9 @@
 //
 
 
+import SpeziFHIR
 import SwiftUI
 import UtahSharedContext
-import SpeziFHIR
 
 struct SurveyHistoryList: View {
     @EnvironmentObject var firestoreManager: FirestoreManager

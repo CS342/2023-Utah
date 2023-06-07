@@ -14,9 +14,9 @@ import FirebaseCore
 import FirebaseFirestore
 import FirebaseFirestoreSwift
 import Foundation
+import SpeziFHIR
 import SwiftUI
 import UtahSharedContext
-import SpeziFHIR
 
 
 struct DQRowView: View {

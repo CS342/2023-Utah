@@ -5,10 +5,11 @@
 //
 // SPDX-License-Identifier: MIT
 //
+
+import Foundation
 import SpeziFHIR
 import SpeziScheduler
 import UtahSharedContext
-import Foundation
 
 
 /// A `Scheduler` using the `FHIR` standard as well as the ``UtahTaskContext`` to schedule and manage tasks and events in the
