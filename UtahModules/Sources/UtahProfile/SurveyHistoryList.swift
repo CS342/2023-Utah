@@ -5,10 +5,11 @@
 //
 // SPDX-License-Identifier: MIT
 //
-import FHIR
-import Foundation
+
+
 import SwiftUI
 import UtahSharedContext
+import SpeziFHIR
 
 struct SurveyHistoryList: View {
     @EnvironmentObject var firestoreManager: FirestoreManager

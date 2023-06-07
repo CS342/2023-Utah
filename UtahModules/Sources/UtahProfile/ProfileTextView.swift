@@ -6,13 +6,10 @@
 // SPDX-License-Identifier: MIT
 //
 
-import Account
 import SwiftUI
-import class FHIR.FHIR
-import FirebaseAccount
+import Firebase
+import SpeziFirebaseAccount
 import FirebaseAuth
-import FirebaseFirestore
-import Onboarding
 
 struct ProfileText: View {
     let user = Auth.auth().currentUser

@@ -6,12 +6,11 @@
 // SPDX-License-Identifier: MIT
 //
 
-import Account
-import class FHIR.FHIR
-import FirebaseAccount
-import Foundation
+import SpeziAccount
+import class SpeziFHIR.FHIR
+import SpeziFirebaseAccount
 import SwiftUI
-import Views
+import SpeziViews
 
 
 struct UserView: View {

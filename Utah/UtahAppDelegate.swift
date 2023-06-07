@@ -6,24 +6,26 @@
 // SPDX-License-Identifier: MIT
 //
 
-import CardinalKit
-import FHIR
-import FHIRToFirestoreAdapter
-import FirebaseAccount
+import Spezi
+import SpeziFHIR
+import SpeziFHIRToFirestoreAdapter
+import SpeziFirebaseAccount
 import class FirebaseFirestore.FirestoreSettings
-import FirestoreDataStorage
-import FirestoreStoragePrefixUserIdAdapter
+import class FirebaseFirestore.MemoryCacheSettings
+import SpeziFirestore
+import SpeziFirestorePrefixUserIdAdapter
 import HealthKit
-import HealthKitDataSource
-import HealthKitToFHIRAdapter
-import Questionnaires
-import Scheduler
+import SpeziHealthKit
+import SpeziHealthKitToFHIRAdapter
+import SpeziQuestionnaire
+import SpeziScheduler
+import FirebaseAuth
 import SwiftUI
 import UtahSchedule
 import UtahSharedContext
 
 
-class UtahAppDelegate: CardinalKitAppDelegate {
+class UtahAppDelegate: SpeziAppDelegate {
     override var configuration: Configuration {
         Configuration(standard: FHIR()) {
             if !FeatureFlags.disableFirebase {
@@ -47,14 +49,14 @@ class UtahAppDelegate: CardinalKitAppDelegate {
         let settings = FirestoreSettings()
         if FeatureFlags.useFirebaseEmulator {
             settings.host = "localhost:8080"
-            settings.isPersistenceEnabled = false
+            settings.cacheSettings = MemoryCacheSettings()
             settings.isSSLEnabled = false
         }
         
         return Firestore(
             adapter: {
                 FHIRToFirestoreAdapter()
-                FirestoreStoragePrefixUserIdAdapter()
+                FirestorePrefixUserIdAdapter()
             },
             settings: settings
         )

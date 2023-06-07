@@ -5,7 +5,7 @@
 //
 // SPDX-License-Identifier: MIT
 //
-import FHIR
+import SpeziFHIR
 import Foundation
 
 

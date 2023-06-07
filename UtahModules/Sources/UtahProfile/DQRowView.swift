@@ -8,8 +8,6 @@
 // swiftlint:disable vertical_whitespace_closing_braces
 // swiftlint:disable multiline_arguments_brackets
 
-import Account
-import FHIR
 import Firebase
 import FirebaseAuth
 import FirebaseCore
@@ -18,6 +16,7 @@ import FirebaseFirestoreSwift
 import Foundation
 import SwiftUI
 import UtahSharedContext
+import SpeziFHIR
 
 
 struct DQRowView: View {

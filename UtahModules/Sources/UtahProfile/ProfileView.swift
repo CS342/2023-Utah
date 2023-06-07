@@ -6,9 +6,8 @@
 // SPDX-License-Identifier: MIT
 //
 
-import Account
-import class FHIR.FHIR
-import FirebaseAccount
+
+import SpeziFirebaseAccount
 import FirebaseAuth
 import FirebaseFirestore
 import SwiftUI

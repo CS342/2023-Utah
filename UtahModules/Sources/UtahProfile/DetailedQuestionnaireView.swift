@@ -8,14 +8,13 @@
 // swiftlint:disable identifier_name
 
 
-import Account
-import FHIR
+import SpeziAccount
+import SpeziFHIR
 import Firebase
 import FirebaseAuth
 import FirebaseCore
 import FirebaseFirestore
 import FirebaseFirestoreSwift
-import Foundation
 import SwiftUI
 import UtahSharedContext
 

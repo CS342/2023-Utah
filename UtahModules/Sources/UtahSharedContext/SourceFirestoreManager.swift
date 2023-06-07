@@ -14,7 +14,7 @@
 // swiftlint:disable closure_body_length
 // swiftlint:disable function_body_length
 
-import Account
+import SpeziAccount
 import Firebase
 import FirebaseAuth
 import FirebaseCore
