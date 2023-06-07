@@ -25,18 +25,7 @@ let package = Package(
         .library(name: "UtahTrends", targets: ["UtahTrends"])
     ],
     dependencies: [
-        .package(url: "https://github.com/firebase/firebase-ios-sdk", from: "10.5.0"),
-        .package(url: "https://github.com/StanfordSpezi/Spezi.git", from: "0.5.1"),
-        .package(url: "https://github.com/StanfordSpezi/SpeziAccount.git", from: "0.3.0"),
-        .package(url: "https://github.com/StanfordSpezi/SpeziFHIR.git", from: "0.3.0"),
-        .package(url: "https://github.com/StanfordSpezi/SpeziFirebase.git", from: "0.3.0"),
-        .package(url: "https://github.com/StanfordSpezi/SpeziHealthKit.git", from: "0.2.1"),
-        .package(url: "https://github.com/StanfordSpezi/SpeziOnboarding.git", from: "0.3.0"),
-        .package(url: "https://github.com/StanfordSpezi/SpeziViews.git", from: "0.3.0"),
-        .package(url: "https://github.com/StanfordSpezi/SpeziQuestionnaire.git", from: "0.3.0"),
-        .package(url: "https://github.com/StanfordSpezi/SpeziScheduler.git", from: "0.4.1"),
-        .package(url: "https://github.com/StanfordSpezi/SpeziFHIRtoFirestoreAdapter.git", from: "0.3.0"),
-        .package(url: "https://github.com/StanfordSpezi/SpeziHealthKitToFHIRAdapter.git", from: "0.3.0")
+        .package(url: "https://github.com/firebase/firebase-ios-sdk", from: "10.5.0")
     ],
     targets: [
         .target(
