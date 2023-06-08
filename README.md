@@ -8,9 +8,9 @@ SPDX-License-Identifier: MIT
 
 -->
 
-# CS342 2023 Utah Team Application
+# U-STEP
 
-This repository contains the CS342 2023 Utah Team Application.
+This repository contains the U-STEP application build by the [CS342](https://cs342.stanford.edu) 2023 Utah Team.
 
 It demonstrates using the [Spezi](https://github.com/StanfordSpezi/Spezi) framework template and builds on top of the [Spezi Template Application](https://github.com/StanfordSpezi/SpeziTemplateApplication).
 
@@ -51,7 +51,7 @@ The application includes continuous integration (CI) and continuous delivery (CD
 - Automatically build and test the application on every pull request before deploying it.
 - An automated setup to deploy the application to TestFlight every time there is a new commit on the repository's main branch.
 - Ensure a coherent code style by checking the conformance to the SwiftLint rules defined in `.swiftlint.yml` on every pull request and commit.
-- Ensure conformance to the [REUSE Specification]() to property license the application and all related code.
+- Ensure conformance to the [REUSE Specification](https://reuse.software/spec/) to property license the application and all related code.
 
 Please refer to the [Spezi Template Application](https://github.com/StanfordSpezi/SpeziTemplateApplication) and the [ContinousDelivery Example by Paul Schmiedmayer](https://github.com/PSchmiedmayer/ContinousDelivery) for more background about the CI and CD setup for the Spezi Template Application.
 
@@ -60,6 +60,6 @@ Please refer to the [Spezi Template Application](https://github.com/StanfordSpez
 
 This project is based on [ContinousDelivery Example by Paul Schmiedmayer](https://github.com/PSchmiedmayer/ContinousDelivery), and [Spezi Template Application](https://github.com/StanfordSpezi/SpeziTemplateApplication) provided using the MIT license.
 
-You can find a list of contributors in the `CONTRIBUTORS.md` file.
+You can find a list of contributors in the [CONTRIBUTORS.md](https://github.com/CS342/2023-Utah/blob/main/CONTRIBUTORS.md) file.
 
-The CS342 2023 Utah Team Application is licensed under the MIT license.
+The U-STEP application is licensed under the [MIT license](https://github.com/CS342/2023-Utah/blob/main/LICENSES/MIT.txt).
