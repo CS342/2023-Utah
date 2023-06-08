@@ -244,6 +244,15 @@
       }
     },
     {
+      "identity" : "xctestextensions",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/StanfordBDHG/XCTestExtensions.git",
+      "state" : {
+        "revision" : "54fd8030dbd0f34426ab28ff2593611dd5506357",
+        "version" : "0.4.2"
+      }
+    },
+    {
       "identity" : "xcthealthkit",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/StanfordBDHG/XCTHealthKit.git",
