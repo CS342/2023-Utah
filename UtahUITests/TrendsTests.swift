@@ -35,8 +35,8 @@ class TrendsTests: XCTestCase {
         let newVal = (prevValue ?? 0.0) + 42 / 7
 
         // Need to navigate to another tab first to refresh number
-        XCTAssertTrue(app.tabBars["Tab Bar"].buttons["Questions"].waitForExistence(timeout: 5))
-        app.tabBars["Tab Bar"].buttons["Questions"].tap()
+        XCTAssertTrue(app.tabBars["Tab Bar"].buttons["Profile"].waitForExistence(timeout: 5))
+        app.tabBars["Tab Bar"].buttons["Profile"].tap()
         try navigateToTrends()
 
         XCTAssert(app.staticTexts[String(Int(newVal))].waitForExistence(timeout: 5))
