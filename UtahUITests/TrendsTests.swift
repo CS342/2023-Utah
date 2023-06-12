@@ -8,7 +8,7 @@
 
 // import XCTest
 
-//class TrendsTests: XCTestCase {
+// class TrendsTests: XCTestCase {
 //    override func setUpWithError() throws {
 //        try super.setUpWithError()
 //
@@ -51,4 +51,4 @@
 //        XCTAssertTrue(app.tabBars["Tab Bar"].buttons["Trends"].waitForExistence(timeout: 2))
 //        app.tabBars["Tab Bar"].buttons["Trends"].tap()
 //    }
-//}
+// }
